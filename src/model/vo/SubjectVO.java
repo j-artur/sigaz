@@ -9,7 +9,7 @@ public class SubjectVO {
 	}
 	
 	public void setCode(String code) {
-		if(code==null || code=="" || code.length() != 7)
+		if(code==null || code.equals("") || code.length() != 7)
 			System.out.println("Código inválido!");
 		else
 			this.code = code;
@@ -21,7 +21,7 @@ public class SubjectVO {
 	}
 	
 	public void setName(String name) {
-		if(name==null || name=="")
+		if(name==null || name.equals(""))
 			System.out.println("Nome inválido!");
 		else
 			this.name = name;

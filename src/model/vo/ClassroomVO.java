@@ -58,33 +58,10 @@ public class ClassroomVO {
 	}
 
 	public void setSchedule(String schedule) {
-		boolean horarioFormatado = true;
-		
-		//Verifica se o horário tem o número de caracteres que deve ter
-		if(schedule.length() != 5) {
-			horarioFormatado = false;
-			System.out.println("O horário deve seguir o formato XX:XX");
-		} else {
-			for(short i = 0; i < schedule.length(); i++) {
-				if(i != 2) {
-					char caractere = schedule.charAt(i);
-					//Verifica se os caracteres do horário são dígitos
-					if(!Character.isDigit(caractere)) {
-						horarioFormatado = false;
-						System.out.println("Os caracteres do horário não são dígitos");
-					}
-				} else {
-					//Verifica se o horário contém o ":"
-					char caractere = schedule.charAt(i);
-					if(caractere != ':') {
-						horarioFormatado = false;
-						System.out.println("O horário deve seguir o formato XX:XX");
-					}	
-				}
-			}
-			if(horarioFormatado)
-				this.schedule = schedule;
-		}
+		if(schedule==null || !schedule.matches("^[23456]{1,4}[MTN][12345]{1,5}$"))
+			System.out.println("Horário preenchido incorretamente!");
+		else
+			this.schedule = schedule;
 	}
 
 	public String getPlace() {
@@ -92,7 +69,7 @@ public class ClassroomVO {
 	}
 
 	public void setPlace(String place) {
-		if(place==null || place=="")
+		if(place==null || place.equals(""))
 			System.out.println("Local inválido!");
 		else
 			this.place = place;
