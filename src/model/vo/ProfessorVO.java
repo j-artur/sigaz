@@ -20,7 +20,7 @@ public class ProfessorVO extends UserVO {
 	}
 
 	public void setCpf(String cpf) {
-		if (cpf == null || cpf.matches("^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$"))
+		if (cpf == null || !cpf.matches("^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$"))
 			System.out.println("CPF inválido, deve estar no formato XXX.XXX.XXX-XX");
 		else
 			this.cpf = cpf;
