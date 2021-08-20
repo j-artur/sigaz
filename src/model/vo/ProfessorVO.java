@@ -13,7 +13,7 @@ public class ProfessorVO extends UserVO {
 	}
 
 	public void setAddress(String address) {
-		if (address == null || address.trim().isEmpty())
+		if (address == null || address.isEmpty())
 			System.out.println("Endereço inválido");
 		else
 			this.address = address;
@@ -24,5 +24,10 @@ public class ProfessorVO extends UserVO {
 			System.out.println("CPF inválido, deve estar no formato XXX.XXX.XXX-XX");
 		else
 			this.cpf = cpf;
+	}
+
+	public String toString() {
+		return "ID: " + this.getId() + "\nNome: " + this.getName() + "\nEmail: " + this.getEmail() + "\nSenha: "
+				+ this.getPassword() + "\nCPF: " + this.getCpf() + "\nEndereço: " + this.getAddress();
 	}
 }

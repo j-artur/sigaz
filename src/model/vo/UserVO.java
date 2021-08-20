@@ -24,7 +24,7 @@ public abstract class UserVO {
 
 	public void setId(long id) {
 		if (id <= 0)
-			System.out.println("ID inválido, número não deve ser negativo");
+			System.out.println("ID inválido, deve ser inteiro positivo");
 		else
 			this.id = id;
 	}

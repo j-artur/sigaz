@@ -20,7 +20,7 @@ public class StudentVO extends UserVO {
 	}
 
 	public void setAddress(String address) {
-		if (address == null || address.trim().isEmpty())
+		if (address == null || address.isEmpty())
 			System.out.println("Endereço vazio");
 		else
 			this.address = address;
@@ -36,11 +36,16 @@ public class StudentVO extends UserVO {
 	public void setRegistration(String registration) {
 		if (registration == null)
 			System.out.println("Valor inválido");
-		else if (registration.length() != 10)
-			System.out.println("Tamanho inválido, matrícula deve ter 10 caracteres");
 		else if (registration.matches("\\D"))
 			System.out.println("Caractere inválido, matrícula deve ter apenas dígitos");
+		else if (registration.length() != 10)
+			System.out.println("Tamanho inválido, matrícula deve ter 10 caracteres");
 		else
 			this.registration = registration;
+	}
+
+	public String toString() {
+		return "ID: " + this.getId() + "\nNome: " + this.getName() + "\nEmail: " + this.getEmail() + "\nSenha: "
+				+ this.getPassword() + "\nMatrícula: " + this.getRegistration() + "\nEndereço: " + this.getAddress();
 	}
 }

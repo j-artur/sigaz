@@ -92,4 +92,10 @@ public class GradeVO {
 	public void setAttendance(double attendance) {
 		this.attendance = attendance;
 	}
+
+	public String toString() {
+		return "Aluno: " + this.getStudent().getName() + "\nDisciplina: " + this.getClassroom().getSubject().getName()
+				+ "\nP1: " + this.getP1() + "\nP2: " + this.getP2() + "\nP3: " + this.getP3() + "\nMédia Final: "
+				+ this.getFinalGrade() + "\nFrequência: " + this.getAttendance() + "%";
+	}
 }
