@@ -47,16 +47,18 @@ public class ClassroomVO {
 	}
 
 	public void setStudents(StudentVO[] students) {
-		boolean test = true;
-		for (int i = 0; i < students.length; i++){
-			if (students[i] == null){
-				System.out.println("O campo de estudantes não pode ser nulo!");
-				test = false;
-				break;
+		if (students == null)
+			System.out.println("O campo de estudantes não pode ser nulo!");
+		else {
+			boolean test = true;
+			for (int i = 0; i < students.length; i++) {
+				if (students[i] == null) {
+					test = false;
+					break;
+				}
 			}
-		}
-		if (!test)
-			System.out.println("Um dos estudantes não é válido!");
+			if (!test)
+				System.out.println("Um dos estudantes não é válido!");
 			else
 				this.students = students;
 		}
