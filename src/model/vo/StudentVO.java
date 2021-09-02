@@ -7,16 +7,8 @@ public class StudentVO extends UserVO {
 	private File history;
 	private String registration;
 
-	public String getRegistration() {
-		return this.registration;
-	}
-
 	public String getAddress() {
 		return this.address;
-	}
-
-	public File getHistory() {
-		return this.history;
 	}
 
 	public void setAddress(String address) {
@@ -26,11 +18,19 @@ public class StudentVO extends UserVO {
 			this.address = address;
 	}
 
+	public File getHistory() {
+		return this.history;
+	}
+
 	public void setHistory(File history) {
 		if (history == null)
 			System.out.println("Arquivo inválido");
 		else
 			this.history = history;
+	}
+
+	public String getRegistration() {
+		return this.registration;
 	}
 
 	public void setRegistration(String registration) {

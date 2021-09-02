@@ -10,7 +10,7 @@ public class ClassroomVO {
 	private boolean active;
 
 	public long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(long id) {
@@ -21,7 +21,7 @@ public class ClassroomVO {
 	}
 
 	public SubjectVO getSubject() {
-		return subject;
+		return this.subject;
 	}
 
 	public void setSubject(SubjectVO subject) {
@@ -32,7 +32,7 @@ public class ClassroomVO {
 	}
 
 	public ProfessorVO getProfessor() {
-		return professor;
+		return this.professor;
 	}
 
 	public void setProfessor(ProfessorVO professor) {
@@ -43,18 +43,27 @@ public class ClassroomVO {
 	}
 
 	public StudentVO[] getStudents() {
-		return students;
+		return this.students;
 	}
 
 	public void setStudents(StudentVO[] students) {
-		if (students == null)
-			System.out.println("O campo de estudantes não pode ser nulo!");
-		else
-			this.students = students;
+		boolean test = true;
+		for (int i = 0; i < students.length; i++){
+			if (students[i] == null){
+				System.out.println("O campo de estudantes não pode ser nulo!");
+				test = false;
+				break;
+			}
+		}
+		if (!test)
+			System.out.println("Um dos estudantes não é válido!");
+			else
+				this.students = students;
+		}
 	}
 
 	public String getSchedule() {
-		return schedule;
+		return this.schedule;
 	}
 
 	public void setSchedule(String schedule) {
@@ -66,7 +75,7 @@ public class ClassroomVO {
 	}
 
 	public String getPlace() {
-		return place;
+		return this.place;
 	}
 
 	public void setPlace(String place) {
@@ -77,7 +86,7 @@ public class ClassroomVO {
 	}
 
 	public boolean isActive() {
-		return active;
+		return this.active;
 	}
 
 	public void setActive(boolean active) {

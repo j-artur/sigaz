@@ -24,35 +24,15 @@ public class GradeVO {
 		return this.student;
 	}
 
-	public ClassroomVO getClassroom() {
-		return this.classroom;
-	}
-
-	public int getP1() {
-		return this.p1;
-	}
-
-	public int getP2() {
-		return this.p2;
-	}
-
-	public int getP3() {
-		return this.p3;
-	}
-
-	public int getFinalGrade() {
-		return this.finalGrade;
-	}
-
-	public double getAttendance() {
-		return this.attendance;
-	}
-
 	public void setStudent(StudentVO student) {
 		if (student == null)
 			System.out.println("Aluno inválido");
 		else
 			this.student = student;
+	}
+	
+	public ClassroomVO getClassroom() {
+		return this.classroom;
 	}
 
 	public void setClassroom(ClassroomVO classroom) {
@@ -60,6 +40,10 @@ public class GradeVO {
 			System.out.println("Turma inválida");
 		else
 			this.classroom = classroom;
+	}
+
+	public int getP1() {
+		return this.p1;
 	}
 
 	public void setP1(int p1) {
@@ -71,6 +55,10 @@ public class GradeVO {
 		}
 	}
 
+	public int getP2() {
+		return this.p2;
+	}
+
 	public void setP2(int p2) {
 		if (p2 < 0 || p2 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
@@ -80,6 +68,10 @@ public class GradeVO {
 		}
 	}
 
+	public int getP3() {
+		return this.p3;
+	}
+
 	public void setP3(int p3) {
 		if (p3 < 0 || p3 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
@@ -87,6 +79,14 @@ public class GradeVO {
 			this.p3 = p3;
 			this.calculateFinalGrade();
 		}
+	}	
+
+	public int getFinalGrade() {
+		return this.finalGrade;
+	}
+
+	public double getAttendance() {
+		return this.attendance;
 	}
 
 	public void setAttendance(double attendance) {

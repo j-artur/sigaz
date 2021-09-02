@@ -8,15 +8,15 @@ public class ProfessorVO extends UserVO {
 		return this.address;
 	}
 
-	public String getCpf() {
-		return this.cpf;
-	}
-
 	public void setAddress(String address) {
 		if (address == null || address.isEmpty())
 			System.out.println("Endereço inválido");
 		else
 			this.address = address;
+	}
+
+	public String getCpf() {
+		return this.cpf;
 	}
 
 	public void setCpf(String cpf) {
