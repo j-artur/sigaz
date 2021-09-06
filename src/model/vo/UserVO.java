@@ -9,18 +9,18 @@ public abstract class UserVO {
 	public long getId() {
 		return this.id;
 	}
-	
+
 	public void setId(long id) {
 		if (id <= 0)
 			System.out.println("ID inválido, deve ser inteiro positivo");
 		else
 			this.id = id;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public void setName(String name) {
 		if (name == null || name.isEmpty())
 			System.out.println("Nome vazio");

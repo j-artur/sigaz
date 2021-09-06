@@ -96,7 +96,8 @@ public class ClassroomVO {
 	}
 
 	public String toString() {
-		return "ID: " + getId() + "\nDisciplina: " + getSubject().getName() + "\nProfessor: " + getProfessor().getName()
-				+ "\nHorário: " + getSchedule() + "\nLugar: " + getPlace() + "\nStatus: " + (isActive() ? "ativo" : "desativo");
+		return "ID: " + this.getId() + "\nDisciplina: " + this.getSubject().getName() + "\nProfessor: "
+				+ this.getProfessor().getName() + "\nHorário: " + this.getSchedule() + "\nLugar: " + this.getPlace()
+				+ "\nStatus: " + (this.isActive() ? "ativo" : "desativo");
 	}
 }
