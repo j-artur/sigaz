@@ -59,7 +59,7 @@ public class Main {
 					SubjectVO data = new SubjectVO();
 
 					print("Editar disciplina");
-					subject.setCode(input("Código da disciplina a ser editada: "));
+					subject.setId(Long.parseLong(input("ID da disciplina a ser editada: ")));
 					data.setName(input("Novo nome: "));
 					data.setCode(input("Novo código: "));
 					subjectDAO.update(subject, data);
@@ -71,7 +71,7 @@ public class Main {
 					SubjectVO subject = new SubjectVO();
 
 					print("Excluir disciplina");
-					subject.setCode(input("Código da disciplina a ser excluída: "));
+					subject.setId(Long.parseLong(input("ID da disciplina a ser excluída: ")));
 					subjectDAO.delete(subject);
 
 					input("Pressione Enter para continuar");

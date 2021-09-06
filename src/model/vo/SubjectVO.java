@@ -41,6 +41,6 @@ public class SubjectVO {
 	}
 
 	public String toString() {
-		return "Código: " + code + "\nNome: " + name;
+		return "ID: " + this.getId() + "\nCódigo: " + this.getCode() + "\nNome: " + this.getName();
 	}
 }

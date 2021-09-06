@@ -11,7 +11,7 @@ import model.vo.SubjectVO;
 public class SubjectDAO extends BaseDAO {
 	public SubjectDAO() {
 		try {
-			String sql = "CREATE TABLE IF NOT EXISTS subjects (code VARCHAR(7), name VARCHAR(128) NOT NULL, CONSTRAINT code_pk PRIMARY KEY (code))";
+			String sql = "CREATE TABLE IF NOT EXISTS subjects (id INT AUTO_INCREMENT, code VARCHAR(7) NOT NULL UNIQUE, name VARCHAR(128) NOT NULL, CONSTRAINT id_pk PRIMARY KEY (id))";
 			this.getConnection().prepareStatement(sql).execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,6 +41,7 @@ public class SubjectDAO extends BaseDAO {
 
 			while (set.next()) {
 				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("id"));
 				subject.setCode(set.getString("code"));
 				subject.setName(set.getString("name"));
 				subjectList.add(subject);
@@ -54,11 +55,12 @@ public class SubjectDAO extends BaseDAO {
 	}
 
 	public void update(SubjectVO subject, SubjectVO data) {
-		String sql = "UPDATE subjects SET name = ? WHERE code = ?";
+		String sql = "UPDATE subjects SET name = ?, code = ? WHERE id = ?";
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, data.getName());
-			statement.setString(2, subject.getCode());
+			statement.setString(2, data.getCode());
+			statement.setLong(3, subject.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Não foi possível alterar a disciplina");
@@ -66,10 +68,10 @@ public class SubjectDAO extends BaseDAO {
 	}
 
 	public void delete(SubjectVO subject) {
-		String sql = "DELETE FROM subjects WHERE code = ?";
+		String sql = "DELETE FROM subjects WHERE id = ?";
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
-			statement.setString(1, subject.getCode());
+			statement.setLong(1, subject.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Não foi possível excluir a disciplina");
