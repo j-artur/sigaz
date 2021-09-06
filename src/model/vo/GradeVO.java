@@ -30,7 +30,7 @@ public class GradeVO {
 		else
 			this.student = student;
 	}
-	
+
 	public ClassroomVO getClassroom() {
 		return this.classroom;
 	}
@@ -79,7 +79,7 @@ public class GradeVO {
 			this.p3 = p3;
 			this.calculateFinalGrade();
 		}
-	}	
+	}
 
 	public int getFinalGrade() {
 		return this.finalGrade;
