@@ -9,17 +9,6 @@ public class GradeVO {
 	private int finalGrade;
 	private double attendance;
 
-	private void setFinalGrade(int finalGrade) {
-		this.finalGrade = finalGrade;
-	}
-
-	private void calculateFinalGrade() {
-		int gradeSum = this.getP1() + this.getP2() + this.getP3();
-		int partialAverage = Double.valueOf(Math.ceil(gradeSum / 3.0)).intValue();
-
-		this.setFinalGrade(partialAverage);
-	}
-
 	public StudentVO getStudent() {
 		return this.student;
 	}
@@ -49,10 +38,8 @@ public class GradeVO {
 	public void setP1(int p1) {
 		if (p1 < 0 || p1 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
+		else
 			this.p1 = p1;
-			this.calculateFinalGrade();
-		}
 	}
 
 	public int getP2() {
@@ -62,10 +49,8 @@ public class GradeVO {
 	public void setP2(int p2) {
 		if (p2 < 0 || p2 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
+		else
 			this.p2 = p2;
-			this.calculateFinalGrade();
-		}
 	}
 
 	public int getP3() {
@@ -75,14 +60,16 @@ public class GradeVO {
 	public void setP3(int p3) {
 		if (p3 < 0 || p3 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
+		else
 			this.p3 = p3;
-			this.calculateFinalGrade();
-		}
 	}
 
 	public int getFinalGrade() {
 		return this.finalGrade;
+	}
+
+	public void setFinalGrade(int finalGrade) {
+		this.finalGrade = finalGrade;
 	}
 
 	public double getAttendance() {
@@ -96,6 +83,6 @@ public class GradeVO {
 	public String toString() {
 		return "Aluno: " + this.getStudent().getName() + "\nDisciplina: " + this.getClassroom().getSubject().getName()
 				+ "\nP1: " + this.getP1() + "\nP2: " + this.getP2() + "\nP3: " + this.getP3() + "\nMédia Final: "
-				+ this.getFinalGrade() + "\nFrequência: " + this.getAttendance() + "%";
+				+ this.getFinalGrade() + "\nFrequência: " + this.getAttendance() * 100 + "%";
 	}
 }
