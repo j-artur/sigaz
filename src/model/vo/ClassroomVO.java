@@ -69,7 +69,7 @@ public class ClassroomVO {
 	}
 
 	public void setSchedule(String schedule) {
-		if (schedule == null || !schedule.matches("^[23456]{1,4}[MTN][12345]{1,5}$")) {
+		if (schedule == null || !schedule.matches("^[23456]{1,5}[MTN][12345]{1,5}$")) {
 			System.out.println("Horário inválido, formate como [Dias da semana][Inicial do turno][Numeração dos horários]");
 			System.out.println("Exemplo: 35T45 (Terça e Quinta, Tarde, 4º e 5º horários)");
 		} else
