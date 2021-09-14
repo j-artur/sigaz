@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.vo.StudentVO;
+
 public class StudentDAO extends BaseDAO{
 	
 	public void create(StudentVO student) {
