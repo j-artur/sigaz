@@ -8,8 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.vo.ClassroomVO;
+import model.vo.ProfessorVO;
+import model.vo.StudentVO;
+import model.vo.SubjectVO;
 
 public class ClassroomDAO extends BaseDAO {
+	SubjectDAO subjectDao = new SubjectDAO();
+	ProfessorDAO professorDao = new ProfessorDAO();
+	StudentDAO studentDao = new StudentDAO();
+
 	public void create(ClassroomVO classroom) {
 		String sql = "INSERT INTO classrooms (subject_id, professor_id, schedule, place, active) VALUES (?, ?, ?, ?, ?)";
 		try {
@@ -40,6 +47,120 @@ public class ClassroomDAO extends BaseDAO {
 				classroom.setSchedule(set.getString("schedule"));
 				classroom.setPlace(set.getString("place"));
 				classroom.setActive(set.getBoolean("active"));
+
+				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
+				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+
+				classroomList.add(classroom);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar salas de aula");
+			e.printStackTrace();
+		}
+
+		return classroomList;
+	}
+
+	public List<ClassroomVO> findByStudent(StudentVO student) {
+		String sql = "SELECT * FROM students_classrooms, classrooms WHERE students_classrooms.student_id = ? AND classrooms.id = students_classrooms.classroom_id";
+		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setLong(1, student.getId());
+			ResultSet set = statement.executeQuery();
+
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
+
+				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
+				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+
+				classroomList.add(classroom);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar salas de aula");
+			e.printStackTrace();
+		}
+
+		return classroomList;
+	}
+
+	public List<ClassroomVO> findByProfessor(ProfessorVO professor) {
+		String sql = "SELECT * FROM classrooms WHERE professor_id = ?";
+		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setLong(1, professor.getId());
+			ResultSet set = statement.executeQuery();
+
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("id"));
+				classroom.setSchedule(set.getString("schedule"));
+				classroom.setPlace(set.getString("place"));
+				classroom.setActive(set.getBoolean("active"));
+
+				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
+				classroom.setProfessor(professor);
+
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+
+				classroomList.add(classroom);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar salas de aula");
+			e.printStackTrace();
+		}
+
+		return classroomList;
+	}
+
+	public List<ClassroomVO> findBySubject(SubjectVO subject) {
+		String sql = "SELECT * FROM classrooms WHERE subject_id = ?";
+		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setLong(1, subject.getId());
+			ResultSet set = statement.executeQuery();
+
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("id"));
+				classroom.setSchedule(set.getString("schedule"));
+				classroom.setPlace(set.getString("place"));
+				classroom.setActive(set.getBoolean("active"));
+
+				classroom.setSubject(subject);
+				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+
 				classroomList.add(classroom);
 			}
 
