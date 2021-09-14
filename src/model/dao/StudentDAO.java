@@ -9,7 +9,7 @@ import java.util.List;
 
 import model.vo.StudentVO;
 
-public class StudentDAO extends BaseDAO{
+public class StudentDAO extends BaseDAO {
 	
 	public void create(StudentVO student) {
 		String query = "INSERT INTO students (name, email, password, registration, address) VALUES (?, ?, ?, ?, ?)";
@@ -53,6 +53,32 @@ public class StudentDAO extends BaseDAO{
 		}
 
 		return studentList;
+	}
+	
+	public List<StudentVO> findByName(StudentVO student) {
+		String query = "SELECT * FROM students WHERE name = ?";
+		List<StudentVO> studentList = new ArrayList<StudentVO>();
+		
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(query);
+			statement.setString(1, student.getName());
+			ResultSet set = statement.executeQuery();
+			
+			while (set.next()) {
+				student.setId(set.getLong("id"));
+				student.setEmail(set.getString("email"));
+				student.setPassword(set.getString("password"));
+				student.setAddress(set.getString("address"));
+				student.setCpf(set.getString("cpf"));
+				student.add(student);
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("Não foi possível buscar estudantes!");
+			e.printStackTrace();
+		}
+		
+		return classroomList;
 	}
 	
 	public void update(StudentVO student) {
