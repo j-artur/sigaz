@@ -206,6 +206,34 @@ public class ClassroomDAO extends BaseDAO {
 		return classroom;
 	}
 
+	public void addStudent(ClassroomVO classroom, StudentVO student) {
+		String query = "INSERT INTO students_classrooms (student_id, classroom_id) VALUES (?, ?)";
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(query);
+			statement.setLong(1, student.getId());
+			statement.setLong(2, classroom.getId());
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println("Não foi possível adicionar o aluno à turma!");
+			e.printStackTrace();
+		}
+	}
+
+	public void removeStudent(ClassroomVO classroom, StudentVO student) {
+		String query = "DELETE FROM students_classrooms WHERE student_id = ? AND classroom_id = ?";
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(query);
+			statement.setLong(1, student.getId());
+			statement.setLong(2, classroom.getId());
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println("Não foi possível remover o aluno da turma!");
+			e.printStackTrace();
+		}
+	}
+
 	public void update(ClassroomVO classroom, ClassroomVO data) {
 		String sql = "UPDATE classrooms SET subject_id = ?, professor_id = ?, schedule = ?, place = ?, active = ? WHERE id = ?";
 

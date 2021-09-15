@@ -89,6 +89,6 @@ public class GradeVO {
 	public String toString() {
 		return "Aluno: " + this.getStudent().getName() + "\nDisciplina: " + this.getClassroom().getSubject().getName()
 				+ "\nN1: " + this.getN1() + "\nN2: " + this.getN2() + "\nN3: " + this.getN3() + "\nMédia Final: "
-				+ this.getNFinal() + "\nFrequência: " + this.getFrequency() + "%";
+				+ this.getNFinal() + "\nFrequência: " + this.getFrequency() * 100 + "%";
 	}
 }

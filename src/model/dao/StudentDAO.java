@@ -90,7 +90,7 @@ public class StudentDAO extends BaseDAO {
 			statement.setLong(1, classroom.getId());
 			ResultSet set = statement.executeQuery();
 
-			if (set.next()) {
+			while (set.next()) {
 				StudentVO student = new StudentVO();
 				student.setId(set.getLong("students.id"));
 				student.setName(set.getString("students.name"));
@@ -98,6 +98,7 @@ public class StudentDAO extends BaseDAO {
 				student.setPassword(set.getString("students.password"));
 				student.setRegistration(set.getString("students.registration"));
 				student.setAddress(set.getString("students.address"));
+				studentList.add(student);
 			}
 
 		} catch (SQLException e) {
