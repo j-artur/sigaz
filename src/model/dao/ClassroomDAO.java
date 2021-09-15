@@ -19,7 +19,7 @@ public class ClassroomDAO extends BaseDAO {
 
 	public void create(ClassroomVO classroom) {
 		String sql = "INSERT INTO classrooms (subject_id, professor_id, schedule, place, active) VALUES (?, ?, ?, ?, ?)";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, classroom.getSubject().getId());
@@ -173,9 +173,42 @@ public class ClassroomDAO extends BaseDAO {
 		return classroomList;
 	}
 
+	public ClassroomVO findById(long id) {
+		String sql = "SELECT * FROM classrooms WHERE id = ?";
+		ClassroomVO classroom = null;
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setLong(1, id);
+			ResultSet set = statement.executeQuery();
+
+			while (set.next()) {
+				classroom = new ClassroomVO();
+				classroom.setId(id);
+				classroom.setSchedule(set.getString("schedule"));
+				classroom.setPlace(set.getString("place"));
+				classroom.setActive(set.getBoolean("active"));
+
+				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
+				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar salas de aula");
+			e.printStackTrace();
+		}
+
+		return classroom;
+	}
+
 	public void update(ClassroomVO classroom, ClassroomVO data) {
 		String sql = "UPDATE classrooms SET subject_id = ?, professor_id = ?, schedule = ?, place = ?, active = ? WHERE id = ?";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, data.getSubject().getId());
@@ -193,7 +226,7 @@ public class ClassroomDAO extends BaseDAO {
 
 	public void delete(ClassroomVO classroom) {
 		String sql = "DELETE FROM classrooms WHERE id = ?";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, classroom.getId());

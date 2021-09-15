@@ -3,7 +3,6 @@ package model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +11,11 @@ import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
 public class GradeDAO extends BaseDAO {
-	
+	ClassroomDAO classroomDao = new ClassroomDAO();
+
 	public void create(GradeVO grade) {
 		String query = "INSERT INTO grades (student_id, classroom_id, n1, n2, n3, nfinal, frequency) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
 			statement.setLong(1, grade.getStudent().getId());
@@ -31,36 +31,9 @@ public class GradeDAO extends BaseDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	public List<GradeVO> findAll() {
-		String query = "SELECT * FROM grades";
-		List<GradeVO> gradeList = new ArrayList<GradeVO>();
 
-		try {
-			Statement statement = this.getConnection().createStatement();
-			ResultSet set = statement.executeQuery(query);
-
-			while (set.next()) {
-				GradeVO grade = new GradeVO();
-				grade.setId(set.getLong("id"));
-				grade.setN1(set.getInt("n1"));
-				grade.setN2(set.getInt("n2"));
-				grade.setN3(set.getInt("n3"));
-				grade.setNFinal(set.getInt("nfinal"));
-				grade.setFrequency(set.getDouble("frequency"));
-				gradeList.add(grade);
-			}
-
-		} catch (SQLException e) {
-			System.out.println("Não foi possível buscar os boletins!");
-			e.printStackTrace();
-		}
-
-		return gradeList;
-	}
-	
 	public List<GradeVO> findByClassroom(ClassroomVO classroom) {
-		String sql = "SELECT * FROM grades, students WHERE classroom_id = ?";
+		String sql = "SELECT * FROM grades, students WHERE grades.classroom_id = ? AND students.id = grades.student_id";
 		List<GradeVO> gradeList = new ArrayList<GradeVO>();
 
 		try {
@@ -95,9 +68,9 @@ public class GradeDAO extends BaseDAO {
 
 		return gradeList;
 	}
-	
+
 	public List<GradeVO> findByStudent(StudentVO student) {
-		String sql = "SELECT * FROM grades, classrooms WHERE student_id = ?";
+		String sql = "SELECT * FROM grades WHERE student_id = ?";
 		List<GradeVO> gradeList = new ArrayList<GradeVO>();
 
 		try {
@@ -107,20 +80,15 @@ public class GradeDAO extends BaseDAO {
 
 			while (set.next()) {
 				GradeVO grade = new GradeVO();
-				grade.setN1(set.getInt("grades.n1"));
-				grade.setN2(set.getInt("grades.n2"));
-				grade.setN3(set.getInt("grades.n3"));
-				grade.setNFinal(set.getInt("grades.nfinal"));
-				grade.setFrequency(set.getDouble("grades.frequency"));
-
-				ClassroomVO classroom = new ClassroomVO();
-				classroom.setId(set.getLong("classrooms.id"));
-				classroom.setSchedule(set.getString("classrooms.schedule"));
-				classroom.setPlace(set.getString("classrooms.place"));
-				classroom.setActive(set.getBoolean("classrooms.active"));
+				grade.setN1(set.getInt("n1"));
+				grade.setN2(set.getInt("n2"));
+				grade.setN3(set.getInt("n3"));
+				grade.setNFinal(set.getInt("nfinal"));
+				grade.setFrequency(set.getDouble("frequency"));
 
 				grade.setStudent(student);
-				grade.setClassroom(classroom);
+				grade.setClassroom(this.classroomDao.findById(set.getLong("classroom_id")));
+
 				gradeList.add(grade);
 			}
 
@@ -130,7 +98,7 @@ public class GradeDAO extends BaseDAO {
 
 		return gradeList;
 	}
-	
+
 	public GradeVO findByStudentInClassroom(StudentVO student, ClassroomVO classroom) {
 		String sql = "SELECT * FROM grades WHERE student_id = ? AND classroom_id = ?";
 		GradeVO grade = null;
@@ -159,37 +127,37 @@ public class GradeDAO extends BaseDAO {
 
 		return grade;
 	}
-	
+
 	public void update(GradeVO grade, GradeVO data) {
-		String query = "UPDATE grades SET classroom_id = ?, n1 = ?, n2 = ?, n3 = ?, nfinal = ?, frequency = ? WHERE id = ?";
-		
+		String query = "UPDATE grades SET n1 = ?, n2 = ?, n3 = ?, nfinal = ?, frequency = ? WHERE student_id = ? AND classroom_id = ?";
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, data.getClassroom().getId());
-			statement.setInt(2, data.getN1());
-			statement.setInt(3, data.getN2());
-			statement.setInt(4, data.getN3());
-			statement.setInt(5, data.getNFinal());
-			statement.setDouble(6, data.getFrequency());
-			statement.setLong(7, grade.getId());
+			statement.setInt(1, data.getN1());
+			statement.setInt(2, data.getN2());
+			statement.setInt(3, data.getN3());
+			statement.setInt(4, data.getNFinal());
+			statement.setDouble(5, data.getFrequency());
+			statement.setLong(6, grade.getStudent().getId());
+			statement.setLong(7, grade.getClassroom().getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Não foi possível alterar o boletim!");
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void delete(GradeVO grade) {
-		String query = "DELETE FROM grades WHERE id = ?";
-		
+		String query = "DELETE FROM grades WHERE student_id = ? AND classroom_id = ?";
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, grade.getId());
+			statement.setLong(1, grade.getStudent().getId());
+			statement.setLong(2, grade.getClassroom().getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Não foi possível deletar o boletim!");
 			e.printStackTrace();
 		}
 	}
-	
 }

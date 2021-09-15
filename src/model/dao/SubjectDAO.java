@@ -13,7 +13,7 @@ import model.vo.SubjectVO;
 public class SubjectDAO extends BaseDAO {
 	public void create(SubjectVO subject) {
 		String sql = "INSERT INTO subjects (code, name) VALUES (?, ?)";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, subject.getCode());
@@ -100,7 +100,7 @@ public class SubjectDAO extends BaseDAO {
 
 	public void update(SubjectVO subject, SubjectVO data) {
 		String sql = "UPDATE subjects SET name = ?, code = ? WHERE id = ?";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, data.getName());
@@ -115,7 +115,7 @@ public class SubjectDAO extends BaseDAO {
 
 	public void delete(SubjectVO subject) {
 		String sql = "DELETE FROM subjects WHERE id = ?";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, subject.getId());

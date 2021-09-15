@@ -8,28 +8,6 @@ public class GradeVO {
 	private int n3;
 	private int nfinal;
 	private double frequency;
-	
-	public long getId() {
-		return this.id;
-	}
-	
-	public void setId(long id) {
-		if(id < 0)
-			System.out.println("ID inválido!");
-		else
-			this.id = id;
-	}
-
-	private void setNFinal(int nfinal) {
-		this.nfinal = nfinal;
-	}
-
-	private void calculateNFinal() {
-		int gradeSum = this.getN1() + this.getN2() + this.getN3();
-		int partialAverage = Double.valueOf(Math.ceil(gradeSum / 3.0)).intValue();
-
-		this.setNFinal(partialAverage);
-	}
 
 	public StudentVO getStudent() {
 		return this.student;
@@ -60,23 +38,19 @@ public class GradeVO {
 	public void setN1(int n1) {
 		if (n1 < 0 || n1 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
+		else
 			this.n1 = n1;
-			this.calculateNFinal();
-		}
 	}
 
 	public int getN2() {
-		return this.N2;
+		return this.n2;
 	}
 
 	public void setN2(int n2) {
 		if (n2 < 0 || n2 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
+		else
 			this.n2 = n2;
-			this.calculateNFinal();
-		}
 	}
 
 	public int getN3() {
@@ -86,14 +60,19 @@ public class GradeVO {
 	public void setN3(int n3) {
 		if (n3 < 0 || n3 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
+		else
 			this.n3 = n3;
-			this.calculateNFinal();
-		}
 	}
 
 	public int getNFinal() {
 		return this.nfinal;
+	}
+
+	public void setNFinal(int nfinal) {
+		if (nfinal < 0 || nfinal > 100)
+			System.out.println("Nota inválida, deve ser de 0 a 100");
+		else
+			this.nfinal = nfinal;
 	}
 
 	public double getFrequency() {
@@ -101,7 +80,10 @@ public class GradeVO {
 	}
 
 	public void setFrequency(double frequency) {
-		this.frequency = frequency;
+		if (frequency < 0.0 || frequency > 1.0)
+			System.out.println("Valor inválido, deve ser de 0 a 1");
+		else
+			this.frequency = frequency;
 	}
 
 	public String toString() {

@@ -11,28 +11,27 @@ import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
 public class StudentDAO extends BaseDAO {
-	
 	public void create(StudentVO student) {
 		String query = "INSERT INTO students (name, email, password, registration, address) VALUES (?, ?, ?, ?, ?)";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
 			statement.setString(1, student.getName());
 			statement.setString(2, student.getEmail());
 			statement.setString(3, student.getPassword());
 			statement.setString(4, student.getRegistration());
-			statement.setString(5, student.getAdress());
+			statement.setString(5, student.getAddress());
 			statement.execute();
 		} catch (SQLException e) {
 			System.out.println("Não foi possível adicionar o aluno!");
 			e.printStackTrace();
 		}
 	}
-	
+
 	public List<StudentVO> findAll() {
 		String query = "SELECT * FROM students";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
-		
+
 		try {
 			Statement statement = this.getConnection().createStatement();
 			ResultSet set = statement.executeQuery(query);
@@ -55,34 +54,33 @@ public class StudentDAO extends BaseDAO {
 
 		return studentList;
 	}
-	
+
 	public List<StudentVO> findByName(StudentVO data) {
-		String query = "SELECT * FROM students WHERE name = ?";
+		String query = "SELECT * FROM students WHERE name LIKE ?";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setString(1, "%"+ data.getName() + "%");
+			statement.setString(1, "%" + data.getName() + "%");
 			ResultSet set = statement.executeQuery();
-			
+
 			while (set.next()) {
 				StudentVO student = new StudentVO();
 				student.setId(set.getLong("id"));
 				student.setEmail(set.getString("email"));
 				student.setPassword(set.getString("password"));
 				student.setAddress(set.getString("address"));
-				student.setCpf(set.getString("cpf"));
-				student.add(student);
+				studentList.add(student);
 			}
-			
-		} catch(SQLException e) {
+
+		} catch (SQLException e) {
 			System.out.println("Não foi possível buscar estudantes!");
 			e.printStackTrace();
 		}
-		
+
 		return studentList;
 	}
-	
+
 	public List<StudentVO> findByClassroom(ClassroomVO classroom) {
 		String sql = "SELECT * FROM students, students_classrooms WHERE students_classrooms.classroom_id = ? AND students.id = students_classrooms.student_id";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
@@ -109,10 +107,10 @@ public class StudentDAO extends BaseDAO {
 
 		return studentList;
 	}
-	
+
 	public void update(StudentVO student, StudentVO data) {
 		String query = "UPDATE students SET name = ?, email = ?, password = ?, registration = ?, address = ? WHERE id = ?";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
 			statement.setString(1, data.getName());
@@ -127,10 +125,10 @@ public class StudentDAO extends BaseDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void delete(StudentVO student) {
 		String query = "DELETE FROM students WHERE id = ?";
-		
+
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
 			statement.setLong(1, student.getId());
