@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.vo.StudentVO;
+import model.vo.ClassroomVO;
 
 public class StudentDAO extends BaseDAO {
 	
