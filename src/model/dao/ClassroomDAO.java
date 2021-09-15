@@ -19,6 +19,7 @@ public class ClassroomDAO extends BaseDAO {
 
 	public void create(ClassroomVO classroom) {
 		String sql = "INSERT INTO classrooms (subject_id, professor_id, schedule, place, active) VALUES (?, ?, ?, ?, ?)";
+		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, classroom.getSubject().getId());
@@ -174,6 +175,7 @@ public class ClassroomDAO extends BaseDAO {
 
 	public void update(ClassroomVO classroom, ClassroomVO data) {
 		String sql = "UPDATE classrooms SET subject_id = ?, professor_id = ?, schedule = ?, place = ?, active = ? WHERE id = ?";
+		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, data.getSubject().getId());
@@ -181,7 +183,7 @@ public class ClassroomDAO extends BaseDAO {
 			statement.setString(3, data.getSchedule());
 			statement.setString(4, data.getPlace());
 			statement.setBoolean(5, data.isActive());
-			statement.setLong(7, classroom.getId());
+			statement.setLong(6, classroom.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Não foi possível alterar a sala de aula");
@@ -191,6 +193,7 @@ public class ClassroomDAO extends BaseDAO {
 
 	public void delete(ClassroomVO classroom) {
 		String sql = "DELETE FROM classrooms WHERE id = ?";
+		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, classroom.getId());

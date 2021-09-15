@@ -56,16 +56,17 @@ public class StudentDAO extends BaseDAO {
 		return studentList;
 	}
 	
-	public List<StudentVO> findByName(StudentVO student) {
+	public List<StudentVO> findByName(StudentVO data) {
 		String query = "SELECT * FROM students WHERE name = ?";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
 		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setString(1, student.getName());
+			statement.setString(1, "%"+ data.getName() + "%");
 			ResultSet set = statement.executeQuery();
 			
 			while (set.next()) {
+				StudentVO student = new StudentVO();
 				student.setId(set.getLong("id"));
 				student.setEmail(set.getString("email"));
 				student.setPassword(set.getString("password"));
@@ -79,7 +80,7 @@ public class StudentDAO extends BaseDAO {
 			e.printStackTrace();
 		}
 		
-		return classroomList;
+		return studentList;
 	}
 	
 	public List<StudentVO> findByClassroom(ClassroomVO classroom) {
@@ -109,16 +110,16 @@ public class StudentDAO extends BaseDAO {
 		return studentList;
 	}
 	
-	public void update(StudentVO student) {
+	public void update(StudentVO student, StudentVO data) {
 		String query = "UPDATE students SET name = ?, email = ?, password = ?, registration = ?, address = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setString(1, student.getName());
-			statement.setString(2, student.getEmail());
-			statement.setString(3, student.getPassword());
-			statement.setString(4, student.getRegistration());
-			statement.setString(5, student.getAddress());
+			statement.setString(1, data.getName());
+			statement.setString(2, data.getEmail());
+			statement.setString(3, data.getPassword());
+			statement.setString(4, data.getRegistration());
+			statement.setString(5, data.getAddress());
 			statement.setLong(6, student.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {

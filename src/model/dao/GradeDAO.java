@@ -160,17 +160,17 @@ public class GradeDAO extends BaseDAO {
 		return grade;
 	}
 	
-	public void update(GradeVO grade) {
+	public void update(GradeVO grade, GradeVO data) {
 		String query = "UPDATE grades SET classroom_id = ?, n1 = ?, n2 = ?, n3 = ?, nfinal = ?, frequency = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, grade.getClassroom().getId());
-			statement.setInt(2, grade.getN1());
-			statement.setInt(3, grade.getN2());
-			statement.setInt(4, grade.getN3());
-			statement.setInt(5, grade.getNFinal());
-			statement.setDouble(6, grade.getFrequency());
+			statement.setLong(1, data.getClassroom().getId());
+			statement.setInt(2, data.getN1());
+			statement.setInt(3, data.getN2());
+			statement.setInt(4, data.getN3());
+			statement.setInt(5, data.getNFinal());
+			statement.setDouble(6, data.getFrequency());
 			statement.setLong(7, grade.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -181,6 +181,7 @@ public class GradeDAO extends BaseDAO {
 	
 	public void delete(GradeVO grade) {
 		String query = "DELETE FROM grades WHERE id = ?";
+		
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(query);
 			statement.setLong(1, grade.getId());
