@@ -69,6 +69,7 @@ public class StudentDAO extends BaseDAO {
 				student.setId(set.getLong("id"));
 				student.setEmail(set.getString("email"));
 				student.setPassword(set.getString("password"));
+				student.setRegistration(set.getString("registration"));
 				student.setAddress(set.getString("address"));
 				studentList.add(student);
 			}
@@ -96,7 +97,7 @@ public class StudentDAO extends BaseDAO {
 				student.setName(set.getString("name"));
 				student.setEmail(set.getString("email"));
 				student.setPassword(set.getString("password"));
-				student.setAddress(set.getString("address"));
+				student.setRegistration(set.getString("registration"));
 				student.setCpf(set.getString("cpf"));
 			}
 

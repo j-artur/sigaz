@@ -65,8 +65,6 @@ public class PrincipalDAO extends BaseDAO {
 				principal.setName(set.getString("name"));
 				principal.setEmail(set.getString("email"));
 				principal.setPassword(set.getString("password"));
-				principal.setAddress(set.getString("address"));
-				principal.setCpf(set.getString("cpf"));
 			}
 
 		} catch (SQLException e) {
