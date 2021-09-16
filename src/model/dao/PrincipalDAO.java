@@ -12,8 +12,8 @@ import model.vo.PrincipalVO;
 public class PrincipalDAO extends BaseDAO {
 	public void create(PrincipalVO principal) {
 		String sql = "INSERT INTO principals (name, email, password) VALUES (?, ?, ?)";
-		
-        try {
+
+		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, principal.getName());
 			statement.setString(2, principal.getEmail());
@@ -50,13 +50,13 @@ public class PrincipalDAO extends BaseDAO {
 		return principalList;
 	}
 
-	public PrincipalVO findByEmail(PrincipalVO principal) {
+	public PrincipalVO findByEmail(PrincipalVO data) {
 		String sql = "SELECT * FROM principals WHERE email = ?";
 		PrincipalVO principal = null;
 
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
-			statement.setString(1, "%" + data.getEmail() + "%");
+			statement.setString(1, data.getEmail());
 			ResultSet set = statement.executeQuery();
 
 			if (set.next()) {
@@ -73,11 +73,12 @@ public class PrincipalDAO extends BaseDAO {
 		}
 
 		return principal;
-	}	
+	}
+
 	public void update(PrincipalVO principal, PrincipalVO data) {
 		String sql = "UPDATE principals SET name = ?, email = ?, password = ? WHERE id = ?";
-		
-        try {
+
+		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, data.getName());
 			statement.setString(2, data.getEmail());

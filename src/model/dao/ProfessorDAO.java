@@ -82,13 +82,13 @@ public class ProfessorDAO extends BaseDAO {
 		return professorList;
 	}
 
-	public ProfessorVO findByEmail(ProfessorVO professor) {
+	public ProfessorVO findByEmail(ProfessorVO data) {
 		String sql = "SELECT * FROM professors WHERE email = ?";
 		ProfessorVO professor = null;
 
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
-			statement.setString(1, "%" + data.getEmail() + "%");
+			statement.setString(1, data.getEmail());
 			ResultSet set = statement.executeQuery();
 
 			if (set.next()) {
@@ -107,7 +107,7 @@ public class ProfessorDAO extends BaseDAO {
 		}
 
 		return professor;
-	}	
+	}
 
 	public ProfessorVO findByClassroom(ClassroomVO classroom) {
 		String sql = "SELECT * FROM professors, classrooms WHERE classrooms.id = ? AND professors.id = classrooms.professor_id";

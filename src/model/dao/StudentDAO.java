@@ -82,13 +82,13 @@ public class StudentDAO extends BaseDAO {
 		return studentList;
 	}
 
-	public StudentVO findByEmail(StudentVO student) {
+	public StudentVO findByEmail(StudentVO data) {
 		String sql = "SELECT * FROM students WHERE email = ?";
 		StudentVO student = null;
 
 		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
-			statement.setString(1, "%" + data.getEmail() + "%");
+			statement.setString(1, data.getEmail());
 			ResultSet set = statement.executeQuery();
 
 			if (set.next()) {
@@ -108,7 +108,7 @@ public class StudentDAO extends BaseDAO {
 
 		return student;
 	}
-	
+
 	public List<StudentVO> findByClassroom(ClassroomVO classroom) {
 		String sql = "SELECT * FROM students, students_classrooms WHERE students_classrooms.classroom_id = ? AND students.id = students_classrooms.student_id";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
