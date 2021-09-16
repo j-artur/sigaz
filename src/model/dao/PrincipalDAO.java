@@ -49,7 +49,33 @@ public class PrincipalDAO extends BaseDAO {
 
 		return principalList;
 	}
-	
+
+	public PrincipalVO findByEmail(PrincipalVO principal) {
+		String sql = "SELECT * FROM principals WHERE email = ?";
+		PrincipalVO principal = null;
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setString(1, "%" + data.getEmail() + "%");
+			ResultSet set = statement.executeQuery();
+
+			if (set.next()) {
+				principal = new PrincipalVO();
+				principal.setId(set.getLong("id"));
+				principal.setName(set.getString("name"));
+				principal.setEmail(set.getString("email"));
+				principal.setPassword(set.getString("password"));
+				principal.setAddress(set.getString("address"));
+				principal.setCpf(set.getString("cpf"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar o diretor!");
+			e.printStackTrace();
+		}
+
+		return principal;
+	}	
 	public void update(PrincipalVO principal, PrincipalVO data) {
 		String sql = "UPDATE principals SET name = ?, email = ?, password = ? WHERE id = ?";
 		

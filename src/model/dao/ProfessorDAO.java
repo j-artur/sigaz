@@ -82,6 +82,33 @@ public class ProfessorDAO extends BaseDAO {
 		return professorList;
 	}
 
+	public ProfessorVO findByEmail(ProfessorVO professor) {
+		String sql = "SELECT * FROM professors WHERE email = ?";
+		ProfessorVO professor = null;
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setString(1, "%" + data.getEmail() + "%");
+			ResultSet set = statement.executeQuery();
+
+			if (set.next()) {
+				professor = new ProfessorVO();
+				professor.setId(set.getLong("id"));
+				professor.setName(set.getString("name"));
+				professor.setEmail(set.getString("email"));
+				professor.setPassword(set.getString("password"));
+				professor.setAddress(set.getString("address"));
+				professor.setCpf(set.getString("cpf"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar o professor!");
+			e.printStackTrace();
+		}
+
+		return professor;
+	}	
+
 	public ProfessorVO findByClassroom(ClassroomVO classroom) {
 		String sql = "SELECT * FROM professors, classrooms WHERE classrooms.id = ? AND professors.id = classrooms.professor_id";
 		ProfessorVO professor = null;

@@ -81,6 +81,33 @@ public class StudentDAO extends BaseDAO {
 		return studentList;
 	}
 
+	public StudentVO findByEmail(StudentVO student) {
+		String sql = "SELECT * FROM students WHERE email = ?";
+		StudentVO student = null;
+
+		try {
+			PreparedStatement statement = this.getConnection().prepareStatement(sql);
+			statement.setString(1, "%" + data.getEmail() + "%");
+			ResultSet set = statement.executeQuery();
+
+			if (set.next()) {
+				student = new StudentVO();
+				student.setId(set.getLong("id"));
+				student.setName(set.getString("name"));
+				student.setEmail(set.getString("email"));
+				student.setPassword(set.getString("password"));
+				student.setAddress(set.getString("address"));
+				student.setCpf(set.getString("cpf"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Não foi possível buscar o estudante!");
+			e.printStackTrace();
+		}
+
+		return student;
+	}
+	
 	public List<StudentVO> findByClassroom(ClassroomVO classroom) {
 		String sql = "SELECT * FROM students, students_classrooms WHERE students_classrooms.classroom_id = ? AND students.id = students_classrooms.student_id";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
