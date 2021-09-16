@@ -98,7 +98,7 @@ public class StudentDAO extends BaseDAO {
 				student.setEmail(set.getString("email"));
 				student.setPassword(set.getString("password"));
 				student.setRegistration(set.getString("registration"));
-				student.setCpf(set.getString("cpf"));
+				student.setAddress(set.getString("address"));
 			}
 
 		} catch (SQLException e) {
