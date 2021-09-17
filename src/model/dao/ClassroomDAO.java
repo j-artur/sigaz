@@ -13,8 +13,6 @@ import model.vo.StudentVO;
 import model.vo.SubjectVO;
 
 public class ClassroomDAO extends BaseDAO {
-	SubjectDAO subjectDao = new SubjectDAO();
-	ProfessorDAO professorDao = new ProfessorDAO();
 	StudentDAO studentDao = new StudentDAO();
 
 	public void create(ClassroomVO classroom) {
@@ -35,7 +33,8 @@ public class ClassroomDAO extends BaseDAO {
 	}
 
 	public List<ClassroomVO> findAll() {
-		String sql = "SELECT * FROM classrooms";
+		String sql = "SELECT * FROM classrooms, subjects, professors " + "WHERE subjects.id = classrooms.subject_id "
+				+ "AND professors.id = classrooms.professor_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
 		try {
@@ -44,13 +43,26 @@ public class ClassroomDAO extends BaseDAO {
 
 			while (set.next()) {
 				ClassroomVO classroom = new ClassroomVO();
-				classroom.setId(set.getLong("id"));
-				classroom.setSchedule(set.getString("schedule"));
-				classroom.setPlace(set.getString("place"));
-				classroom.setActive(set.getBoolean("active"));
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
-				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
+
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
+
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
 				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
 				StudentVO[] students = new StudentVO[studentList.size()];
@@ -69,7 +81,9 @@ public class ClassroomDAO extends BaseDAO {
 	}
 
 	public List<ClassroomVO> findByStudent(StudentVO student) {
-		String sql = "SELECT * FROM students_classrooms, classrooms WHERE students_classrooms.student_id = ? AND classrooms.id = students_classrooms.classroom_id";
+		String sql = "SELECT * FROM students_classrooms, classrooms, subjects, professors "
+				+ "WHERE students_classrooms.student_id = ? " + "AND classrooms.id = students_classrooms.classroom_id "
+				+ "AND subjects.id = classrooms.subject_id " + "AND professors.id = classrooms.professor_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
 		try {
@@ -84,8 +98,21 @@ public class ClassroomDAO extends BaseDAO {
 				classroom.setPlace(set.getString("classrooms.place"));
 				classroom.setActive(set.getBoolean("classrooms.active"));
 
-				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
-				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
+
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
+
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
 				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
 				StudentVO[] students = new StudentVO[studentList.size()];
@@ -104,7 +131,8 @@ public class ClassroomDAO extends BaseDAO {
 	}
 
 	public List<ClassroomVO> findByProfessor(ProfessorVO professor) {
-		String sql = "SELECT * FROM classrooms WHERE professor_id = ?";
+		String sql = "SELECT * FROM classrooms, subjects " + "WHERE classrooms.professor_id = ? "
+				+ "AND subjects.id = classrooms.subject_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
 		try {
@@ -114,12 +142,17 @@ public class ClassroomDAO extends BaseDAO {
 
 			while (set.next()) {
 				ClassroomVO classroom = new ClassroomVO();
-				classroom.setId(set.getLong("id"));
-				classroom.setSchedule(set.getString("schedule"));
-				classroom.setPlace(set.getString("place"));
-				classroom.setActive(set.getBoolean("active"));
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
+
+				classroom.setSubject(subject);
 				classroom.setProfessor(professor);
 
 				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
@@ -139,7 +172,8 @@ public class ClassroomDAO extends BaseDAO {
 	}
 
 	public List<ClassroomVO> findBySubject(SubjectVO subject) {
-		String sql = "SELECT * FROM classrooms WHERE subject_id = ?";
+		String sql = "SELECT * FROM classrooms, professors " + "WHERE classrooms.subject_id = ? "
+				+ "AND professors.id = classrooms.professor_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
 		try {
@@ -149,13 +183,21 @@ public class ClassroomDAO extends BaseDAO {
 
 			while (set.next()) {
 				ClassroomVO classroom = new ClassroomVO();
-				classroom.setId(set.getLong("id"));
-				classroom.setSchedule(set.getString("schedule"));
-				classroom.setPlace(set.getString("place"));
-				classroom.setActive(set.getBoolean("active"));
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
+
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
 
 				classroom.setSubject(subject);
-				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+				classroom.setProfessor(professor);
 
 				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
 				StudentVO[] students = new StudentVO[studentList.size()];
@@ -174,7 +216,8 @@ public class ClassroomDAO extends BaseDAO {
 	}
 
 	public ClassroomVO findById(long id) {
-		String sql = "SELECT * FROM classrooms WHERE id = ?";
+		String sql = "SELECT * FROM classrooms, subjects, professors " + "WHERE classrooms.id = ? "
+				+ "AND subjects.id = classrooms.subject_id " + "AND professors.id = classrooms.professor_id";
 		ClassroomVO classroom = null;
 
 		try {
@@ -184,13 +227,26 @@ public class ClassroomDAO extends BaseDAO {
 
 			while (set.next()) {
 				classroom = new ClassroomVO();
-				classroom.setId(id);
-				classroom.setSchedule(set.getString("schedule"));
-				classroom.setPlace(set.getString("place"));
-				classroom.setActive(set.getBoolean("active"));
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-				classroom.setSubject(this.subjectDao.findByClassroom(classroom));
-				classroom.setProfessor(this.professorDao.findByClassroom(classroom));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
+
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
+
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
 				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
 				StudentVO[] students = new StudentVO[studentList.size()];

@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.vo.ClassroomVO;
 import model.vo.ProfessorVO;
 
 public class ProfessorDAO extends BaseDAO {
@@ -99,33 +98,6 @@ public class ProfessorDAO extends BaseDAO {
 				professor.setPassword(set.getString("password"));
 				professor.setAddress(set.getString("address"));
 				professor.setCpf(set.getString("cpf"));
-			}
-
-		} catch (SQLException e) {
-			System.out.println("Não foi possível buscar o professor!");
-			e.printStackTrace();
-		}
-
-		return professor;
-	}
-
-	public ProfessorVO findByClassroom(ClassroomVO classroom) {
-		String sql = "SELECT * FROM professors, classrooms WHERE classrooms.id = ? AND professors.id = classrooms.professor_id";
-		ProfessorVO professor = null;
-
-		try {
-			PreparedStatement statement = this.getConnection().prepareStatement(sql);
-			statement.setLong(1, classroom.getId());
-			ResultSet set = statement.executeQuery();
-
-			if (set.next()) {
-				professor = new ProfessorVO();
-				professor.setId(set.getLong("professors.id"));
-				professor.setName(set.getString("professors.name"));
-				professor.setEmail(set.getString("professors.email"));
-				professor.setPassword(set.getString("professors.password"));
-				professor.setAddress(set.getString("professors.address"));
-				professor.setCpf(set.getString("professors.cpf"));
 			}
 
 		} catch (SQLException e) {
