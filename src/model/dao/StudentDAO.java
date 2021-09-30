@@ -10,7 +10,7 @@ import java.util.List;
 import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
-public class StudentDAO extends BaseDAO {
+public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
 	public void create(StudentVO student) {
 		String query = "INSERT INTO students (name, email, password, registration, address) VALUES (?, ?, ?, ?, ?)";
 
