@@ -1,10 +1,7 @@
 package model.vo;
 
-import java.io.File;
-
 public class StudentVO extends UserVO {
 	private String address;
-	private File history;
 	private String registration;
 
 	public String getAddress() {
@@ -16,17 +13,6 @@ public class StudentVO extends UserVO {
 			System.out.println("Endereço vazio");
 		else
 			this.address = address;
-	}
-
-	public File getHistory() {
-		return this.history;
-	}
-
-	public void setHistory(File history) {
-		if (history == null)
-			System.out.println("Arquivo inválido");
-		else
-			this.history = history;
 	}
 
 	public String getRegistration() {

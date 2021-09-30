@@ -3,22 +3,11 @@ package model.vo;
 public class GradeVO {
 	private StudentVO student;
 	private ClassroomVO classroom;
-	private int p1;
-	private int p2;
-	private int p3;
-	private int finalGrade;
-	private double attendance;
-
-	private void setFinalGrade(int finalGrade) {
-		this.finalGrade = finalGrade;
-	}
-
-	private void calculateFinalGrade() {
-		int gradeSum = this.getP1() + this.getP2() + this.getP3();
-		int partialAverage = Double.valueOf(Math.ceil(gradeSum / 3.0)).intValue();
-
-		this.setFinalGrade(partialAverage);
-	}
+	private int n1;
+	private int n2;
+	private int n3;
+	private int nfinal;
+	private double frequency;
 
 	public StudentVO getStudent() {
 		return this.student;
@@ -42,60 +31,64 @@ public class GradeVO {
 			this.classroom = classroom;
 	}
 
-	public int getP1() {
-		return this.p1;
+	public int getN1() {
+		return this.n1;
 	}
 
-	public void setP1(int p1) {
-		if (p1 < 0 || p1 > 100)
+	public void setN1(int n1) {
+		if (n1 < 0 || n1 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
-			this.p1 = p1;
-			this.calculateFinalGrade();
-		}
+		else
+			this.n1 = n1;
 	}
 
-	public int getP2() {
-		return this.p2;
+	public int getN2() {
+		return this.n2;
 	}
 
-	public void setP2(int p2) {
-		if (p2 < 0 || p2 > 100)
+	public void setN2(int n2) {
+		if (n2 < 0 || n2 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
-			this.p2 = p2;
-			this.calculateFinalGrade();
-		}
+		else
+			this.n2 = n2;
 	}
 
-	public int getP3() {
-		return this.p3;
+	public int getN3() {
+		return this.n3;
 	}
 
-	public void setP3(int p3) {
-		if (p3 < 0 || p3 > 100)
+	public void setN3(int n3) {
+		if (n3 < 0 || n3 > 100)
 			System.out.println("Nota inválida, deve ser de 0 a 100");
-		else {
-			this.p3 = p3;
-			this.calculateFinalGrade();
-		}
+		else
+			this.n3 = n3;
 	}
 
-	public int getFinalGrade() {
-		return this.finalGrade;
+	public int getNFinal() {
+		return this.nfinal;
 	}
 
-	public double getAttendance() {
-		return this.attendance;
+	public void setNFinal(int nfinal) {
+		if (nfinal < 0 || nfinal > 100)
+			System.out.println("Nota inválida, deve ser de 0 a 100");
+		else
+			this.nfinal = nfinal;
 	}
 
-	public void setAttendance(double attendance) {
-		this.attendance = attendance;
+	public double getFrequency() {
+		return this.frequency;
+	}
+
+	public void setFrequency(double frequency) {
+		if (frequency < 0.0 || frequency > 1.0)
+			System.out.println("Valor inválido, deve ser de 0 a 1");
+		else
+			this.frequency = frequency;
 	}
 
 	public String toString() {
 		return "Aluno: " + this.getStudent().getName() + "\nDisciplina: " + this.getClassroom().getSubject().getName()
-				+ "\nP1: " + this.getP1() + "\nP2: " + this.getP2() + "\nP3: " + this.getP3() + "\nMédia Final: "
-				+ this.getFinalGrade() + "\nFrequência: " + this.getAttendance() + "%";
+				+ "\nN1: " + this.getN1() + "\nN2: " + this.getN2() + "\nN3: " + this.getN3() + "\nMédia Final: "
+				+ this.getNFinal() + "\nFrequência: " + this.getFrequency() * 100 + "%";
 	}
 }
