@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import model.vo.GradeVO;
 import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
-public class GradeDAO extends BaseDAO {
+public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 	ClassroomDAO classroomDao = new ClassroomDAO();
 
 	public void create(GradeVO grade) {
@@ -30,6 +31,43 @@ public class GradeDAO extends BaseDAO {
 			System.out.println("Não foi possível adicionar o boletim!");
 			e.printStackTrace();
 		}
+	}
+
+	public List<GradeVO> findAll() {
+		String sql = "SELECT * FROM grades, students WHERE students.id = grades.student_id";
+		List<GradeVO> gradeList = new ArrayList<GradeVO>();
+
+		try {
+			Statement statement = this.getConnection().createStatement();
+			ResultSet set = statement.executeQuery(sql);
+
+			while (set.next()) {
+				GradeVO grade = new GradeVO();
+				grade.setN1(set.getInt("grades.n1"));
+				grade.setN2(set.getInt("grades.n2"));
+				grade.setN3(set.getInt("grades.n3"));
+				grade.setNFinal(set.getInt("grades.nfinal"));
+				grade.setFrequency(set.getDouble("grades.frequency"));
+
+				StudentVO student = new StudentVO();
+				student.setId(set.getLong("students.id"));
+				student.setName(set.getString("students.name"));
+				student.setEmail(set.getString("students.email"));
+				student.setPassword(set.getString("students.password"));
+				student.setRegistration(set.getString("students.registration"));
+				student.setAddress(set.getString("students.address"));
+
+				grade.setStudent(student);
+				grade.setClassroom(this.classroomDao.findById(set.getLong("grades.classroom_id")));
+
+				gradeList.add(grade);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível buscar as notas");
+		}
+
+		return gradeList;
 	}
 
 	public List<GradeVO> findByClassroom(ClassroomVO classroom) {
