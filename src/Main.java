@@ -44,7 +44,7 @@ public class Main {
 					break;
 				}
 				case "R": {
-					List<SubjectVO> subjects = subjectDAO.getAll();
+					List<SubjectVO> subjects = subjectDAO.findAll();
 
 					print("Disciplinas cadastradas:");
 					for (SubjectVO subject : subjects) {
