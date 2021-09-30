@@ -9,7 +9,7 @@ import java.util.List;
 
 import model.vo.ProfessorVO;
 
-public class ProfessorDAO extends BaseDAO {
+public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 	public void create(ProfessorVO professor) {
 		String sql = "INSERT INTO professors (name, email, password, address, cpf) VALUES (?, ?, ?, ?, ?)";
 		try {
