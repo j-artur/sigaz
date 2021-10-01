@@ -9,7 +9,7 @@ import java.util.List;
 
 import model.vo.SubjectVO;
 
-public class SubjectDAO extends BaseDAO {
+public class SubjectDAO extends BaseDAO implements IDAO<SubjectVO>{
 	public void create(SubjectVO subject) {
 		String sql = "INSERT INTO subjects (code, name) VALUES (?, ?)";
 
