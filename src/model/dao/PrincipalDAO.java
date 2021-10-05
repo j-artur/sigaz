@@ -9,7 +9,7 @@ import java.util.List;
 
 import model.vo.PrincipalVO;
 
-public class PrincipalDAO extends BaseDAO {
+public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 	public void create(PrincipalVO principal) {
 		String sql = "INSERT INTO principals (name, email, password) VALUES (?, ?, ?)";
 

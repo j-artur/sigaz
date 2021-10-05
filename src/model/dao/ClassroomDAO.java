@@ -12,7 +12,7 @@ import model.vo.ProfessorVO;
 import model.vo.StudentVO;
 import model.vo.SubjectVO;
 
-public class ClassroomDAO extends BaseDAO {
+public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 	StudentDAO studentDao = new StudentDAO();
 
 	public void create(ClassroomVO classroom) {
