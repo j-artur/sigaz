@@ -19,7 +19,7 @@ public class AuthenticationException extends Exception {
 				message = "Senha incorreta";
 				break;
 			case INTERNAL:
-				message = "Erro interno, tente novamente";
+				message = "Erro interno";
 				break;
 		}
 

@@ -1,5 +1,6 @@
 package model.bo;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import exceptions.AuthError;
@@ -27,7 +28,7 @@ public class PrincipalBO implements IPrincipalBO {
 				throw new AuthenticationException(AuthError.WRONG_PASSWORD);
 
 			return principal;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			throw new AuthenticationException(AuthError.INTERNAL);
 		}
 	}
