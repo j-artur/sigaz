@@ -10,9 +10,9 @@ import java.util.List;
 import model.vo.ProfessorVO;
 
 public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
-	public void create(ProfessorVO professor) {
+	public void create(ProfessorVO professor) throws SQLException {
 		String sql = "INSERT INTO professors (name, email, password, address, cpf) VALUES (?, ?, ?, ?, ?)";
-		try {
+
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, professor.getName());
 			statement.setString(2, professor.getEmail());
@@ -20,17 +20,12 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 			statement.setString(4, professor.getAddress());
 			statement.setString(5, professor.getCpf());
 			statement.execute();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível salvar o professor!");
-			e.printStackTrace();
-		}
 	}
 
-	public List<ProfessorVO> findAll() {
+	public List<ProfessorVO> findAll() throws SQLException {
 		String sql = "SELECT * FROM professors";
 		List<ProfessorVO> professorList = new ArrayList<ProfessorVO>();
 
-		try {
 			Statement statement = this.getConnection().createStatement();
 			ResultSet set = statement.executeQuery(sql);
 
@@ -45,19 +40,13 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 				professorList.add(professor);
 			}
 
-		} catch (SQLException e) {
-			System.out.println("Não foi possível buscar os professores!");
-			e.printStackTrace();
-		}
-
 		return professorList;
 	}
 
-	public List<ProfessorVO> findByName(ProfessorVO data) {
+	public List<ProfessorVO> findByName(ProfessorVO data) throws SQLException {
 		String sql = "SELECT * FROM professors WHERE name LIKE ?";
 		List<ProfessorVO> professorList = new ArrayList<ProfessorVO>();
 
-		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, "%" + data.getName() + "%");
 			ResultSet set = statement.executeQuery();
@@ -73,19 +62,13 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 				professorList.add(professor);
 			}
 
-		} catch (SQLException e) {
-			System.out.println("Não foi possível buscar o professor!");
-			e.printStackTrace();
-		}
-
 		return professorList;
 	}
 
-	public ProfessorVO findByEmail(ProfessorVO data) {
+	public ProfessorVO findByEmail(ProfessorVO data) throws SQLException {
 		String sql = "SELECT * FROM professors WHERE email = ?";
 		ProfessorVO professor = null;
 
-		try {
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, data.getEmail());
 			ResultSet set = statement.executeQuery();
@@ -100,17 +83,12 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 				professor.setCpf(set.getString("cpf"));
 			}
 
-		} catch (SQLException e) {
-			System.out.println("Não foi possível buscar o professor!");
-			e.printStackTrace();
-		}
-
 		return professor;
 	}
 
-	public void update(ProfessorVO professor, ProfessorVO data) {
+	public void update(ProfessorVO professor, ProfessorVO data) throws SQLException {
 		String sql = "UPDATE professors SET name = ?, email = ?, password = ?, address = ?, cpf = ? WHERE id = ?";
-		try {
+
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setString(1, data.getName());
 			statement.setString(2, data.getEmail());
@@ -119,21 +97,13 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 			statement.setString(5, data.getCpf());
 			statement.setLong(6, professor.getId());
 			statement.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível alterar o professor!");
-			e.printStackTrace();
-		}
 	}
 
-	public void delete(ProfessorVO professor) {
+	public void delete(ProfessorVO professor) throws SQLException {
 		String sql = "DELETE FROM professors WHERE id = ?";
-		try {
+
 			PreparedStatement statement = this.getConnection().prepareStatement(sql);
 			statement.setLong(1, professor.getId());
 			statement.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível excluir o professor!");
-			e.printStackTrace();
-		}
 	}
 }
