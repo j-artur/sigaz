@@ -42,7 +42,7 @@ public class PrincipalBO implements IPrincipalBO {
 	}
 
 	@Override
-	public List<PrincipalVO> findALl() throws Exception {
+	public List<PrincipalVO> findAll() throws Exception {
 		return this.principalDao.findAll();
 	}
 

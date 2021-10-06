@@ -22,7 +22,7 @@ public class ClassroomBO implements IClassroomBO {
 	}
 
 	@Override
-	public List<ClassroomVO> findALl() throws Exception {
+	public List<ClassroomVO> findAll() throws Exception {
 		return this.classroomDao.findAll();
 	}
 
