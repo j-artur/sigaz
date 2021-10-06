@@ -27,7 +27,7 @@ public class ProfessorBO implements IProfessorBO {
 	}
 
     @Override
-	public create(ProfessorVO professor) throws Exception {
+	public void create(ProfessorVO professor) throws Exception {
 		this.professorDao.create(professor);
 	}
 
