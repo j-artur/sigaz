@@ -35,35 +35,39 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 		Statement statement = this.getConnection().createStatement();
 		ResultSet set = statement.executeQuery(sql);
 
-		while (set.next()) {
-			ClassroomVO classroom = new ClassroomVO();
-			classroom.setId(set.getLong("classrooms.id"));
-			classroom.setSchedule(set.getString("classrooms.schedule"));
-			classroom.setPlace(set.getString("classrooms.place"));
-			classroom.setActive(set.getBoolean("classrooms.active"));
+		try {
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-			SubjectVO subject = new SubjectVO();
-			subject.setId(set.getLong("subjects.id"));
-			subject.setCode(set.getString("subjects.code"));
-			subject.setName(set.getString("subjects.name"));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
 
-			ProfessorVO professor = new ProfessorVO();
-			professor.setId(set.getLong("professors.id"));
-			professor.setName(set.getString("professors.name"));
-			professor.setEmail(set.getString("professors.email"));
-			professor.setPassword(set.getString("professors.password"));
-			professor.setAddress(set.getString("professors.address"));
-			professor.setCpf(set.getString("professors.cpf"));
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
 
-			classroom.setSubject(subject);
-			classroom.setProfessor(professor);
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
-			List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
-			StudentVO[] students = new StudentVO[studentList.size()];
-			studentList.toArray(students);
-			classroom.setStudents(students);
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
 
-			classroomList.add(classroom);
+				classroomList.add(classroom);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return classroomList;
@@ -79,35 +83,39 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 		statement.setLong(1, student.getId());
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			ClassroomVO classroom = new ClassroomVO();
-			classroom.setId(set.getLong("classrooms.id"));
-			classroom.setSchedule(set.getString("classrooms.schedule"));
-			classroom.setPlace(set.getString("classrooms.place"));
-			classroom.setActive(set.getBoolean("classrooms.active"));
+		try {
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-			SubjectVO subject = new SubjectVO();
-			subject.setId(set.getLong("subjects.id"));
-			subject.setCode(set.getString("subjects.code"));
-			subject.setName(set.getString("subjects.name"));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
 
-			ProfessorVO professor = new ProfessorVO();
-			professor.setId(set.getLong("professors.id"));
-			professor.setName(set.getString("professors.name"));
-			professor.setEmail(set.getString("professors.email"));
-			professor.setPassword(set.getString("professors.password"));
-			professor.setAddress(set.getString("professors.address"));
-			professor.setCpf(set.getString("professors.cpf"));
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
 
-			classroom.setSubject(subject);
-			classroom.setProfessor(professor);
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
-			List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
-			StudentVO[] students = new StudentVO[studentList.size()];
-			studentList.toArray(students);
-			classroom.setStudents(students);
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
 
-			classroomList.add(classroom);
+				classroomList.add(classroom);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return classroomList;
@@ -122,27 +130,31 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 		statement.setLong(1, professor.getId());
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			ClassroomVO classroom = new ClassroomVO();
-			classroom.setId(set.getLong("classrooms.id"));
-			classroom.setSchedule(set.getString("classrooms.schedule"));
-			classroom.setPlace(set.getString("classrooms.place"));
-			classroom.setActive(set.getBoolean("classrooms.active"));
+		try {
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-			SubjectVO subject = new SubjectVO();
-			subject.setId(set.getLong("subjects.id"));
-			subject.setCode(set.getString("subjects.code"));
-			subject.setName(set.getString("subjects.name"));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
 
-			classroom.setSubject(subject);
-			classroom.setProfessor(professor);
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
-			List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
-			StudentVO[] students = new StudentVO[studentList.size()];
-			studentList.toArray(students);
-			classroom.setStudents(students);
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
 
-			classroomList.add(classroom);
+				classroomList.add(classroom);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return classroomList;
@@ -157,30 +169,35 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 		statement.setLong(1, subject.getId());
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			ClassroomVO classroom = new ClassroomVO();
-			classroom.setId(set.getLong("classrooms.id"));
-			classroom.setSchedule(set.getString("classrooms.schedule"));
-			classroom.setPlace(set.getString("classrooms.place"));
-			classroom.setActive(set.getBoolean("classrooms.active"));
+		try {
 
-			ProfessorVO professor = new ProfessorVO();
-			professor.setId(set.getLong("professors.id"));
-			professor.setName(set.getString("professors.name"));
-			professor.setEmail(set.getString("professors.email"));
-			professor.setPassword(set.getString("professors.password"));
-			professor.setAddress(set.getString("professors.address"));
-			professor.setCpf(set.getString("professors.cpf"));
+			while (set.next()) {
+				ClassroomVO classroom = new ClassroomVO();
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-			classroom.setSubject(subject);
-			classroom.setProfessor(professor);
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
 
-			List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
-			StudentVO[] students = new StudentVO[studentList.size()];
-			studentList.toArray(students);
-			classroom.setStudents(students);
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
-			classroomList.add(classroom);
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+
+				classroomList.add(classroom);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return classroomList;
@@ -195,33 +212,37 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 		statement.setLong(1, id);
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			classroom = new ClassroomVO();
-			classroom.setId(set.getLong("classrooms.id"));
-			classroom.setSchedule(set.getString("classrooms.schedule"));
-			classroom.setPlace(set.getString("classrooms.place"));
-			classroom.setActive(set.getBoolean("classrooms.active"));
+		try {
+			while (set.next()) {
+				classroom = new ClassroomVO();
+				classroom.setId(set.getLong("classrooms.id"));
+				classroom.setSchedule(set.getString("classrooms.schedule"));
+				classroom.setPlace(set.getString("classrooms.place"));
+				classroom.setActive(set.getBoolean("classrooms.active"));
 
-			SubjectVO subject = new SubjectVO();
-			subject.setId(set.getLong("subjects.id"));
-			subject.setCode(set.getString("subjects.code"));
-			subject.setName(set.getString("subjects.name"));
+				SubjectVO subject = new SubjectVO();
+				subject.setId(set.getLong("subjects.id"));
+				subject.setCode(set.getString("subjects.code"));
+				subject.setName(set.getString("subjects.name"));
 
-			ProfessorVO professor = new ProfessorVO();
-			professor.setId(set.getLong("professors.id"));
-			professor.setName(set.getString("professors.name"));
-			professor.setEmail(set.getString("professors.email"));
-			professor.setPassword(set.getString("professors.password"));
-			professor.setAddress(set.getString("professors.address"));
-			professor.setCpf(set.getString("professors.cpf"));
+				ProfessorVO professor = new ProfessorVO();
+				professor.setId(set.getLong("professors.id"));
+				professor.setName(set.getString("professors.name"));
+				professor.setEmail(set.getString("professors.email"));
+				professor.setPassword(set.getString("professors.password"));
+				professor.setAddress(set.getString("professors.address"));
+				professor.setCpf(set.getString("professors.cpf"));
 
-			classroom.setSubject(subject);
-			classroom.setProfessor(professor);
+				classroom.setSubject(subject);
+				classroom.setProfessor(professor);
 
-			List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
-			StudentVO[] students = new StudentVO[studentList.size()];
-			studentList.toArray(students);
-			classroom.setStudents(students);
+				List<StudentVO> studentList = this.studentDao.findByClassroom(classroom);
+				StudentVO[] students = new StudentVO[studentList.size()];
+				studentList.toArray(students);
+				classroom.setStudents(students);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return classroom;

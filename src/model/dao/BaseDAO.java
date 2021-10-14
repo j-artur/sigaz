@@ -10,14 +10,9 @@ public abstract class BaseDAO {
 	private String user = "poo";
 	private String password = "poo";
 
-	public Connection getConnection() {
+	public Connection getConnection() throws SQLException {
 		if (this.connection == null) {
-			try {
-				this.connection = DriverManager.getConnection(this.url, this.user, this.password);
-			} catch (SQLException e) {
-				System.out.println("Conexão falhou");
-				e.printStackTrace();
-			}
+			this.connection = DriverManager.getConnection(this.url, this.user, this.password);
 		}
 
 		return this.connection;

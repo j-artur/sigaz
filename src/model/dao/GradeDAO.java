@@ -39,25 +39,29 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 		statement.setLong(1, classroom.getId());
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			GradeVO grade = new GradeVO();
-			grade.setN1(set.getInt("grades.n1"));
-			grade.setN2(set.getInt("grades.n2"));
-			grade.setN3(set.getInt("grades.n3"));
-			grade.setNFinal(set.getInt("grades.nfinal"));
-			grade.setFrequency(set.getDouble("grades.frequency"));
+		try {
+			while (set.next()) {
+				GradeVO grade = new GradeVO();
+				grade.setN1(set.getInt("grades.n1"));
+				grade.setN2(set.getInt("grades.n2"));
+				grade.setN3(set.getInt("grades.n3"));
+				grade.setNFinal(set.getInt("grades.nfinal"));
+				grade.setFrequency(set.getDouble("grades.frequency"));
 
-			StudentVO student = new StudentVO();
-			student.setId(set.getLong("students.id"));
-			student.setName(set.getString("students.name"));
-			student.setEmail(set.getString("students.email"));
-			student.setPassword(set.getString("students.password"));
-			student.setRegistration(set.getString("students.registration"));
-			student.setAddress(set.getString("students.address"));
+				StudentVO student = new StudentVO();
+				student.setId(set.getLong("students.id"));
+				student.setName(set.getString("students.name"));
+				student.setEmail(set.getString("students.email"));
+				student.setPassword(set.getString("students.password"));
+				student.setRegistration(set.getString("students.registration"));
+				student.setAddress(set.getString("students.address"));
 
-			grade.setClassroom(classroom);
-			grade.setStudent(student);
-			gradeList.add(grade);
+				grade.setClassroom(classroom);
+				grade.setStudent(student);
+				gradeList.add(grade);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return gradeList;
@@ -71,18 +75,22 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 		statement.setLong(1, student.getId());
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			GradeVO grade = new GradeVO();
-			grade.setN1(set.getInt("n1"));
-			grade.setN2(set.getInt("n2"));
-			grade.setN3(set.getInt("n3"));
-			grade.setNFinal(set.getInt("nfinal"));
-			grade.setFrequency(set.getDouble("frequency"));
+		try {
+			while (set.next()) {
+				GradeVO grade = new GradeVO();
+				grade.setN1(set.getInt("n1"));
+				grade.setN2(set.getInt("n2"));
+				grade.setN3(set.getInt("n3"));
+				grade.setNFinal(set.getInt("nfinal"));
+				grade.setFrequency(set.getDouble("frequency"));
 
-			grade.setStudent(student);
-			grade.setClassroom(this.classroomDao.findById(set.getLong("classroom_id")));
+				grade.setStudent(student);
+				grade.setClassroom(this.classroomDao.findById(set.getLong("classroom_id")));
 
-			gradeList.add(grade);
+				gradeList.add(grade);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return gradeList;
@@ -97,16 +105,20 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 		statement.setLong(2, classroom.getId());
 		ResultSet set = statement.executeQuery();
 
-		if (set.next()) {
-			grade = new GradeVO();
-			grade.setN1(set.getInt("n1"));
-			grade.setN2(set.getInt("n2"));
-			grade.setN3(set.getInt("n3"));
-			grade.setNFinal(set.getInt("nfinal"));
-			grade.setFrequency(set.getDouble("frequency"));
+		try {
+			if (set.next()) {
+				grade = new GradeVO();
+				grade.setN1(set.getInt("n1"));
+				grade.setN2(set.getInt("n2"));
+				grade.setN3(set.getInt("n3"));
+				grade.setNFinal(set.getInt("nfinal"));
+				grade.setFrequency(set.getDouble("frequency"));
 
-			grade.setStudent(student);
-			grade.setClassroom(classroom);
+				grade.setStudent(student);
+				grade.setClassroom(classroom);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return grade;
