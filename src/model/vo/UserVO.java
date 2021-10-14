@@ -10,9 +10,9 @@ public abstract class UserVO {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id) throws Exception {
 		if (id <= 0)
-			System.out.println("ID inválido, deve ser inteiro positivo");
+			throw new Exception("ID inválido, deve ser inteiro positivo");
 		else
 			this.id = id;
 	}
@@ -21,11 +21,11 @@ public abstract class UserVO {
 		return this.name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws Exception {
 		if (name == null || name.isEmpty())
-			System.out.println("Nome vazio");
+			throw new Exception("Nome vazio");
 		else if (name.length() < 2 || name.length() > 255)
-			System.out.println("Tamanho inválido, nome deve ter entre 2 e 255 caracteres");
+			throw new Exception("Tamanho inválido, nome deve ter entre 2 e 255 caracteres");
 		else
 			this.name = name;
 	}
@@ -34,9 +34,9 @@ public abstract class UserVO {
 		return this.email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email) throws Exception {
 		if (email == null || email.isEmpty() || !email.contains("@"))
-			System.out.println("Email inválido, precisa conter @");
+			throw new Exception("Email inválido, precisa conter @");
 		else
 			this.email = email;
 	}
@@ -45,11 +45,11 @@ public abstract class UserVO {
 		return this.password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password) throws Exception {
 		if (password == null)
-			System.out.println("Senha inválida");
+			throw new Exception("Senha inválida");
 		else if (password.length() < 6)
-			System.out.println("Senha muito curta, mínimo 6 caracteres");
+			throw new Exception("Senha muito curta, mínimo 6 caracteres");
 		else
 			this.password = password;
 	}

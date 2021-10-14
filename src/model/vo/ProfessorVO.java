@@ -4,13 +4,21 @@ public class ProfessorVO extends UserVO {
 	private String address;
 	private String cpf;
 
+	public ProfessorVO() {
+	}
+
+	public ProfessorVO(UserVO data) throws Exception {
+		this.setEmail(data.getEmail());
+		this.setPassword(data.getPassword());
+	}
+
 	public String getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(String address) throws Exception {
 		if (address == null || address.isEmpty())
-			System.out.println("Endereço inválido");
+			throw new Exception("Endereço inválido");
 		else
 			this.address = address;
 	}
@@ -19,9 +27,9 @@ public class ProfessorVO extends UserVO {
 		return this.cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(String cpf) throws Exception {
 		if (cpf == null || !cpf.matches("^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$"))
-			System.out.println("CPF inválido, deve estar no formato XXX.XXX.XXX-XX");
+			throw new Exception("CPF inválido, deve estar no formato XXX.XXX.XXX-XX");
 		else
 			this.cpf = cpf;
 	}

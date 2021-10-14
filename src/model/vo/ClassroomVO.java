@@ -13,9 +13,9 @@ public class ClassroomVO {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id) throws Exception {
 		if (id <= 0)
-			System.out.println("ID inválido!");
+			throw new Exception("ID inválido!");
 		else
 			this.id = id;
 	}
@@ -24,9 +24,9 @@ public class ClassroomVO {
 		return this.subject;
 	}
 
-	public void setSubject(SubjectVO subject) {
+	public void setSubject(SubjectVO subject) throws Exception {
 		if (subject == null)
-			System.out.println("A disciplina não pode ser nula!");
+			throw new Exception("A disciplina não pode ser nula!");
 		else
 			this.subject = subject;
 	}
@@ -35,9 +35,9 @@ public class ClassroomVO {
 		return this.professor;
 	}
 
-	public void setProfessor(ProfessorVO professor) {
+	public void setProfessor(ProfessorVO professor) throws Exception {
 		if (professor == null)
-			System.out.println("O professor não pode ser nulo!");
+			throw new Exception("O professor não pode ser nulo!");
 		else
 			this.professor = professor;
 	}
@@ -46,9 +46,9 @@ public class ClassroomVO {
 		return this.students;
 	}
 
-	public void setStudents(StudentVO[] students) {
+	public void setStudents(StudentVO[] students) throws Exception {
 		if (students == null)
-			System.out.println("O campo de estudantes não pode ser nulo!");
+			throw new Exception("O campo de estudantes não pode ser nulo!");
 		else {
 			boolean test = true;
 			for (int i = 0; i < students.length; i++) {
@@ -58,7 +58,7 @@ public class ClassroomVO {
 				}
 			}
 			if (!test)
-				System.out.println("Um dos estudantes não é válido!");
+				throw new Exception("Um dos estudantes não é válido!");
 			else
 				this.students = students;
 		}
@@ -68,10 +68,9 @@ public class ClassroomVO {
 		return this.schedule;
 	}
 
-	public void setSchedule(String schedule) {
+	public void setSchedule(String schedule) throws Exception {
 		if (schedule == null || !schedule.matches("^[23456]{1,5}[MTN][12345]{1,5}$")) {
-			System.out.println("Horário inválido, formate como [Dias da semana][Inicial do turno][Numeração dos horários]");
-			System.out.println("Exemplo: 35T45 (Terça e Quinta, Tarde, 4º e 5º horários)");
+			throw new Exception("Horário inválido, formate como [Dias da semana][Turno][Horários]\nExemplo: 35T45 (Terça e Quinta, Tarde, 4º e 5º horários)");
 		} else
 			this.schedule = schedule;
 	}
@@ -80,9 +79,9 @@ public class ClassroomVO {
 		return this.place;
 	}
 
-	public void setPlace(String place) {
+	public void setPlace(String place) throws Exception {
 		if (place == null || place.isEmpty())
-			System.out.println("Local inválido!");
+			throw new Exception("Local inválido!");
 		else
 			this.place = place;
 	}
