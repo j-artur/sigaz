@@ -24,7 +24,7 @@ public class PrincipalBO implements IPrincipalBO {
 
 			if (principal == null)
 				throw new AuthenticationException(AuthError.NOT_FOUND);
-			if (data.getPassword() != principal.getPassword())
+			if (!data.getPassword().equals(principal.getPassword()))
 				throw new AuthenticationException(AuthError.WRONG_PASSWORD);
 
 			return principal;
