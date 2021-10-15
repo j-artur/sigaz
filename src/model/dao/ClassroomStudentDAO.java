@@ -7,57 +7,37 @@ import model.vo.ClassroomVO;
 import model.vo.StudentVO;
 
 public class ClassroomStudentDAO extends BaseDAO {
-	public void create(ClassroomVO classroom, StudentVO student) {
+	public void create(ClassroomVO classroom, StudentVO student) throws SQLException {
 		String query = "INSERT INTO students_classrooms (student_id, classroom_id) VALUES (?, ?)";
 
-		try {
-			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, student.getId());
-			statement.setLong(2, classroom.getId());
-			statement.execute();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível adicionar o aluno à turma!");
-			e.printStackTrace();
-		}
+		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		statement.setLong(1, student.getId());
+		statement.setLong(2, classroom.getId());
+		statement.execute();
 	}
 
-	public void delete(ClassroomVO classroom, StudentVO student) {
+	public void delete(ClassroomVO classroom, StudentVO student) throws SQLException {
 		String query = "DELETE FROM students_classrooms WHERE student_id = ? AND classroom_id = ?";
 
-		try {
-			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, student.getId());
-			statement.setLong(2, classroom.getId());
-			statement.execute();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível remover o aluno da turma!");
-			e.printStackTrace();
-		}
+		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		statement.setLong(1, student.getId());
+		statement.setLong(2, classroom.getId());
+		statement.execute();
 	}
 
-	public void delete(ClassroomVO classroom) {
+	public void delete(ClassroomVO classroom) throws SQLException {
 		String query = "DELETE FROM students_classrooms WHERE classroom_id = ?";
 
-		try {
-			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, classroom.getId());
-			statement.execute();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível remover os alunos da turma!");
-			e.printStackTrace();
-		}
+		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		statement.setLong(1, classroom.getId());
+		statement.execute();
 	}
 
-	public void delete(StudentVO student) {
+	public void delete(StudentVO student) throws SQLException {
 		String query = "DELETE FROM students_classrooms WHERE student_id = ?";
 
-		try {
-			PreparedStatement statement = this.getConnection().prepareStatement(query);
-			statement.setLong(1, student.getId());
-			statement.execute();
-		} catch (SQLException e) {
-			System.out.println("Não foi possível remover o aluno das turmas!");
-			e.printStackTrace();
-		}
+		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		statement.setLong(1, student.getId());
+		statement.execute();
 	}
 }
