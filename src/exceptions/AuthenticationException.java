@@ -7,6 +7,10 @@ public class AuthenticationException extends Exception {
 		this.reason = reason;
 	}
 
+	public AuthError getReason() {
+		return this.reason;
+	}
+
 	@Override
 	public String getMessage() {
 		String message = null;
