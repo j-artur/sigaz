@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="155.0" layoutY="200.0" text="Nome" />
+      <Label layoutX="155.0" layoutY="256.0" prefHeight="15.0" prefWidth="48.0" text="E-mail" />
+      <TextField fx:id="name" layoutX="155.0" layoutY="215.0" prefHeight="25.0" prefWidth="323.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="35.0" minHeight="83.0" prefWidth="233.0" text="SIGAZ" textAlignment="CENTER">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="268.0" layoutY="138.0" text="Cadastrar Aluno" />
+      <TextField fx:id="email" layoutX="155.0" layoutY="271.0" prefHeight="25.0" prefWidth="323.0" />
+      <Label layoutX="155.0" layoutY="310.0" text="Endereço" />
+      <TextField fx:id="address" layoutX="155.0" layoutY="325.0" prefHeight="25.0" prefWidth="323.0" />
+      <Button fx:id="register" layoutX="276.0" layoutY="423.0" mnemonicParsing="false" text="Cadastrar" />
+   </children>
+</Pane>
