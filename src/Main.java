@@ -1,7 +1,7 @@
-import view.Master;
+import view.View;
 
 public class Main {
 	public static void main(String[] args) {
-		Master.launch(Master.class);
+		View.launch(View.class);
 	}
 }

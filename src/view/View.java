@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Master extends Application {
+public class View extends Application {
 	private static Stage primaryStage;
 	private static ViewMode viewMode = ViewMode.RESTRICTED;
 
@@ -22,26 +22,22 @@ public class Master extends Application {
 	public void start(Stage stage) throws Exception {
 		primaryStage = stage;
 		primaryStage.setTitle("SIGAZ");
-		primaryStage.show();
+		primaryStage.setResizable(false);
 		login();
-	}
-
-	private static void reset() throws Exception {
-		primaryStage.setResizable(true);
-		primaryStage.setTitle("SIGAZ");
+		primaryStage.show();
 	}
 
 	public static void login() throws Exception {
-		reset();
-		Parent root = FXMLLoader.load(Master.class.getResource("xml/login.fxml"));
-		primaryStage.setResizable(false);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/login.fxml"));
 		primaryStage.setTitle("SIGAZ - login");
 		primaryStage.setScene(new Scene(root));
+		primaryStage.centerOnScreen();
 	}
 
 	public static void home() throws Exception {
-		reset();
-		// Parent root = FXMLLoader.load(Master.class.getResource("xml/home.fxml"));
-		// primaryStage.setScene(new Scene(root));
+		primaryStage.setTitle("SIGAZ");
+		Parent root = FXMLLoader.load(View.class.getResource("xml/home.fxml"));
+		primaryStage.setScene(new Scene(root));
+		primaryStage.centerOnScreen();
 	}
 }
