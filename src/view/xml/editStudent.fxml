@@ -8,7 +8,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="155.0" layoutY="200.0" text="Nome" />
-      <Label layoutX="155.0" layoutY="256.0" text="CPF" />
+      <Label layoutX="155.0" layoutY="256.0" prefHeight="15.0" prefWidth="46.0" text="E-mail" />
       <TextField fx:id="name" layoutX="155.0" layoutY="215.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="35.0" minHeight="83.0" prefWidth="233.0" text="SIGAZ" textAlignment="CENTER">
          <font>
