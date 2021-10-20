@@ -32,8 +32,8 @@
             <Label layoutY="71.0" prefHeight="17.0" prefWidth="42.0" text="Senha" />
             <PasswordField fx:id="password" layoutY="88.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
             <Button fx:id="loginButton" alignment="CENTER" layoutX="80.0" layoutY="186.0" mnemonicParsing="false" onAction="#authenticate" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Entrar" />
-            <Label fx:id="register" layoutX="3.0" layoutY="129.0" text="Fazer cadastro" textFill="#284896" />
-            <Label fx:id="recoverPassword" layoutX="194.0" layoutY="129.0" text="Esqueceu a senha?" textFill="#284896" />
+            <Hyperlink fx:id="register" layoutY="125.0" text="Fazer cadastro" textFill="#284896" />
+            <Hyperlink fx:id="recoverPassword" layoutX="184.0" layoutY="125.0" text="Esqueceu a senha?" textFill="#284896" />
          </children>
       </Pane>
    </children>
