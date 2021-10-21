@@ -12,13 +12,13 @@ import model.vo.ProfessorVO;
 import model.vo.StudentVO;
 import model.vo.SubjectVO;
 
-public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
+public class ClassroomDAO implements IDAO<ClassroomVO> {
 	StudentDAO studentDao = new StudentDAO();
 
 	public void create(ClassroomVO classroom) throws SQLException {
 		String sql = "INSERT INTO classrooms (subject_id, professor_id, schedule, place, active) VALUES (?, ?, ?, ?, ?)";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, classroom.getSubject().getId());
 		statement.setLong(2, classroom.getProfessor().getId());
 		statement.setString(3, classroom.getSchedule());
@@ -32,7 +32,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 				+ "AND professors.id = classrooms.professor_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
-		Statement statement = this.getConnection().createStatement();
+		Statement statement = BaseDAO.getInstance().getConnection().createStatement();
 		ResultSet set = statement.executeQuery(sql);
 
 		try {
@@ -79,7 +79,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 				+ "AND subjects.id = classrooms.subject_id " + "AND professors.id = classrooms.professor_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, student.getId());
 		ResultSet set = statement.executeQuery();
 
@@ -126,7 +126,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 				+ "AND subjects.id = classrooms.subject_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, professor.getId());
 		ResultSet set = statement.executeQuery();
 
@@ -165,7 +165,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 				+ "AND professors.id = classrooms.professor_id";
 		List<ClassroomVO> classroomList = new ArrayList<ClassroomVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, subject.getId());
 		ResultSet set = statement.executeQuery();
 
@@ -208,7 +208,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 				+ "AND subjects.id = classrooms.subject_id " + "AND professors.id = classrooms.professor_id";
 		ClassroomVO classroom = null;
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, id);
 		ResultSet set = statement.executeQuery();
 
@@ -251,7 +251,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 	public void update(ClassroomVO classroom, ClassroomVO data) throws SQLException {
 		String sql = "UPDATE classrooms SET subject_id = ?, professor_id = ?, schedule = ?, place = ?, active = ? WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, data.getSubject().getId());
 		statement.setLong(2, data.getProfessor().getId());
 		statement.setString(3, data.getSchedule());
@@ -265,7 +265,7 @@ public class ClassroomDAO extends BaseDAO implements IDAO<ClassroomVO> {
 	public void delete(ClassroomVO classroom) throws SQLException {
 		String sql = "DELETE FROM classrooms WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, classroom.getId());
 		statement.executeUpdate();
 

@@ -10,13 +10,13 @@ import model.vo.GradeVO;
 import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
-public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
+public class GradeDAO implements IDAO<GradeVO> {
 	ClassroomDAO classroomDao = new ClassroomDAO();
 
 	public void create(GradeVO grade) throws SQLException {
 		String query = "INSERT INTO grades (student_id, classroom_id, n1, n2, n3, nfinal, frequency) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setLong(1, grade.getStudent().getId());
 		statement.setLong(2, grade.getClassroom().getId());
 		statement.setInt(3, grade.getN1());
@@ -35,7 +35,7 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 		String sql = "SELECT * FROM grades, students WHERE grades.classroom_id = ? AND students.id = grades.student_id";
 		List<GradeVO> gradeList = new ArrayList<GradeVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, classroom.getId());
 		ResultSet set = statement.executeQuery();
 
@@ -71,7 +71,7 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 		String sql = "SELECT * FROM grades WHERE student_id = ?";
 		List<GradeVO> gradeList = new ArrayList<GradeVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, student.getId());
 		ResultSet set = statement.executeQuery();
 
@@ -100,7 +100,7 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 		String sql = "SELECT * FROM grades WHERE student_id = ? AND classroom_id = ?";
 		GradeVO grade = null;
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, student.getId());
 		statement.setLong(2, classroom.getId());
 		ResultSet set = statement.executeQuery();
@@ -127,7 +127,7 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 	public void update(GradeVO grade, GradeVO data) throws SQLException {
 		String query = "UPDATE grades SET n1 = ?, n2 = ?, n3 = ?, nfinal = ?, frequency = ? WHERE student_id = ? AND classroom_id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setInt(1, data.getN1());
 		statement.setInt(2, data.getN2());
 		statement.setInt(3, data.getN3());
@@ -142,7 +142,7 @@ public class GradeDAO extends BaseDAO implements IDAO<GradeVO> {
 	public void delete(GradeVO grade) throws SQLException {
 		String query = "DELETE FROM grades WHERE student_id = ? AND classroom_id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setLong(1, grade.getStudent().getId());
 		statement.setLong(2, grade.getClassroom().getId());
 		statement.executeUpdate();

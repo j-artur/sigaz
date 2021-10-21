@@ -9,11 +9,11 @@ import java.util.List;
 
 import model.vo.SubjectVO;
 
-public class SubjectDAO extends BaseDAO implements IDAO<SubjectVO> {
+public class SubjectDAO implements IDAO<SubjectVO> {
 	public void create(SubjectVO subject) throws SQLException {
 		String sql = "INSERT INTO subjects (code, name) VALUES (?, ?)";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, subject.getCode());
 		statement.setString(2, subject.getName());
 		statement.execute();
@@ -24,7 +24,7 @@ public class SubjectDAO extends BaseDAO implements IDAO<SubjectVO> {
 		String sql = "SELECT * FROM subjects";
 		List<SubjectVO> subjectList = new ArrayList<SubjectVO>();
 
-		Statement statement = this.getConnection().createStatement();
+		Statement statement = BaseDAO.getInstance().getConnection().createStatement();
 		ResultSet set = statement.executeQuery(sql);
 
 		try {
@@ -47,7 +47,7 @@ public class SubjectDAO extends BaseDAO implements IDAO<SubjectVO> {
 		String sql = "SELECT * FROM subjects WHERE name LIKE ?";
 		List<SubjectVO> subjectList = new ArrayList<SubjectVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, "%" + data.getName() + "%");
 		ResultSet set = statement.executeQuery();
 
@@ -69,7 +69,7 @@ public class SubjectDAO extends BaseDAO implements IDAO<SubjectVO> {
 	public void update(SubjectVO subject, SubjectVO data) throws SQLException {
 		String sql = "UPDATE subjects SET name = ?, code = ? WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, data.getName());
 		statement.setString(2, data.getCode());
 		statement.setLong(3, subject.getId());
@@ -80,7 +80,7 @@ public class SubjectDAO extends BaseDAO implements IDAO<SubjectVO> {
 	public void delete(SubjectVO subject) throws SQLException {
 		String sql = "DELETE FROM subjects WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, subject.getId());
 		statement.executeUpdate();
 	}

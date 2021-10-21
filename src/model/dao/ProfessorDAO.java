@@ -9,11 +9,11 @@ import java.util.List;
 
 import model.vo.ProfessorVO;
 
-public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
+public class ProfessorDAO implements IUserDAO<ProfessorVO> {
 	public void create(ProfessorVO professor) throws SQLException {
 		String sql = "INSERT INTO professors (name, email, password, address, cpf) VALUES (?, ?, ?, ?, ?)";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, professor.getName());
 		statement.setString(2, professor.getEmail());
 		statement.setString(3, professor.getPassword());
@@ -26,7 +26,7 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 		String sql = "SELECT * FROM professors";
 		List<ProfessorVO> professorList = new ArrayList<ProfessorVO>();
 
-		Statement statement = this.getConnection().createStatement();
+		Statement statement = BaseDAO.getInstance().getConnection().createStatement();
 		ResultSet set = statement.executeQuery(sql);
 
 		try {
@@ -51,7 +51,7 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 		String sql = "SELECT * FROM professors WHERE name LIKE ?";
 		List<ProfessorVO> professorList = new ArrayList<ProfessorVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, "%" + data.getName() + "%");
 		ResultSet set = statement.executeQuery();
 
@@ -77,7 +77,7 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 		String sql = "SELECT * FROM professors WHERE email = ?";
 		ProfessorVO professor = null;
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, data.getEmail());
 		ResultSet set = statement.executeQuery();
 
@@ -101,7 +101,7 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 	public void update(ProfessorVO professor, ProfessorVO data) throws SQLException {
 		String sql = "UPDATE professors SET name = ?, email = ?, password = ?, address = ?, cpf = ? WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, data.getName());
 		statement.setString(2, data.getEmail());
 		statement.setString(3, data.getPassword());
@@ -114,7 +114,7 @@ public class ProfessorDAO extends BaseDAO implements IUserDAO<ProfessorVO> {
 	public void delete(ProfessorVO professor) throws SQLException {
 		String sql = "DELETE FROM professors WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, professor.getId());
 		statement.executeUpdate();
 	}

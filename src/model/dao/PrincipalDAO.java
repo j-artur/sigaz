@@ -9,11 +9,11 @@ import java.util.List;
 
 import model.vo.PrincipalVO;
 
-public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
+public class PrincipalDAO implements IUserDAO<PrincipalVO> {
 	public void create(PrincipalVO principal) throws SQLException {
 		String sql = "INSERT INTO principals (name, email, password) VALUES (?, ?, ?)";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, principal.getName());
 		statement.setString(2, principal.getEmail());
 		statement.setString(3, principal.getPassword());
@@ -24,7 +24,7 @@ public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 		String sql = "SELECT * FROM principals";
 		List<PrincipalVO> principalList = new ArrayList<PrincipalVO>();
 
-		Statement statement = this.getConnection().createStatement();
+		Statement statement = BaseDAO.getInstance().getConnection().createStatement();
 		ResultSet set = statement.executeQuery(sql);
 
 		try {
@@ -47,7 +47,7 @@ public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 		String sql = "SELECT * FROM principals WHERE email = ?";
 		PrincipalVO principal = null;
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, data.getEmail());
 		ResultSet set = statement.executeQuery();
 
@@ -69,7 +69,7 @@ public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 	public void update(PrincipalVO principal, PrincipalVO data) throws SQLException {
 		String sql = "UPDATE principals SET name = ?, email = ?, password = ? WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, data.getName());
 		statement.setString(2, data.getEmail());
 		statement.setString(3, data.getPassword());
@@ -80,7 +80,7 @@ public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 	public void delete(PrincipalVO principal) throws SQLException {
 		String sql = "DELETE FROM principals WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, principal.getId());
 		statement.executeUpdate();
 	}

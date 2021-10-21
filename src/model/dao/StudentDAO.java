@@ -10,12 +10,12 @@ import java.util.List;
 import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
-public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
+public class StudentDAO implements IUserDAO<StudentVO> {
 
 	public void create(StudentVO student) throws SQLException {
 		String query = "INSERT INTO students (name, email, password, registration, address) VALUES (?, ?, ?, ?, ?)";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setString(1, student.getName());
 		statement.setString(2, student.getEmail());
 		statement.setString(3, student.getPassword());
@@ -28,7 +28,7 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
 		String query = "SELECT * FROM students";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
 
-		Statement statement = this.getConnection().createStatement();
+		Statement statement = BaseDAO.getInstance().getConnection().createStatement();
 		ResultSet set = statement.executeQuery(query);
 
 		try {
@@ -53,7 +53,7 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
 		String query = "SELECT * FROM students WHERE name LIKE ?";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setString(1, "%" + data.getName() + "%");
 		ResultSet set = statement.executeQuery();
 
@@ -78,7 +78,7 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
 		String sql = "SELECT * FROM students WHERE email = ?";
 		StudentVO student = null;
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setString(1, data.getEmail());
 		ResultSet set = statement.executeQuery();
 
@@ -103,7 +103,7 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
 		String sql = "SELECT * FROM students, students_classrooms WHERE students_classrooms.classroom_id = ? AND students.id = students_classrooms.student_id";
 		List<StudentVO> studentList = new ArrayList<StudentVO>();
 
-		PreparedStatement statement = this.getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
 		statement.setLong(1, classroom.getId());
 		ResultSet set = statement.executeQuery();
 
@@ -128,7 +128,7 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
 	public void update(StudentVO student, StudentVO data) throws SQLException {
 		String query = "UPDATE students SET name = ?, email = ?, password = ?, registration = ?, address = ? WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setString(1, data.getName());
 		statement.setString(2, data.getEmail());
 		statement.setString(3, data.getPassword());
@@ -141,7 +141,7 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
 	public void delete(StudentVO student) throws SQLException {
 		String query = "DELETE FROM students WHERE id = ?";
 
-		PreparedStatement statement = this.getConnection().prepareStatement(query);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(query);
 		statement.setLong(1, student.getId());
 		statement.executeUpdate();
 	}
