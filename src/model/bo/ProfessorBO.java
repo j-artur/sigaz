@@ -9,7 +9,7 @@ import model.dao.ProfessorDAO;
 import model.vo.ProfessorVO;
 
 public class ProfessorBO implements IProfessorBO {
-    private ProfessorDAO professorDao = new ProfessorDAO();
+	private ProfessorDAO professorDao = new ProfessorDAO();
 
 	@Override
 	public ProfessorVO authenticate(ProfessorVO data) throws AuthenticationException {
@@ -18,7 +18,7 @@ public class ProfessorBO implements IProfessorBO {
 
 			if (professor == null)
 				throw new AuthenticationException(AuthError.NOT_FOUND);
-			if (data.getPassword() != professor.getPassword())
+			if (!data.getPassword().equals(professor.getPassword()))
 				throw new AuthenticationException(AuthError.WRONG_PASSWORD);
 
 			return professor;
@@ -27,27 +27,27 @@ public class ProfessorBO implements IProfessorBO {
 		}
 	}
 
-    @Override
+	@Override
 	public void create(ProfessorVO professor) throws Exception {
 		this.professorDao.create(professor);
 	}
 
-    @Override
+	@Override
 	public List<ProfessorVO> findAll() throws Exception {
 		return this.professorDao.findAll();
 	}
 
-    @Override
+	@Override
 	public List<ProfessorVO> findByName(ProfessorVO data) throws Exception {
 		return this.professorDao.findByName(data);
 	}
 
-    @Override
+	@Override
 	public void update(ProfessorVO professor, ProfessorVO data) throws Exception {
 		this.professorDao.update(professor, data);
 	}
 
-    @Override
+	@Override
 	public void delete(ProfessorVO professor) throws Exception {
 		this.professorDao.delete(professor);
 	}

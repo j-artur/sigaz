@@ -9,9 +9,9 @@ public class SubjectVO {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id) throws Exception {
 		if (id <= 0)
-			System.out.println("ID inválido, deve ser inteiro positivo");
+			throw new Exception("ID inválido, deve ser inteiro positivo");
 		else
 			this.id = id;
 	}
@@ -20,9 +20,9 @@ public class SubjectVO {
 		return this.code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(String code) throws Exception {
 		if (code == null || !code.matches("^[A-Z]{3}\\d{4}$"))
-			System.out.println("Código inválido!");
+			throw new Exception("Código inválido!");
 		else
 			this.code = code;
 	}
@@ -31,11 +31,11 @@ public class SubjectVO {
 		return this.name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws Exception {
 		if (name == null || name.isEmpty())
-			System.out.println("Nome vazio");
+			throw new Exception("Nome vazio");
 		else if (name.length() < 2 || name.length() > 255)
-			System.out.println("Tamanho inválido, nome deve ter entre 2 e 255 caracteres");
+			throw new Exception("Tamanho inválido, nome deve ter entre 2 e 255 caracteres");
 		else
 			this.name = name;
 	}

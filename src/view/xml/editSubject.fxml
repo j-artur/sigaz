@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="155.0" layoutY="200.0" text="Nome da Disciplina" />
+      <Label layoutX="155.0" layoutY="256.0" prefHeight="15.0" prefWidth="133.0" text="Codigo da Disciplina" />
+      <TextField fx:id="name" layoutX="155.0" layoutY="215.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="35.0" minHeight="83.0" prefWidth="233.0" text="SIGAZ" textAlignment="CENTER">
+         <font>
+            <Font name="Noto Sans Bold" size="72.0" />
+         </font>
+      </Label>
+      <Label layoutX="262.0" layoutY="137.0" text="Editar Disciplina" />
+      <TextField fx:id="code" layoutX="155.0" layoutY="271.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Button fx:id="saveEditions" layoutX="241.0" layoutY="367.0" mnemonicParsing="false" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar Alteraçoes" />
+   </children>
+</Pane>

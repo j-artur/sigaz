@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+   <children>
+      <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
+         <children>
+            <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </Pane>
+      <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
+         <children>
+            <Hyperlink onAction="#classrooms" layoutX="14.0" layoutY="14.0" text="Turmas" textFill="#282828">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink onAction="#subjects" layoutX="14.0" layoutY="59.0" text="Disciplinas" textFill="#282828">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink onAction="#professors" layoutX="14.0" layoutY="105.0" text="Professores" textFill="#282828">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink onAction="#students" layoutX="14.0" layoutY="153.0" text="Alunos" textFill="#282828">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </Pane>
+      <Pane layoutX="300.0" prefHeight="64.0" prefWidth="680.0" style="-fx-background-color: #FBFBFB;" />
+      <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
+         <children>
+            <Label fx:id="userName" layoutX="14.0" layoutY="25.0" text="Joaozinho" />
+            <Hyperlink onAction="#logout" layoutX="250.0" layoutY="21.0" text="Sair" textFill="#282828" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1066.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/icons/user.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="300.0" layoutY="64.0" prefHeight="147.0" prefWidth="680.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="14.0" layoutY="98.0" text="Minhas Turmas">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="classroomsTable" layoutX="300.0" layoutY="210.0" prefHeight="501.0" prefWidth="680.0">
+        <columns>
+          <TableColumn fx:id="classroomName" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
+          <TableColumn fx:id="classroomPlace" editable="false" prefWidth="201.0" text="Local" />
+            <TableColumn fx:id="classroomSchedule" editable="false" prefWidth="192.0" text="Horario" />
+            <TableColumn fx:id="classroomStatus" editable="false" prefWidth="142.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

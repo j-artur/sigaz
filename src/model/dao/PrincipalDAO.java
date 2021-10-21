@@ -27,13 +27,17 @@ public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 		Statement statement = this.getConnection().createStatement();
 		ResultSet set = statement.executeQuery(sql);
 
-		while (set.next()) {
-			PrincipalVO principal = new PrincipalVO();
-			principal.setId(set.getLong("id"));
-			principal.setName(set.getString("name"));
-			principal.setEmail(set.getString("email"));
-			principal.setPassword(set.getString("password"));
-			principalList.add(principal);
+		try {
+			while (set.next()) {
+				PrincipalVO principal = new PrincipalVO();
+				principal.setId(set.getLong("id"));
+				principal.setName(set.getString("name"));
+				principal.setEmail(set.getString("email"));
+				principal.setPassword(set.getString("password"));
+				principalList.add(principal);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return principalList;
@@ -47,12 +51,16 @@ public class PrincipalDAO extends BaseDAO implements IUserDAO<PrincipalVO> {
 		statement.setString(1, data.getEmail());
 		ResultSet set = statement.executeQuery();
 
-		if (set.next()) {
-			principal = new PrincipalVO();
-			principal.setId(set.getLong("id"));
-			principal.setName(set.getString("name"));
-			principal.setEmail(set.getString("email"));
-			principal.setPassword(set.getString("password"));
+		try {
+			if (set.next()) {
+				principal = new PrincipalVO();
+				principal.setId(set.getLong("id"));
+				principal.setName(set.getString("name"));
+				principal.setEmail(set.getString("email"));
+				principal.setPassword(set.getString("password"));
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return principal;

@@ -10,8 +10,8 @@ import java.util.List;
 import model.vo.StudentVO;
 import model.vo.ClassroomVO;
 
-public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
-	
+public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO> {
+
 	public void create(StudentVO student) throws SQLException {
 		String query = "INSERT INTO students (name, email, password, registration, address) VALUES (?, ?, ?, ?, ?)";
 
@@ -31,15 +31,19 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
 		Statement statement = this.getConnection().createStatement();
 		ResultSet set = statement.executeQuery(query);
 
-		while (set.next()) {
-			StudentVO student = new StudentVO();
-			student.setId(set.getLong("id"));
-			student.setName(set.getString("name"));
-			student.setEmail(set.getString("email"));
-			student.setPassword(set.getString("password"));
-			student.setRegistration(set.getString("registration"));
-			student.setAddress(set.getString("address"));
-			studentList.add(student);
+		try {
+			while (set.next()) {
+				StudentVO student = new StudentVO();
+				student.setId(set.getLong("id"));
+				student.setName(set.getString("name"));
+				student.setEmail(set.getString("email"));
+				student.setPassword(set.getString("password"));
+				student.setRegistration(set.getString("registration"));
+				student.setAddress(set.getString("address"));
+				studentList.add(student);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return studentList;
@@ -53,14 +57,18 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
 		statement.setString(1, "%" + data.getName() + "%");
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			StudentVO student = new StudentVO();
-			student.setId(set.getLong("id"));
-			student.setEmail(set.getString("email"));
-			student.setPassword(set.getString("password"));
-			student.setRegistration(set.getString("registration"));
-			student.setAddress(set.getString("address"));
-			studentList.add(student);
+		try {
+			while (set.next()) {
+				StudentVO student = new StudentVO();
+				student.setId(set.getLong("id"));
+				student.setEmail(set.getString("email"));
+				student.setPassword(set.getString("password"));
+				student.setRegistration(set.getString("registration"));
+				student.setAddress(set.getString("address"));
+				studentList.add(student);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return studentList;
@@ -74,14 +82,18 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
 		statement.setString(1, data.getEmail());
 		ResultSet set = statement.executeQuery();
 
-		if (set.next()) {
-			student = new StudentVO();
-			student.setId(set.getLong("id"));
-			student.setName(set.getString("name"));
-			student.setEmail(set.getString("email"));
-			student.setPassword(set.getString("password"));
-			student.setRegistration(set.getString("registration"));
-			student.setAddress(set.getString("address"));
+		try {
+			if (set.next()) {
+				student = new StudentVO();
+				student.setId(set.getLong("id"));
+				student.setName(set.getString("name"));
+				student.setEmail(set.getString("email"));
+				student.setPassword(set.getString("password"));
+				student.setRegistration(set.getString("registration"));
+				student.setAddress(set.getString("address"));
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return student;
@@ -95,15 +107,19 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
 		statement.setLong(1, classroom.getId());
 		ResultSet set = statement.executeQuery();
 
-		while (set.next()) {
-			StudentVO student = new StudentVO();
-			student.setId(set.getLong("students.id"));
-			student.setName(set.getString("students.name"));
-			student.setEmail(set.getString("students.email"));
-			student.setPassword(set.getString("students.password"));
-			student.setRegistration(set.getString("students.registration"));
-			student.setAddress(set.getString("students.address"));
-			studentList.add(student);
+		try {
+			while (set.next()) {
+				StudentVO student = new StudentVO();
+				student.setId(set.getLong("students.id"));
+				student.setName(set.getString("students.name"));
+				student.setEmail(set.getString("students.email"));
+				student.setPassword(set.getString("students.password"));
+				student.setRegistration(set.getString("students.registration"));
+				student.setAddress(set.getString("students.address"));
+				studentList.add(student);
+			}
+		} catch (Exception e) {
+			throw new SQLException("Erro crítico, dados inválidos salvos no banco");
 		}
 
 		return studentList;
@@ -129,5 +145,5 @@ public class StudentDAO extends BaseDAO implements IUserDAO<StudentVO>{
 		statement.setLong(1, student.getId());
 		statement.executeUpdate();
 	}
-	
+
 }

@@ -13,9 +13,9 @@ public class GradeVO {
 		return this.student;
 	}
 
-	public void setStudent(StudentVO student) {
+	public void setStudent(StudentVO student) throws Exception {
 		if (student == null)
-			System.out.println("Aluno inválido");
+			throw new Exception("Aluno inválido");
 		else
 			this.student = student;
 	}
@@ -24,9 +24,9 @@ public class GradeVO {
 		return this.classroom;
 	}
 
-	public void setClassroom(ClassroomVO classroom) {
+	public void setClassroom(ClassroomVO classroom) throws Exception {
 		if (classroom == null)
-			System.out.println("Turma inválida");
+			throw new Exception("Turma inválida");
 		else
 			this.classroom = classroom;
 	}
@@ -35,9 +35,9 @@ public class GradeVO {
 		return this.n1;
 	}
 
-	public void setN1(int n1) {
+	public void setN1(int n1) throws Exception {
 		if (n1 < 0 || n1 > 100)
-			System.out.println("Nota inválida, deve ser de 0 a 100");
+			throw new Exception("Nota inválida, deve ser de 0 a 100");
 		else
 			this.n1 = n1;
 	}
@@ -46,9 +46,9 @@ public class GradeVO {
 		return this.n2;
 	}
 
-	public void setN2(int n2) {
+	public void setN2(int n2) throws Exception {
 		if (n2 < 0 || n2 > 100)
-			System.out.println("Nota inválida, deve ser de 0 a 100");
+			throw new Exception("Nota inválida, deve ser de 0 a 100");
 		else
 			this.n2 = n2;
 	}
@@ -57,9 +57,9 @@ public class GradeVO {
 		return this.n3;
 	}
 
-	public void setN3(int n3) {
+	public void setN3(int n3) throws Exception {
 		if (n3 < 0 || n3 > 100)
-			System.out.println("Nota inválida, deve ser de 0 a 100");
+			throw new Exception("Nota inválida, deve ser de 0 a 100");
 		else
 			this.n3 = n3;
 	}
@@ -68,9 +68,9 @@ public class GradeVO {
 		return this.nfinal;
 	}
 
-	public void setNFinal(int nfinal) {
+	public void setNFinal(int nfinal) throws Exception {
 		if (nfinal < 0 || nfinal > 100)
-			System.out.println("Nota inválida, deve ser de 0 a 100");
+			throw new Exception("Nota inválida, deve ser de 0 a 100");
 		else
 			this.nfinal = nfinal;
 	}
@@ -79,9 +79,9 @@ public class GradeVO {
 		return this.frequency;
 	}
 
-	public void setFrequency(double frequency) {
+	public void setFrequency(double frequency) throws Exception {
 		if (frequency < 0.0 || frequency > 1.0)
-			System.out.println("Valor inválido, deve ser de 0 a 1");
+			throw new Exception("Valor inválido, deve ser de 0 a 1");
 		else
 			this.frequency = frequency;
 	}

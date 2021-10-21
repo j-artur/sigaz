@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-pref-width: 640; -fx-pref-height: 480; -fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AuthController">
+   <children>
+      <Pane layoutX="160.0" prefHeight="200.0" prefWidth="200.0" style="-fx-pref-width: 320; -fx-pref-height: 160;">
+         <children>
+            <Text layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGAZ" textAlignment="CENTER" wrappingWidth="320.0">
+               <font>
+                  <Font name="Noto Sans Bold" size="72.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="160.0" layoutY="144.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
+      <Pane layoutX="160.0" layoutY="181.0" prefHeight="200.0" prefWidth="200.0" style="-fx-pref-width: 320; -fx-pref-height: 240;">
+         <children>
+            <Label layoutY="6.0" prefHeight="17.0" prefWidth="42.0" text="Email" />
+            <TextField fx:id="email" layoutY="23.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+            <Label layoutY="71.0" prefHeight="17.0" prefWidth="42.0" text="Senha" />
+            <PasswordField fx:id="password" layoutY="88.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+            <Button fx:id="loginButton" alignment="CENTER" layoutX="80.0" layoutY="186.0" mnemonicParsing="false" onAction="#authenticate" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Entrar" />
+            <Hyperlink fx:id="register" layoutY="125.0" text="Fazer cadastro" textFill="#0063b1" />
+            <Hyperlink fx:id="recoverPassword" layoutX="212.0" layoutY="125.0" text="Esqueceu a senha?" textFill="#0063b1" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
