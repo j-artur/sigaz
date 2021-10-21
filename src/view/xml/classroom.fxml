@@ -42,7 +42,20 @@
             </Hyperlink>
          </children>
       </Pane>
-      <Pane layoutX="300.0" prefHeight="64.0" prefWidth="680.0" style="-fx-background-color: #FBFBFB;" />
+      <Pane layoutX="300.0" prefHeight="64.0" prefWidth="680.0" style="-fx-background-color: #FBFBFB;">
+         <children>
+            <Label fx:id="classroomCode" layoutX="14.0" layoutY="25.0" text="POO1406">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="subjectName" layoutX="143.0" layoutY="28.0" text="Programaçao Orientada a Objetos">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
          <children>
             <Label fx:id="userName" layoutX="14.0" layoutY="25.0" text="Joaozinho" />
@@ -54,21 +67,26 @@
             <Image url="@../../../resources/icons/user.png" />
          </image>
       </ImageView>
-      <Pane layoutX="300.0" layoutY="64.0" prefHeight="147.0" prefWidth="680.0" style="-fx-background-color: #FFFFFF;">
+      <Pane layoutX="300.0" layoutY="64.0" prefHeight="64.0" prefWidth="680.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="14.0" layoutY="98.0" text="Minhas Turmas">
+            <Label layoutX="14.0" layoutY="25.0" text="Docente">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
+            <Label fx:id="professorName" layoutX="112.0" layoutY="26.0" prefHeight="15.0" prefWidth="269.0" style="-fx-background-color: #FFFFFF;" text="Paulo Gabriel Gadelha Queiroz" />
+            <Button fx:id="gradesButton" layoutX="486.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: DEDEDE;" text="Notas e Frequencia">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
-      <TableView fx:id="classroomsTable" layoutX="300.0" layoutY="210.0" prefHeight="501.0" prefWidth="680.0">
+      <TableView fx:id="studentsTable" layoutX="300.0" layoutY="128.0" prefHeight="583.0" prefWidth="680.0">
         <columns>
-          <TableColumn fx:id="classroomName" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
-          <TableColumn fx:id="classroomPlace" editable="false" prefWidth="201.0" text="Local" />
-            <TableColumn fx:id="classroomSchedule" editable="false" prefWidth="192.0" text="Horario" />
-            <TableColumn fx:id="classroomStatus" editable="false" prefWidth="142.0" text="Status" />
+          <TableColumn fx:id="studentRegistration" editable="false" prefWidth="144.0" style="-fx-font-size: 10;" text="Matricula" />
+          <TableColumn fx:id="studentName" editable="false" prefWidth="318.0" text="Nome" />
+            <TableColumn fx:id="studentEmail" editable="false" prefWidth="217.0" text="E-mail" />
         </columns>
       </TableView>
    </children>

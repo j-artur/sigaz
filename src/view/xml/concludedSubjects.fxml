@@ -54,21 +54,47 @@
             <Image url="@../../../resources/icons/user.png" />
          </image>
       </ImageView>
-      <Pane layoutX="300.0" layoutY="64.0" prefHeight="147.0" prefWidth="680.0" style="-fx-background-color: #FFFFFF;">
+      <Pane layoutX="300.0" layoutY="64.0" prefHeight="656.0" prefWidth="680.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="14.0" layoutY="98.0" text="Minhas Turmas">
+            <Label fx:id="studentName" layoutX="14.0" layoutY="22.0" prefHeight="21.0" prefWidth="660.0" text="Elisete Nogueira - Disciplinas">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Label layoutX="25.0" layoutY="63.0" prefHeight="21.0" prefWidth="97.0" text="Cursando">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="307.0" prefHeight="21.0" prefWidth="119.0" text="Concluidas">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="concludedSubjects" layoutX="4.0" layoutY="328.0" prefHeight="326.0" prefWidth="680.0">
+               <columns>
+                  <TableColumn fx:id="subjectName1" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
+                  <TableColumn fx:id="P11" editable="false" prefWidth="56.0" text="Nota 1" />
+                  <TableColumn fx:id="P21" editable="false" prefWidth="58.0" text="Nota 2" />
+                  <TableColumn fx:id="P31" editable="false" prefWidth="55.0" text="Nota 3" />
+                  <TableColumn fx:id="P41" prefWidth="90.0" text="Prova Final" />
+                  <TableColumn fx:id="average1" prefWidth="54.0" text="Media" />
+                  <TableColumn fx:id="frequency1" prefWidth="75.0" text="Faltas" />
+                  <TableColumn fx:id="status1" prefWidth="147.0" text="Status" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
-      <TableView fx:id="classroomsTable" layoutX="300.0" layoutY="210.0" prefHeight="501.0" prefWidth="680.0">
+      <TableView fx:id="ongoingSubjects" layoutX="300.0" layoutY="150.0" prefHeight="212.0" prefWidth="680.0">
         <columns>
-          <TableColumn fx:id="classroomName" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
-          <TableColumn fx:id="classroomPlace" editable="false" prefWidth="201.0" text="Local" />
-            <TableColumn fx:id="classroomSchedule" editable="false" prefWidth="192.0" text="Horario" />
-            <TableColumn fx:id="classroomStatus" editable="false" prefWidth="142.0" text="Status" />
+          <TableColumn fx:id="subjectName" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
+          <TableColumn fx:id="P1" editable="false" prefWidth="56.0" text="Nota 1" />
+            <TableColumn fx:id="P2" editable="false" prefWidth="58.0" text="Nota 2" />
+            <TableColumn fx:id="P3" editable="false" prefWidth="55.0" text="Nota 3" />
+            <TableColumn fx:id="P4" prefWidth="90.0" text="Prova Final" />
+            <TableColumn fx:id="average" prefWidth="54.0" text="Media" />
+            <TableColumn fx:id="frequency" prefWidth="75.0" text="Faltas" />
+            <TableColumn fx:id="status" prefWidth="147.0" text="Status" />
         </columns>
       </TableView>
    </children>
