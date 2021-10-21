@@ -7,11 +7,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClassroomController">
    <children>
       <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Hyperlink fx:id="homeLink" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+            <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -20,22 +20,22 @@
       </Pane>
       <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
          <children>
-            <Hyperlink fx:id="classroomsLink" layoutX="14.0" layoutY="14.0" text="Turmas" textFill="#282828">
+            <Hyperlink onAction="#classrooms" layoutX="14.0" layoutY="14.0" text="Turmas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="subjectsLink" layoutX="14.0" layoutY="59.0" text="Disciplinas" textFill="#282828">
+            <Hyperlink onAction="#subjects" layoutX="14.0" layoutY="59.0" text="Disciplinas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="professorsLink" layoutX="14.0" layoutY="105.0" text="Professores" textFill="#282828">
+            <Hyperlink onAction="#professors" layoutX="14.0" layoutY="105.0" text="Professores" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="studentsLink" layoutX="14.0" layoutY="153.0" text="Alunos" textFill="#282828">
+            <Hyperlink onAction="#students" layoutX="14.0" layoutY="153.0" text="Alunos" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -59,7 +59,7 @@
       <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
          <children>
             <Label fx:id="userName" layoutX="14.0" layoutY="25.0" text="Joaozinho" />
-            <Hyperlink fx:id="exitLink" layoutX="250.0" layoutY="21.0" text="Sair" textFill="#282828" />
+            <Hyperlink onAction="#logout" layoutX="250.0" layoutY="21.0" text="Sair" textFill="#282828" />
          </children>
       </Pane>
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1066.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +75,7 @@
                </font>
             </Label>
             <Label fx:id="professorName" layoutX="112.0" layoutY="26.0" prefHeight="15.0" prefWidth="269.0" style="-fx-background-color: #FFFFFF;" text="Paulo Gabriel Gadelha Queiroz" />
-            <Button fx:id="gradesButton" layoutX="486.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: DEDEDE;" text="Notas e Frequencia">
+            <Button fx:id="gradeButton" onAction="#grade" layoutX="486.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: DEDEDE;" text="Notas e Frequencia">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

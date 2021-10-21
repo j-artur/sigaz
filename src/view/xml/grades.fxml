@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Hyperlink fx:id="homeLink" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+            <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>

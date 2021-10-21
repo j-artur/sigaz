@@ -17,17 +17,13 @@
    <children>
       <Pane prefHeight="64.0" prefWidth="1280.0">
          <children>
-            <Pane prefHeight="64.0" prefWidth="300.0">
+            <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
                <children>
-                  <HBox alignment="CENTER" layoutY="8.0" prefHeight="48.0" prefWidth="300.0">
-                     <children>
-                        <ImageView fitHeight="48.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../resources/img/logo/LogoSmall.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+                  <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Hyperlink>
                </children>
             </Pane>
             <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
@@ -65,7 +61,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="32.0" prefWidth="50.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Sair" />
+                                    <Button onAction="#logout" mnemonicParsing="false" text="Sair" />
                                  </children>
                               </HBox>
                            </children>
@@ -84,7 +80,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Turmas">
+                              <Hyperlink onAction="#classrooms" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Turmas">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -97,7 +93,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Disciplinas">
+                              <Hyperlink onAction="#subjects" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Disciplinas">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -110,7 +106,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Professores">
+                              <Hyperlink onAction="#professors" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Professores">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -123,7 +119,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Alunos">
+                              <Hyperlink onAction="#students" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Alunos">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>

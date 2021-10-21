@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 // import exceptions.*;
 // import model.bo.*;
-import model.vo.*;
+// import model.vo.*;
 import view.*;
 
 public class AuthController {
@@ -24,20 +24,21 @@ public class AuthController {
 	// private IUserBO<StudentVO> studentBo = new StudentBO();
 
 	public void authenticate(ActionEvent event) {
-		if (this.error.getText().length() != 0) {
-			this.error.setText("");
+		if (error.getText().length() != 0) {
+			error.setText("");
 		}
 
 		try {
-			UserVO user = new UserVO() {};
+			// UserVO user = new UserVO() {};
 
-			user.setEmail(this.email.getText());
-			user.setPassword(this.password.getText());
+			// user.setEmail(email.getText());
+			// user.setPassword(password.getText());
 
+			View.closeSecondaryWindow();
 			View.home();
 
 			// try {
-			// this.principalBo.authenticate(new PrincipalVO(user));
+			// principalBo.authenticate(new PrincipalVO(user));
 			// View.setViewMode(ViewMode.PRINCIPAL);
 			// View.home();
 			// return;
@@ -47,7 +48,7 @@ public class AuthController {
 			// }
 
 			// try {
-			// this.professorBo.authenticate(new ProfessorVO(user));
+			// professorBo.authenticate(new ProfessorVO(user));
 			// View.setViewMode(ViewMode.PROFESSOR);
 			// View.home();
 			// return;
@@ -57,7 +58,7 @@ public class AuthController {
 			// }
 
 			// try {
-			// this.studentBo.authenticate(new StudentVO(user));
+			// studentBo.authenticate(new StudentVO(user));
 			// View.setViewMode(ViewMode.STUDENT);
 			// View.home();
 			// return;
@@ -68,7 +69,7 @@ public class AuthController {
 
 			// throw new AuthenticationException(AuthError.NOT_FOUND);
 		} catch (Exception e) {
-			this.error.setText(e.getMessage());
+			error.setText(e.getMessage());
 		}
 	}
 }

@@ -1,9 +1,18 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import view.*;
 
-public class HomeController {
+public class StudentController {
+	@FXML
+	private TextField searchField;
+
+	public void search(ActionEvent event) throws Exception {
+		System.out.println(searchField.getText());
+	}
+
 	public void home(ActionEvent event) throws Exception {
 		View.home();
 	}
