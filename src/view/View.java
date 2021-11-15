@@ -1,10 +1,12 @@
 package view;
 
+import controller.ClassroomController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.vo.ClassroomVO;
 
 public class View extends Application {
 	private static Stage primaryStage;
@@ -19,13 +21,15 @@ public class View extends Application {
 		viewMode = mode;
 	}
 
+	public static Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
 	private static Stage setPrimaryWindow(Scene scene, String title) throws Exception {
 		primaryStage.show();
 		closeSecondaryWindow();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle(title);
-		primaryStage.centerOnScreen();
-		primaryStage.setResizable(false);
 		return primaryStage;
 	}
 
@@ -56,6 +60,7 @@ public class View extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		primaryStage = stage;
+		primaryStage.setResizable(false);
 		login();
 	}
 
@@ -68,11 +73,19 @@ public class View extends Application {
 	public static void home() throws Exception {
 		Parent root = FXMLLoader.load(View.class.getResource("xml/home.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Home");
+		primaryStage.centerOnScreen();
 	}
 
 	public static void classrooms() throws Exception {
+		ClassroomController.setClassroom(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/searchClassroom.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Turmas");
+	}
+
+	public static void classroom(ClassroomVO classroom) throws Exception {
+		ClassroomController.setClassroom(classroom);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/classroom.fxml"));
+		setPrimaryWindow(new Scene(root), "SIGAZ - Turma");
 	}
 
 	public static void createClassroom() throws Exception {

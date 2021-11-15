@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClassroomController">
    <children>
@@ -19,7 +11,7 @@
          <children>
             <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
                <children>
-                  <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+                  <Hyperlink layoutX="79.0" layoutY="3.0" onAction="#home" text="SIGAZ" textFill="#2c2a2a">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -61,7 +53,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="32.0" prefWidth="50.0">
                                  <children>
-                                    <Button onAction="#logout" mnemonicParsing="false" text="Sair" />
+                                    <Button mnemonicParsing="false" onAction="#logout" text="Sair" />
                                  </children>
                               </HBox>
                            </children>
@@ -136,85 +128,13 @@
          <children>
             <Pane prefHeight="112.0" prefWidth="680.0">
                <children>
-                  <Pane prefHeight="112.0" prefWidth="400.0">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="24.0" prefHeight="112.0" prefWidth="384.0">
-                           <children>
-                              <TextField prefHeight="32.0" prefWidth="384.0" promptText="Pesquisar por nome " style="-fx-border-color: #DEDEDE;">
-                                 <font>
-                                    <Font name="Verdana" size="14.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                        </HBox>
-                     </children>
-                  </Pane>
-                  <HBox alignment="CENTER" layoutX="400.0" prefHeight="112.0" prefWidth="280.0">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Pesquisar">
-                           <font>
-                              <Font name="Verdana" size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="20.0" layoutY="-2.0" prefWidth="500.0" style="-fx-pref-width: 640; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="40.0" prefWidth="240.0" style="-fx-pref-width: 240; -fx-pref-height: 32;" text="Pesquisar por Disciplina" wrapText="true" />
+                  <ComboBox fx:id="searchBox" layoutX="300.0" layoutY="44.0" prefHeight="25.0" prefWidth="360.0" />
                </children>
             </Pane>
             <Pane layoutY="112.0" prefHeight="544.0">
                <children>
-                  <TableView prefHeight="352.0" prefWidth="680.0" style="-fx-border-color: #FFFFFF;">
-                     <columns>
-                        <TableColumn minWidth="0.0" prefWidth="243.0" style="-fx-font-weight: 800; -fx-font-size: 14; -fx-font-family: Verdana; -fx-background-color: #E5E5E5;" text="Disciplina" />
-                        <TableColumn minWidth="0.0" prefWidth="113.0" style="-fx-font-weight: 800; -fx-font-size: 14; -fx-font-family: Verdana; -fx-background-color: #E5E5E5;" text="Local" />
-                        <TableColumn minWidth="0.0" prefWidth="89.0" style="-fx-font-weight: 800; -fx-font-size: 14; -fx-font-family: Verdana; -fx-background-color: #E5E5E5;" text="Horário" />
-                        <TableColumn minWidth="0.0" prefWidth="101.0" style="-fx-font-weight: 800; -fx-font-size: 14; -fx-font-family: Verdana; -fx-background-color: #E5E5E5;" text="Status" />
-                        <TableColumn minWidth="0.0" prefWidth="132.0" style="-fx-font-weight: 800; -fx-font-size: 14; -fx-font-family: Verdana; -fx-background-color: #E5E5E5;" />
-                     </columns>
-                  </TableView>
-                  <Pane prefHeight="352.0" prefWidth="680.0">
-                     <children>
-                        <Pane layoutY="32.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="72.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="112.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="152.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="192.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="232.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="272.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                        <Pane layoutY="312.0" prefHeight="40.0" prefWidth="680.0">
-                           <children>
-                              <HBox alignment="CENTER" layoutX="320.0" prefHeight="40.0" prefWidth="360.0" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </Pane>
                   <Pane layoutY="360.0" prefHeight="184.0" prefWidth="680.0">
                      <children>
                         <HBox alignment="CENTER" layoutX="440.0" layoutY="40.0" prefHeight="32.0" prefWidth="240.0">
@@ -224,7 +144,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutY="40.0" prefHeight="48.0" prefWidth="240.0">
                            <children>
-                              <Button fx:id="createButton" onAction="#create" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Cadastrar Turma">
+                              <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Cadastrar Turma">
                                  <font>
                                     <Font name="Verdana" size="12.0" />
                                  </font>
@@ -233,6 +153,14 @@
                         </HBox>
                      </children>
                   </Pane>
+                  <TableView fx:id="classroomsTable" prefHeight="501.0" prefWidth="680.0" style="-fx-pref-height: 400;">
+                     <columns>
+                        <TableColumn fx:id="classroomName" editable="false" prefWidth="336.0" style="font: 10px;" text="Disciplina" />
+                        <TableColumn fx:id="classroomPlace" editable="false" prefWidth="123.0" text="Local" />
+                        <TableColumn fx:id="classroomSchedule" editable="false" prefWidth="97.0" text="Horario" />
+                        <TableColumn fx:id="classroomStatus" editable="false" prefWidth="123.0" text="Status" />
+                     </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>
