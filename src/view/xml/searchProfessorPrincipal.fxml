@@ -84,7 +84,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Turmas">
+                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Turmas">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -97,7 +97,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Disciplinas">
+                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Disciplinas">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -110,7 +110,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Professores">
+                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Professores">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -123,7 +123,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Alunos">
+                              <Hyperlink style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Alunos">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -155,7 +155,7 @@
                   </Pane>
                   <HBox alignment="CENTER" layoutX="400.0" prefHeight="112.0" prefWidth="280.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Pesquisar">
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800; -fx-font-size: 14;" text="Pesquisar">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -440,7 +440,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutY="40.0" prefHeight="48.0" prefWidth="240.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Cadastrar Professor">
+                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800; -fx-font-size: 14;" text="Cadastrar Professor">
                                  <font>
                                     <Font name="Verdana" size="12.0" />
                                  </font>

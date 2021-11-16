@@ -19,7 +19,7 @@
          <children>
             <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
                <children>
-                  <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+                  <Hyperlink layoutX="79.0" layoutY="3.0" onAction="#home" style="-fx-underline: false;" text="SIGAZ" textFill="#2c2a2a">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -61,7 +61,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="32.0" prefWidth="50.0">
                                  <children>
-                                    <Button onAction="#logout" mnemonicParsing="false" text="Sair" />
+                                    <Button mnemonicParsing="false" onAction="#logout" text="Sair" />
                                  </children>
                               </HBox>
                            </children>
@@ -80,7 +80,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink onAction="#classrooms" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Turmas">
+                              <Hyperlink onAction="#classrooms" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Turmas">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -93,7 +93,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink onAction="#subjects" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Disciplinas">
+                              <Hyperlink onAction="#subjects" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Disciplinas">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -106,7 +106,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink onAction="#professors" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Professores">
+                              <Hyperlink onAction="#professors" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Professores">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -119,7 +119,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="16.0" prefHeight="48.0" prefWidth="284.0">
                            <children>
-                              <Hyperlink onAction="#students" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800;" text="Alunos">
+                              <Hyperlink onAction="#students" style="-fx-text-fill: black; -fx-underline: false; -fx-font-weight: 800; -fx-font-size: 14;" text="Alunos">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -151,7 +151,7 @@
                   </Pane>
                   <HBox alignment="CENTER" layoutX="400.0" prefHeight="112.0" prefWidth="280.0">
                      <children>
-                        <Button onAction="#search" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Pesquisar">
+                        <Button mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800; -fx-font-size: 14;" text="Pesquisar">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -252,7 +252,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutY="40.0" prefHeight="48.0" prefWidth="240.0">
                            <children>
-                              <Button fx:id="createButton" onAction="#create" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800;" text="Cadastrar Professor">
+                              <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800; -fx-font-size: 14;" text="Cadastrar Professor">
                                  <font>
                                     <Font name="Verdana" size="12.0" />
                                  </font>
