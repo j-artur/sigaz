@@ -14,19 +14,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.ClassroomModel;
-import model.bo.ClassroomBO;
-import model.bo.IClassroomBO;
-import model.bo.ISubjectBO;
-import model.bo.SubjectBO;
-import model.vo.ClassroomVO;
-import model.vo.SubjectVO;
-import model.vo.UserVO;
+import model.*;
+import model.bo.*;
+import model.vo.*;
 import view.*;
 
 public class ClassroomController {
 	private IClassroomBO classroomBo = new ClassroomBO();
-	private ISubjectBO subjectBo = new SubjectBO();
+	private IProfessorBO professorBo = new ProfessorBO();
 	private static ClassroomVO classroom;
 
 	public static void setClassroom(ClassroomVO arg) {
@@ -50,7 +45,7 @@ public class ClassroomController {
 	@FXML
 	private Button createButton;
 	@FXML
-	private ComboBox<SubjectVO> searchBox;
+	private ComboBox<ProfessorVO> searchBox;
 
 	@FXML
 	TableView<ClassroomModel> classroomsTable;
@@ -63,7 +58,7 @@ public class ClassroomController {
 	@FXML
 	TableColumn<ClassroomModel, String> classroomStatus;
 
-	private ObservableList<SubjectVO> subjects = FXCollections.observableArrayList();
+	private ObservableList<ProfessorVO> professors = FXCollections.observableArrayList();
 	private ObservableList<ClassroomModel> classrooms = FXCollections.observableArrayList();
 
 	@FXML
@@ -99,11 +94,9 @@ public class ClassroomController {
 			searchBox.setOnAction(this::search);
 
 			try {
-				List<SubjectVO> list = new ArrayList<SubjectVO>();
-				list.add(null);
-				list.addAll(subjectBo.findAll());
-				subjects.setAll(list);
-				searchBox.setItems(subjects);
+				professors.add(null);
+				professors.addAll(professorBo.findAll());
+				searchBox.setItems(professors);
 
 				search(null);
 			} catch (Exception e) {
@@ -119,7 +112,7 @@ public class ClassroomController {
 			if (searchBox.getValue() == null) {
 				list = classroomBo.findAll();
 			} else {
-				list = classroomBo.findBySubject(searchBox.getValue());
+				list = classroomBo.findByProfessor(searchBox.getValue());
 			}
 			List<ClassroomModel> classes = new ArrayList<ClassroomModel>();
 			list.forEach(classroom -> classes.add(new ClassroomModel(classroom)));

@@ -137,7 +137,7 @@
             <Pane prefHeight="112.0" prefWidth="680.0">
                <children>
                   <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="20.0" layoutY="-2.0" prefWidth="500.0" style="-fx-pref-width: 640; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="40.0" prefWidth="240.0" style="-fx-pref-width: 240; -fx-pref-height: 32;" text="Pesquisar por Disciplina" wrapText="true" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="40.0" prefWidth="240.0" style="-fx-pref-width: 240; -fx-pref-height: 32;" text="Pesquisar por Professor" wrapText="true" />
                   <ComboBox fx:id="searchBox" layoutX="300.0" layoutY="44.0" prefHeight="25.0" prefWidth="360.0" />
                </children>
             </Pane>
