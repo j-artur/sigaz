@@ -3,10 +3,16 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import view.*;
 
 public class ProfessorController {
+	// @FXML
+	// Label error;
+	@FXML
+	Label userName;
+
 	@FXML
 	private Button createButton;
 	@FXML
@@ -20,12 +26,16 @@ public class ProfessorController {
 
 	@FXML
 	public void initialize() {
-		// if (createButton != null) {
-		// if (View.getViewMode() == ViewMode.PRINCIPAL)
-		// createButton.setOpacity(1);
-		// else
-		// createButton.setOpacity(0);
-		// }
+		if (userName != null) {
+			userName.setText(AuthController.getLoggedUser().getName());
+		}
+
+		if (createButton != null) {
+			if (View.getViewMode() == ViewMode.PRINCIPAL)
+				createButton.setOpacity(1);
+			else
+				createButton.setOpacity(0);
+		}
 	}
 
 	public void search(ActionEvent event) throws Exception {

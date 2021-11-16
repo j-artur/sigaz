@@ -32,7 +32,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="160.0">
                            <children>
-                              <Label style="-fx-max-width: 80;" text="Gadelhaaaaa">
+                              <Label style="-fx-max-width: 80;" fx:id="userName">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>

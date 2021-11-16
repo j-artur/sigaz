@@ -64,8 +64,7 @@ public class ClassroomController {
 	@FXML
 	public void initialize() {
 		if (userName != null) {
-			UserVO user = AuthController.getLoggedUser();
-			userName.setText(user.getName());
+			userName.setText(AuthController.getLoggedUser().getName());
 		}
 
 		if (classroom != null) {
@@ -74,11 +73,11 @@ public class ClassroomController {
 				subjectName.setText(classroom.getSubject().getName());
 				professorName.setText(classroom.getProfessor().getName());
 
-				if (View.getViewMode() == ViewMode.PROFESSOR)
-					gradeButton.setOpacity(1);
-				else
-					gradeButton.setOpacity(0);
-
+				if (gradeButton != null)
+					if (View.getViewMode() == ViewMode.PROFESSOR)
+						gradeButton.setOpacity(1);
+					else
+						gradeButton.setOpacity(0);
 			} catch (Exception e) {
 				if (error != null)
 					error.setText(e.getMessage());
@@ -86,21 +85,24 @@ public class ClassroomController {
 					e.printStackTrace();
 			}
 		} else {
-			if (View.getViewMode() == ViewMode.PRINCIPAL)
-				createButton.setOpacity(1);
-			else
-				createButton.setOpacity(0);
+			if (createButton != null)
+				if (View.getViewMode() == ViewMode.PRINCIPAL)
+					createButton.setOpacity(1);
+				else
+					createButton.setOpacity(0);
 
-			searchBox.setOnAction(this::search);
+			if (searchBox != null) {
+				searchBox.setOnAction(this::search);
 
-			try {
-				professors.add(null);
-				professors.addAll(professorBo.findAll());
-				searchBox.setItems(professors);
+				try {
+					professors.add(null);
+					professors.addAll(professorBo.findAll());
+					searchBox.setItems(professors);
 
-				search(null);
-			} catch (Exception e) {
-				error.setText(e.getMessage());
+					search(null);
+				} catch (Exception e) {
+					error.setText(e.getMessage());
+				}
 			}
 		}
 	}
