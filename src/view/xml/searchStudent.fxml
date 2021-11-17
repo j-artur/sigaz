@@ -75,7 +75,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Label fx:id="error" layoutX="318.0" layoutY="14.0" prefHeight="15.0" prefWidth="655.0" />
+            <Label fx:id="error" layoutX="318.0" layoutY="14.0" prefHeight="15.0" prefWidth="655.0" textFill="RED" />
          </children>
       </Pane>
       <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
