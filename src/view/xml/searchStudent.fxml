@@ -157,9 +157,10 @@
                <children>
                   <TableView fx:id="studentsTable" prefHeight="352.0" prefWidth="680.0">
                      <columns>
-                        <TableColumn fx:id="studentRegistration" minWidth="0.0" prefWidth="178.0" text="Matrícula" />
-                        <TableColumn fx:id="studentName" minWidth="0.0" prefWidth="425.0" text="Nome" />
-                        <TableColumn fx:id="buttons" prefWidth="75.0" />
+                        <TableColumn fx:id="studentRegistration" minWidth="0.0" prefWidth="136.0" text="Matrícula" />
+                        <TableColumn fx:id="studentName" minWidth="0.0" prefWidth="321.0" text="Nome" />
+                        <TableColumn fx:id="seeSubjects" prefWidth="116.0" />
+                        <TableColumn fx:id="buttons" prefWidth="106.0" />
                      </columns>
                   </TableView>
                   <Pane layoutY="360.0" prefHeight="184.0" prefWidth="680.0">

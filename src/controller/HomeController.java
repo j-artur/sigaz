@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,6 +25,9 @@ public class HomeController {
 	Label error;
 	@FXML
 	Label userName;
+
+	@FXML
+	Button seeMineButton;
 
 	@FXML
 	TableView<ClassroomModel> classroomsTable;
@@ -46,6 +50,7 @@ public class HomeController {
 		try {
 			if (user instanceof PrincipalVO) {
 				classroomsTable.setOpacity(0);
+				seeMineButton.setOpacity(0);
 				return;
 			}
 
@@ -54,12 +59,21 @@ public class HomeController {
 				List<ClassroomModel> classes = new ArrayList<ClassroomModel>();
 				list.forEach(classroom -> classes.add(new ClassroomModel(classroom)));
 				classrooms.setAll(classes);
+				seeMineButton.setOpacity(1);
+				seeMineButton.setOnAction(ev -> {
+					try {
+						View.subjects(student);
+					} catch (Exception e) {
+						error.setText(e.getMessage());
+					}
+				});
 			}
 			if (user instanceof ProfessorVO professor) {
 				List<ClassroomVO> list = classroomBo.findByProfessor(professor);
 				List<ClassroomModel> classes = new ArrayList<ClassroomModel>();
 				list.forEach(classroom -> classes.add(new ClassroomModel(classroom)));
 				classrooms.setAll(classes);
+				seeMineButton.setOpacity(0);
 			}
 
 			classrooms.forEach(classroom -> {

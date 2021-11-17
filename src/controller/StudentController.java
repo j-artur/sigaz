@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
@@ -64,6 +65,8 @@ public class StudentController {
 	TableColumn<StudentModel, String> studentRegistration;
 	@FXML
 	TableColumn<StudentModel, String> studentName;
+	@FXML
+	TableColumn<StudentModel, Hyperlink> seeSubjects;
 	@FXML
 	TableColumn<StudentModel, Node> buttons;
 
@@ -123,12 +126,21 @@ public class StudentController {
 						error.setText(err.getMessage());
 					}
 				});
+				student.getSubjects().setOnAction(ev -> {
+					try {
+						View.subjects(student.getStudent());
+					} catch (Exception e) {
+						error.setText(e.getMessage());
+					}
+				});
 			});
 
 			studentName.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("name"));
 			studentRegistration.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("registration"));
-			if (View.getViewMode() == ViewMode.PRINCIPAL)
+			if (View.getViewMode() == ViewMode.PRINCIPAL) {
+				seeSubjects.setCellValueFactory(new PropertyValueFactory<StudentModel, Hyperlink>("subjects"));
 				buttons.setCellValueFactory(new PropertyValueFactory<StudentModel, Node>("node"));
+			}
 
 			studentsTable.setItems(students);
 		} catch (Exception e) {

@@ -13,12 +13,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.GradeStudentModel;
 import model.bo.ClassroomBO;
+import model.bo.IClassroomBO;
 import model.vo.ClassroomVO;
 import model.vo.GradeVO;
-import view.View;
 
 public class GradeController {
-	private ClassroomBO classroomBo = new ClassroomBO();
+	private IClassroomBO classroomBo = new ClassroomBO();
 
 	private static ClassroomVO classroom;
 
@@ -127,8 +127,6 @@ public class GradeController {
 					error.setText(e.getMessage());
 				}
 			});
-
-			View.classroom(classroom);
 		} catch (Exception e) {
 			error.setText(e.getMessage());
 		}
@@ -136,6 +134,6 @@ public class GradeController {
 
 	public void finishClassroom(ActionEvent event) throws Exception {
 		classroom.setActive(false);
-		View.classroom(classroom);
+		classroomBo.update(classroom, classroom);
 	}
 }

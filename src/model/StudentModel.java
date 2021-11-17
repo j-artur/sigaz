@@ -2,6 +2,7 @@ package model;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -11,6 +12,7 @@ public class StudentModel {
 	private StudentVO student;
 	private Button editButton;
 	private Button deleteButton;
+	private Hyperlink hyperlink;
 
 	public StudentVO getStudent() {
 		return student;
@@ -36,6 +38,8 @@ public class StudentModel {
 				false, false);
 		deleteButton = new Button();
 		deleteButton.setGraphic(new ImageView(trash));
+
+		hyperlink = new Hyperlink("Ver disciplinas");
 	}
 
 	public String getRegistration() {
@@ -44,6 +48,10 @@ public class StudentModel {
 
 	public String getName() {
 		return student.getName();
+	}
+
+	public Hyperlink getSubjects() {
+		return hyperlink;
 	}
 
 	public Node getNode() {

@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConcludedSubjectsController">
    <children>
       <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
          <children>
@@ -27,22 +18,22 @@
       </Pane>
       <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
          <children>
-            <Hyperlink onAction="#classrooms" layoutX="14.0" layoutY="14.0" style="-fx-underline: false;" text="Turmas" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="14.0" onAction="#classrooms" style="-fx-underline: false;" text="Turmas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink onAction="#subjects" layoutX="14.0" layoutY="59.0" style="-fx-underline: false;" text="Disciplinas" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="59.0" onAction="#subjects" style="-fx-underline: false;" text="Disciplinas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink onAction="#professors" layoutX="14.0" layoutY="105.0" style="-fx-underline: false;" text="Professores" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="105.0" onAction="#professors" style="-fx-underline: false;" text="Professores" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink onAction="#students" layoutX="14.0" layoutY="153.0" style="-fx-underline: false;" text="Alunos" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="153.0" onAction="#students" style="-fx-underline: false;" text="Alunos" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -72,28 +63,26 @@
             </Label>
             <TableView fx:id="concludedSubjects" layoutX="4.0" layoutY="328.0" prefHeight="326.0" prefWidth="680.0">
                <columns>
-                  <TableColumn fx:id="subjectName1" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
-                  <TableColumn fx:id="P11" editable="false" prefWidth="56.0" text="Nota 1" />
-                  <TableColumn fx:id="P21" editable="false" prefWidth="58.0" text="Nota 2" />
-                  <TableColumn fx:id="P31" editable="false" prefWidth="55.0" text="Nota 3" />
-                  <TableColumn fx:id="P41" prefWidth="90.0" text="Prova Final" />
-                  <TableColumn fx:id="average1" prefWidth="54.0" text="Media" />
-                  <TableColumn fx:id="frequency1" prefWidth="75.0" text="Faltas" />
-                  <TableColumn fx:id="status1" prefWidth="147.0" text="Status" />
+                  <TableColumn fx:id="subjectName1" editable="false" prefWidth="227.0" style="font: 10px;" text="Disciplina" />
+                  <TableColumn fx:id="P11" editable="false" prefWidth="53.0" text="Nota 1" />
+                  <TableColumn fx:id="P21" editable="false" minWidth="0.0" prefWidth="52.0" text="Nota 2" />
+                  <TableColumn fx:id="P31" editable="false" prefWidth="56.0" text="Nota 3" />
+                  <TableColumn fx:id="average1" prefWidth="56.0" text="Media" />
+                  <TableColumn fx:id="frequency1" prefWidth="67.0" text="Frequência" />
+                  <TableColumn fx:id="status1" prefWidth="168.0" text="Status" />
                </columns>
             </TableView>
          </children>
       </Pane>
       <TableView fx:id="ongoingSubjects" layoutX="300.0" layoutY="150.0" prefHeight="212.0" prefWidth="680.0">
         <columns>
-          <TableColumn fx:id="subjectName" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
-          <TableColumn fx:id="P1" editable="false" prefWidth="56.0" text="Nota 1" />
-            <TableColumn fx:id="P2" editable="false" prefWidth="58.0" text="Nota 2" />
-            <TableColumn fx:id="P3" editable="false" prefWidth="55.0" text="Nota 3" />
-            <TableColumn fx:id="P4" prefWidth="90.0" text="Prova Final" />
+          <TableColumn fx:id="subjectName" editable="false" prefWidth="229.0" style="font: 10px;" text="Disciplina" />
+          <TableColumn fx:id="P1" editable="false" minWidth="0.0" prefWidth="55.0" text="Nota 1" />
+            <TableColumn fx:id="P2" editable="false" prefWidth="54.0" text="Nota 2" />
+            <TableColumn fx:id="P3" editable="false" prefWidth="56.0" text="Nota 3" />
             <TableColumn fx:id="average" prefWidth="54.0" text="Media" />
-            <TableColumn fx:id="frequency" prefWidth="75.0" text="Faltas" />
-            <TableColumn fx:id="status" prefWidth="147.0" text="Status" />
+            <TableColumn fx:id="frequency" prefWidth="64.0" text="Frequência" />
+            <TableColumn fx:id="status" prefWidth="167.0" text="Status" />
         </columns>
       </TableView>
       <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">

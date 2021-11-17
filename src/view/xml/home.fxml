@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
@@ -64,6 +60,11 @@
                </font>
             </Label>
             <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="20.0" layoutY="42.0" prefWidth="500.0" style="-fx-pref-width: 640; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
+            <Button fx:id="seeMineButton" layoutX="477.0" layoutY="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: DEDEDE;" text="Ver todas">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <TableView fx:id="classroomsTable" layoutX="300.0" layoutY="210.0" prefHeight="501.0" prefWidth="680.0">

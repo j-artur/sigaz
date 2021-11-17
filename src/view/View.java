@@ -120,6 +120,12 @@ public class View extends Application {
 		setPrimaryWindow(new Scene(root), "SIGAZ - Disciplinas");
 	}
 
+	public static void subjects(StudentVO student) throws Exception {
+		ConcludedSubjectsController.setStudent(student);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/concludedSubjects.fxml"));
+		setPrimaryWindow(new Scene(root), "SIGAZ - Disciplinas");
+	}
+
 	public static void createSubject() throws Exception {
 		SubjectController.setSubject(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerSubject.fxml"));
