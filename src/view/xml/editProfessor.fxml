@@ -18,7 +18,7 @@
       <TextField fx:id="cpfEdit" layoutX="155.0" layoutY="271.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
       <Label layoutX="155.0" layoutY="310.0" text="Endereço" />
       <TextField fx:id="addressEdit" layoutX="155.0" layoutY="325.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
-      <Button layoutX="240.0" layoutY="403.0" mnemonicParsing="false" onAction="#SaveEditions" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar Mudanças" />
+      <Button layoutX="240.0" layoutY="403.0" mnemonicParsing="false" onAction="#update" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar Mudanças" />
       <Label fx:id="error" layoutX="36.0" layoutY="14.0" prefHeight="15.0" prefWidth="573.0" textFill="RED" />
    </children>
 </Pane>
