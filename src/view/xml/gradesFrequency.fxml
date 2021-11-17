@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GradeController">
    <children>
       <Pane prefHeight="56.0" prefWidth="640.0" style="-fx-background-color: #FFFFFF;">
          <children>
@@ -18,22 +17,20 @@
             <Label fx:id="error" layoutX="393.0" layoutY="21.0" prefHeight="15.0" prefWidth="230.0" textFill="RED" />
          </children>
       </Pane>
-      <TableView fx:id="studentsTable" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
+      <TableView fx:id="table" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
         <columns>
-          <TableColumn fx:id="studentRegistration" prefWidth="75.0" text="Matricula" />
-          <TableColumn fx:id="studentName" prefWidth="71.0" text="Aluno" />
-            <TableColumn fx:id="P11" prefWidth="59.0" text="Nota 1" />
-            <TableColumn fx:id="P21" prefWidth="58.0" text="Nota 2" />
-            <TableColumn fx:id="P31" prefWidth="55.0" text="Nota 3" />
-            <TableColumn fx:id="P41" prefWidth="89.0" text="Prova Final" />
-            <TableColumn fx:id="average1" prefWidth="95.0" text="Media Final" />
-            <TableColumn fx:id="frequency1" prefWidth="53.0" text="Faltas" />
-            <TableColumn fx:id="frequencyPercentage" prefWidth="84.0" text="Frequencia" />
+          <TableColumn fx:id="registration" prefWidth="75.0" text="Matricula" />
+          <TableColumn fx:id="name" prefWidth="275.0" text="Aluno" />
+            <TableColumn fx:id="n1" prefWidth="45.0" text="Nota 1" />
+            <TableColumn fx:id="n2" prefWidth="46.0" text="Nota 2" />
+            <TableColumn fx:id="n3" prefWidth="45.0" text="Nota 3" />
+            <TableColumn fx:id="nfinal" prefWidth="76.0" text="Media Final" />
+            <TableColumn fx:id="frequency" prefWidth="77.0" text="Frequencia" />
         </columns>
       </TableView>
       <Pane layoutY="418.0" prefHeight="56.0" prefWidth="640.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Button layoutX="262.0" layoutY="8.0" mnemonicParsing="false" onAction="#saveEditions" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar" />
+            <Button layoutX="262.0" layoutY="8.0" mnemonicParsing="false" onAction="#save" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar" />
             <Button layoutX="466.0" layoutY="8.0" mnemonicParsing="false" onAction="#finishClassroom" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Finalizar Disciplina" />
          </children>
       </Pane>

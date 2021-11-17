@@ -50,6 +50,11 @@ public class ClassroomBO implements IClassroomBO {
 	}
 
 	@Override
+	public List<GradeVO> findAllGrades(ClassroomVO classroom) throws Exception {
+		return this.gradeDao.findByClassroom(classroom);
+	}
+
+	@Override
 	public void update(ClassroomVO classroom, ClassroomVO data) throws Exception {
 		this.classroomDao.update(classroom, data);
 	}

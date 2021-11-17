@@ -46,7 +46,7 @@ public class AuthController {
 			user.setEmail("admin@admin.com");
 			user.setPassword("admin123");
 			loggedUser = principalBo.authenticate(new PrincipalVO(user));
-			View.setViewMode(ViewMode.PRINCIPAL);
+			View.setViewMode(ViewMode.PROFESSOR);
 			View.home();
 
 			user.setEmail(email.getText());

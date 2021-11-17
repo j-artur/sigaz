@@ -168,7 +168,8 @@ public class View extends Application {
 		setSecondaryWindow(new Scene(root), "SIGAZ - Editar Aluno");
 	}
 
-	public static void grade() throws Exception {
+	public static void grade(ClassroomVO classroom) throws Exception {
+		GradeController.setClassroom(classroom);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/gradesFrequency.fxml"));
 		setSecondaryWindow(new Scene(root), "SIGAZ - Notas e Frequência");
 	}

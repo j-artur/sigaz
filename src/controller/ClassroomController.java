@@ -21,6 +21,7 @@ import view.*;
 public class ClassroomController {
 	private IClassroomBO classroomBo = new ClassroomBO();
 	private IProfessorBO professorBo = new ProfessorBO();
+	private IStudentBO studentBo = new StudentBO();
 
 	private static ClassroomVO classroom;
 	private static ProfessorVO professor;
@@ -66,6 +67,15 @@ public class ClassroomController {
 	TableColumn<ClassroomModel, Node> buttons;
 
 	@FXML
+	TableView<StudentVO> studentsTable;
+	@FXML
+	TableColumn<StudentVO, String> studentRegistration;
+	@FXML
+	TableColumn<StudentVO, String> studentName;
+	@FXML
+	TableColumn<StudentVO, String> studentEmail;
+
+	@FXML
 	public void initialize() {
 		if (userName != null) {
 			userName.setText(AuthController.getLoggedUser().getName());
@@ -77,8 +87,20 @@ public class ClassroomController {
 				subjectName.setText(classroom.getSubject().getName());
 				professorName.setText(classroom.getProfessor().getName());
 
+				if (studentsTable != null) {
+					ObservableList<StudentVO> students = FXCollections.observableArrayList();
+					students.addAll(studentBo.findByClassroom(classroom));
+
+					studentName.setCellValueFactory(new PropertyValueFactory<StudentVO, String>("name"));
+					studentRegistration.setCellValueFactory(new PropertyValueFactory<StudentVO, String>("registration"));
+					studentEmail.setCellValueFactory(new PropertyValueFactory<StudentVO, String>("email"));
+
+					studentsTable.setItems(students);
+				}
+
 				if (gradeButton != null)
-					if (View.getViewMode() == ViewMode.PROFESSOR)
+					if (View.getViewMode() == ViewMode.PROFESSOR
+							&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId())
 						gradeButton.setOpacity(1);
 					else
 						gradeButton.setOpacity(0);
@@ -113,6 +135,7 @@ public class ClassroomController {
 				}
 			}
 		}
+
 	}
 
 	public void search(ActionEvent event) {
@@ -192,8 +215,9 @@ public class ClassroomController {
 	}
 
 	public void grade(ActionEvent event) throws Exception {
-		if (View.getViewMode() == ViewMode.PROFESSOR)
-			View.grade();
+		if (View.getViewMode() == ViewMode.PROFESSOR
+				&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId())
+			View.grade(classroom);
 	}
 
 	public void logout(ActionEvent event) throws Exception {

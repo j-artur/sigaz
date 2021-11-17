@@ -9,9 +9,31 @@ import view.NumberTextField;
 
 public class GradeStudentModel {
 	private GradeVO grade;
+	private TextField n1;
+	private TextField n2;
+	private TextField n3;
+	private TextField nfinal;
+	private TextField frequency;
+
+	public GradeVO getGrade() {
+		return grade;
+	}
 
 	public GradeStudentModel(GradeVO grade) {
 		this.grade = grade;
+
+		int n1 = this.grade.getN1();
+		this.n1 = new NumberTextField(new BigDecimal(n1));
+		int n2 = this.grade.getN2();
+		this.n2 = new NumberTextField(new BigDecimal(n2));
+		int n3 = this.grade.getN3();
+		this.n3 = new NumberTextField(new BigDecimal(n3));
+		int nfinal = this.grade.getNFinal();
+		this.nfinal = new NumberTextField(new BigDecimal(nfinal));
+
+		double frequency = this.grade.getFrequency();
+		NumberFormat fmt = NumberFormat.getPercentInstance();
+		this.frequency = new NumberTextField(new BigDecimal(frequency), fmt);
 	}
 
 	public String getRegistration() {
@@ -22,31 +44,23 @@ public class GradeStudentModel {
 		return this.grade.getStudent().getName();
 	}
 
-	public String getN1() {
-		int grade = this.grade.getN1();
-		return Integer.toString(grade);
+	public TextField getN1() {
+		return n1;
 	}
 
-	public String getN2() {
-		int grade = this.grade.getN2();
-		return Integer.toString(grade);
+	public TextField getN2() {
+		return n2;
 	}
 
-	public String getN3() {
-		int grade = this.grade.getN3();
-		return Integer.toString(grade);
+	public TextField getN3() {
+		return n3;
 	}
 
-	public String getNFinal() {
-		int grade = this.grade.getNFinal();
-		return Integer.toString(grade);
+	public TextField getNFinal() {
+		return nfinal;
 	}
 
 	public TextField getFrequency() {
-		double grade = this.grade.getFrequency();
-		NumberFormat fmt = NumberFormat.getPercentInstance();
-		// fmt.setMinimumFractionDigits(0);
-		NumberTextField field = new NumberTextField(new BigDecimal(grade), fmt);
-		return field;
+		return frequency;
 	}
 }
