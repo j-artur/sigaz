@@ -61,6 +61,7 @@ public class StudentDAO implements IUserDAO<StudentVO> {
 			while (set.next()) {
 				StudentVO student = new StudentVO();
 				student.setId(set.getLong("id"));
+				student.setName(set.getString("name"));
 				student.setEmail(set.getString("email"));
 				student.setPassword(set.getString("password"));
 				student.setRegistration(set.getString("registration"));

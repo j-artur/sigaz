@@ -81,7 +81,7 @@ public class GradeVO {
 
 	public void setFrequency(double frequency) throws Exception {
 		if (frequency < 0.0 || frequency > 1.0)
-			throw new Exception("Valor inválido, deve ser de 0 a 1");
+			throw new Exception("Valor inválido, deve ser entre 0% a 100%");
 		else
 			this.frequency = frequency;
 	}

@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -58,9 +57,6 @@ public class ClassroomController {
 	@FXML
 	TableColumn<ClassroomModel, String> classroomStatus;
 
-	private ObservableList<ProfessorVO> professors = FXCollections.observableArrayList();
-	private ObservableList<ClassroomModel> classrooms = FXCollections.observableArrayList();
-
 	@FXML
 	public void initialize() {
 		if (userName != null) {
@@ -95,6 +91,7 @@ public class ClassroomController {
 				searchBox.setOnAction(this::search);
 
 				try {
+					ObservableList<ProfessorVO> professors = FXCollections.observableArrayList();
 					professors.add(null);
 					professors.addAll(professorBo.findAll());
 					searchBox.setItems(professors);
@@ -110,15 +107,14 @@ public class ClassroomController {
 	public void search(ActionEvent event) {
 		error.setText("");
 		List<ClassroomVO> list;
+		ObservableList<ClassroomModel> classrooms = FXCollections.observableArrayList();
 		try {
 			if (searchBox.getValue() == null) {
 				list = classroomBo.findAll();
 			} else {
 				list = classroomBo.findByProfessor(searchBox.getValue());
 			}
-			List<ClassroomModel> classes = new ArrayList<ClassroomModel>();
-			list.forEach(classroom -> classes.add(new ClassroomModel(classroom)));
-			classrooms.setAll(classes);
+			list.forEach(classroom -> classrooms.add(new ClassroomModel(classroom)));
 
 			classrooms.forEach(classroom -> {
 				classroom.getHyperlink().setOnAction(e -> {
@@ -145,10 +141,6 @@ public class ClassroomController {
 		if (View.getViewMode() == ViewMode.PRINCIPAL) {
 			View.createClassroom();
 		}
-	}
-
-	public void store(ActionEvent event) {
-
 	}
 
 	public void home(ActionEvent event) throws Exception {

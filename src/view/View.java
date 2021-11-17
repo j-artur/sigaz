@@ -50,7 +50,7 @@ public class View extends Application {
 		return secondaryStage;
 	}
 
-	public static void closeSecondaryWindow() throws Exception {
+	public static void closeSecondaryWindow() {
 		if (secondaryStage != null) {
 			secondaryStage.close();
 			secondaryStage = null;
@@ -91,6 +91,11 @@ public class View extends Application {
 	public static void createClassroom() throws Exception {
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerClassroom.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Cadastrar Turma");
+	}
+
+	public static void associateStudents() throws Exception {
+		Parent root = FXMLLoader.load(View.class.getResource("xml/associateStudent.fxml"));
+		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Turma - Alunos");
 	}
 
 	public static void subjects() throws Exception {
