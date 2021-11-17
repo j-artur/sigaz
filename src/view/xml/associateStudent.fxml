@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterClassroomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterClassroomController">
    <children>
       <Pane prefHeight="56.0" prefWidth="640.0" style="-fx-background-color: #FBFBFB;">
          <children>
@@ -16,12 +17,11 @@
             </Button>
          </children>
       </Pane>
-      <TableView fx:id="studentsTable" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
+      <TableView fx:id="studentsAssociateTable" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
         <columns>
-          <TableColumn fx:id="studentRegistration" prefWidth="153.0" text="Matricula" />
-          <TableColumn fx:id="studentName" prefWidth="389.0" text="Nome" />
-            <TableColumn fx:id="addStudent" prefWidth="50.0" />
-            <TableColumn fx:id="removeStudent" prefWidth="46.0" />
+          <TableColumn fx:id="studentRegistrationAssociate" prefWidth="153.0" text="Matricula" />
+          <TableColumn fx:id="studentNameAssociate" prefWidth="411.0" text="Nome" />
+            <TableColumn fx:id="buttons" prefWidth="71.0" />
         </columns>
       </TableView>
       <Pane layoutY="418.0" prefHeight="56.0" prefWidth="640.0" style="-fx-background-color: #FBFBFB;">
@@ -31,6 +31,7 @@
                   <Font name="System Bold" size="12.0" />
                </font></Button>
             <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="226.0" layoutY="12.0" prefWidth="500.0" style="-fx-pref-width: 400; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
+            <Label fx:id="error" layoutX="216.0" layoutY="21.0" prefHeight="15.0" prefWidth="410.0" textFill="RED" />
          </children>
       </Pane>
    </children>
