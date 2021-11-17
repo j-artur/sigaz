@@ -43,10 +43,10 @@ public class AuthController {
 			UserVO user = new UserVO() {
 			};
 
-			user.setEmail("admin@admin.com");
-			user.setPassword("admin123");
-			loggedUser = principalBo.authenticate(new PrincipalVO(user));
-			View.setViewMode(ViewMode.PROFESSOR);
+			user.setEmail("joaoartursm@gmail.com");
+			user.setPassword("senha123");
+			loggedUser = studentBo.authenticate(new StudentVO(user));
+			View.setViewMode(ViewMode.STUDENT);
 			View.home();
 
 			user.setEmail(email.getText());

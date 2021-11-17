@@ -173,4 +173,10 @@ public class View extends Application {
 		Parent root = FXMLLoader.load(View.class.getResource("xml/gradesFrequency.fxml"));
 		setSecondaryWindow(new Scene(root), "SIGAZ - Notas e Frequência");
 	}
+
+	public static void grade(StudentVO student) throws Exception {
+		BoletimController.setStudent(student);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/grades.fxml"));
+		setPrimaryWindow(new Scene(root), "SIGAZ - Boletim");
+	}
 }

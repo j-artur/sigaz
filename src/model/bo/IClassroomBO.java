@@ -17,6 +17,8 @@ public interface IClassroomBO extends IBO<ClassroomVO> {
 
 	public List<GradeVO> findAllGrades(ClassroomVO classroom) throws Exception;
 
+	public List<GradeVO> findGradesByStudent(StudentVO student) throws Exception;
+
 	public void add(ClassroomVO classroom, StudentVO student) throws Exception;
 
 	public void remove(ClassroomVO classroom, StudentVO student) throws Exception;

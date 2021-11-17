@@ -72,7 +72,7 @@ public class HomeController {
 				});
 			});
 
-			classroomName.setCellValueFactory(new PropertyValueFactory<ClassroomModel, Node>("node"));
+			classroomName.setCellValueFactory(new PropertyValueFactory<ClassroomModel, Node>("name"));
 			classroomPlace.setCellValueFactory(new PropertyValueFactory<ClassroomModel, String>("place"));
 			classroomSchedule.setCellValueFactory(new PropertyValueFactory<ClassroomModel, String>("schedule"));
 			classroomStatus.setCellValueFactory(new PropertyValueFactory<ClassroomModel, String>("status"));

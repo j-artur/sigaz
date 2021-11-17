@@ -44,6 +44,10 @@ public class GradeStudentModel {
 		return this.grade.getStudent().getName();
 	}
 
+	public String getSubject() {
+		return this.grade.getClassroom().getSubject().getName();
+	}
+
 	public TextField getN1() {
 		return n1;
 	}
@@ -62,5 +66,9 @@ public class GradeStudentModel {
 
 	public TextField getFrequency() {
 		return frequency;
+	}
+
+	public String getStatus() {
+		return this.grade.getNFinal() >= 70 ? "Aprovado" : "Reprovado";
 	}
 }

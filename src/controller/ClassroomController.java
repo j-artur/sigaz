@@ -101,9 +101,10 @@ public class ClassroomController {
 				if (gradeButton != null)
 					if (View.getViewMode() == ViewMode.PROFESSOR
 							&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId())
-						gradeButton.setOpacity(1);
-					else
-						gradeButton.setOpacity(0);
+						gradeButton.setText("Notas e Frequência");
+					else if (View.getViewMode() == ViewMode.STUDENT)
+						gradeButton.setText("Ver Notas");
+
 			} catch (Exception e) {
 				if (error != null)
 					error.setText(e.getMessage());
@@ -218,6 +219,8 @@ public class ClassroomController {
 		if (View.getViewMode() == ViewMode.PROFESSOR
 				&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId())
 			View.grade(classroom);
+		else if (View.getViewMode() == ViewMode.STUDENT && AuthController.getLoggedUser() instanceof StudentVO student)
+			View.grade(student);
 	}
 
 	public void logout(ActionEvent event) throws Exception {
