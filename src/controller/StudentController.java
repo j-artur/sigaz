@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,22 +23,40 @@ import view.*;
 public class StudentController {
 	IStudentBO studentBo = new StudentBO();
 
+	private static StudentVO student;
+
+	public static void setStudent(StudentVO arg) {
+		student = arg;
+	}
+
 	@FXML
 	Label error;
+
 	@FXML
 	Label userName;
 	@FXML
-	Button registerStudentsByPrincipal;
+	Button createButton;
 
 	@FXML
 	TextField searchField;
 
 	@FXML
-	TextField nameRegister;
+	TextField name;
 	@FXML
-	TextField cpfRegister;
+	TextField registration;
 	@FXML
-	TextField addressRegister;
+	TextField address;
+	@FXML
+	TextField email;
+	@FXML
+	PasswordField password;
+
+	@FXML
+	TextField nameEdit;
+	@FXML
+	TextField registrationEdit;
+	@FXML
+	TextField addressEdit;
 
 	@FXML
 	TableView<StudentModel> studentsTable;
@@ -50,18 +69,25 @@ public class StudentController {
 
 	@FXML
 	public void initialize() {
+		if (student != null && nameEdit != null && registrationEdit != null && addressEdit != null) {
+			nameEdit.setText(student.getName());
+			registrationEdit.setText(student.getRegistration());
+			addressEdit.setText(student.getAddress());
+		}
+
 		if (userName != null) {
 			userName.setText(AuthController.getLoggedUser().getName());
 		}
 
-		if (registerStudentsByPrincipal != null) {
-			registerStudentsByPrincipal.setOnAction(e -> {
-				try {
-					View.createStudent();
-				} catch (Exception err) {
-					error.setText(err.getMessage());
-				}
-			});
+		if (createButton != null) {
+			if (View.getViewMode() == ViewMode.PRINCIPAL)
+				createButton.setOpacity(1);
+			else
+				createButton.setOpacity(0);
+		}
+
+		if (studentsTable != null) {
+			search(null);
 		}
 	}
 
@@ -75,14 +101,21 @@ public class StudentController {
 			if (searchField.getText().isEmpty()) {
 				list = studentBo.findAll();
 			} else {
-				StudentVO professor = new StudentVO();
-				professor.setName(searchField.getText());
-				list = studentBo.findByName(professor);
+				StudentVO student = new StudentVO();
+				student.setName(searchField.getText());
+				list = studentBo.findByName(student);
 			}
-			list.forEach(professor -> students.add(new StudentModel(professor)));
+			list.forEach(student -> students.add(new StudentModel(student)));
 
 			students.forEach(student -> {
-				student.getHyperlink().setOnAction(e -> {
+				student.getEditButton().setOnAction(e -> {
+					try {
+						View.editStudent(student.getStudent());
+					} catch (Exception err) {
+						error.setText(err.getMessage());
+					}
+				});
+				student.getDeleteButton().setOnAction(e -> {
 					try {
 						studentBo.delete(student.getStudent());
 						View.students();
@@ -93,9 +126,9 @@ public class StudentController {
 			});
 
 			studentName.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("name"));
-			studentRegistration.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("name"));
+			studentRegistration.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("registration"));
 			if (View.getViewMode() == ViewMode.PRINCIPAL)
-				buttons.setCellValueFactory(new PropertyValueFactory<StudentModel, Node>("hyperlink"));
+				buttons.setCellValueFactory(new PropertyValueFactory<StudentModel, Node>("node"));
 
 			studentsTable.setItems(students);
 		} catch (Exception e) {
@@ -103,8 +136,46 @@ public class StudentController {
 		}
 	}
 
-	public void register(ActionEvent event) {
+	public void create(ActionEvent event) throws Exception {
+		if (View.getViewMode() == ViewMode.PRINCIPAL) {
+			View.createStudent();
+		}
+	}
 
+	public void store(ActionEvent event) {
+		try {
+			StudentVO newStudent = new StudentVO();
+
+			newStudent.setName(name.getText());
+			newStudent.setAddress(address.getText());
+			newStudent.setRegistration(registration.getText());
+			newStudent.setEmail(email.getText());
+			newStudent.setPassword(password.getText());
+
+			studentBo.create(newStudent);
+
+			View.students();
+		} catch (Exception e) {
+			error.setText(e.getMessage());
+		}
+	}
+
+	public void update(ActionEvent event) {
+		try {
+			StudentVO newStudent = new StudentVO();
+
+			newStudent.setName(name.getText());
+			newStudent.setAddress(address.getText());
+			newStudent.setRegistration(registration.getText());
+			newStudent.setEmail(student.getEmail());
+			newStudent.setPassword(student.getPassword());
+
+			studentBo.update(student, newStudent);
+
+			View.students();
+		} catch (Exception e) {
+			error.setText(e.getMessage());
+		}
 	}
 
 	public void home(ActionEvent event) throws Exception {

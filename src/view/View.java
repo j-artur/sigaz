@@ -105,7 +105,7 @@ public class View extends Application {
 
 	public static void associateStudents() throws Exception {
 		Parent root = FXMLLoader.load(View.class.getResource("xml/associateStudent.fxml"));
-		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Turma - Alunos");
+		setSecondaryWindow(new Scene(root), "SIGAZ - Associar Alunos");
 	}
 
 	public static void editClassroom(ClassroomVO classroom) throws Exception {
@@ -129,7 +129,7 @@ public class View extends Application {
 	public static void editSubject(SubjectVO subject) throws Exception {
 		SubjectController.setSubject(subject);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/editSubject.fxml"));
-		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
+		setSecondaryWindow(new Scene(root), "SIGAZ - Editar Disciplina");
 	}
 
 	public static void professors() throws Exception {
@@ -141,23 +141,31 @@ public class View extends Application {
 	public static void createProfessor() throws Exception {
 		ProfessorController.setProfessor(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerProfessor.fxml"));
-		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
+		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Professor");
 	}
 
 	public static void editProfessor(ProfessorVO professor) throws Exception {
 		ProfessorController.setProfessor(professor);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/editProfessor.fxml"));
-		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
+		setSecondaryWindow(new Scene(root), "SIGAZ - Editar Professor");
 	}
 
 	public static void students() throws Exception {
+		StudentController.setStudent(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/searchStudent.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Alunos");
 	}
 
 	public static void createStudent() throws Exception {
+		StudentController.setStudent(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerStudent.fxml"));
-		setPrimaryWindow(new Scene(root), "SIGAZ - Cadastrar Aluno");
+		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Aluno");
+	}
+
+	public static void editStudent(StudentVO student) throws Exception {
+		StudentController.setStudent(student);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/editStudent.fxml"));
+		setSecondaryWindow(new Scene(root), "SIGAZ - Editar Aluno");
 	}
 
 	public static void grade() throws Exception {
