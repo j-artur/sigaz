@@ -17,10 +17,10 @@
             </Button>
          </children>
       </Pane>
-      <TableView fx:id="studentsAssociateTable" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
+      <TableView fx:id="studentsTable" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
         <columns>
-          <TableColumn fx:id="studentRegistrationAssociate" prefWidth="153.0" text="Matricula" />
-          <TableColumn fx:id="studentNameAssociate" prefWidth="411.0" text="Nome" />
+          <TableColumn fx:id="studentRegistration" prefWidth="153.0" text="Matricula" />
+          <TableColumn fx:id="studentName" prefWidth="411.0" text="Nome" />
             <TableColumn fx:id="buttons" prefWidth="71.0" />
         </columns>
       </TableView>

@@ -21,10 +21,16 @@ import view.*;
 public class ClassroomController {
 	private IClassroomBO classroomBo = new ClassroomBO();
 	private IProfessorBO professorBo = new ProfessorBO();
+
 	private static ClassroomVO classroom;
+	private static ProfessorVO professor;
 
 	public static void setClassroom(ClassroomVO arg) {
 		classroom = arg;
+	}
+
+	public static void setProfessor(ProfessorVO arg) {
+		professor = arg;
 	}
 
 	@FXML
@@ -56,6 +62,8 @@ public class ClassroomController {
 	TableColumn<ClassroomModel, String> classroomSchedule;
 	@FXML
 	TableColumn<ClassroomModel, String> classroomStatus;
+	@FXML
+	TableColumn<ClassroomModel, Node> buttons;
 
 	@FXML
 	public void initialize() {
@@ -88,7 +96,10 @@ public class ClassroomController {
 					createButton.setOpacity(0);
 
 			if (searchBox != null) {
-				searchBox.setOnAction(this::search);
+				searchBox.setOnAction(e -> {
+					professor = searchBox.getValue();
+					search(null);
+				});
 
 				try {
 					ObservableList<ProfessorVO> professors = FXCollections.observableArrayList();
@@ -109,10 +120,10 @@ public class ClassroomController {
 		List<ClassroomVO> list;
 		ObservableList<ClassroomModel> classrooms = FXCollections.observableArrayList();
 		try {
-			if (searchBox.getValue() == null) {
+			if (professor == null) {
 				list = classroomBo.findAll();
 			} else {
-				list = classroomBo.findByProfessor(searchBox.getValue());
+				list = classroomBo.findByProfessor(professor);
 			}
 			list.forEach(classroom -> classrooms.add(new ClassroomModel(classroom)));
 
@@ -126,10 +137,12 @@ public class ClassroomController {
 				});
 			});
 
-			classroomName.setCellValueFactory(new PropertyValueFactory<ClassroomModel, Node>("node"));
+			classroomName.setCellValueFactory(new PropertyValueFactory<ClassroomModel, Node>("name"));
 			classroomPlace.setCellValueFactory(new PropertyValueFactory<ClassroomModel, String>("place"));
 			classroomSchedule.setCellValueFactory(new PropertyValueFactory<ClassroomModel, String>("schedule"));
 			classroomStatus.setCellValueFactory(new PropertyValueFactory<ClassroomModel, String>("status"));
+			if (View.getViewMode() == ViewMode.PRINCIPAL)
+				buttons.setCellValueFactory(new PropertyValueFactory<ClassroomModel, Node>("node"));
 
 			classroomsTable.setItems(classrooms);
 		} catch (Exception e) {

@@ -28,22 +28,22 @@
       </Pane>
       <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
          <children>
-            <Hyperlink fx:id="classroomsLink" layoutX="14.0" layoutY="14.0" style="-fx-underline: false;" text="Turmas" textFill="#282828">
+            <Hyperlink onAction="#classrooms" layoutX="14.0" layoutY="14.0" style="-fx-underline: false;" text="Turmas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="subjectsLink" layoutX="14.0" layoutY="59.0" style="-fx-underline: false;" text="Disciplinas" textFill="#282828">
+            <Hyperlink onAction="#subjects" layoutX="14.0" layoutY="59.0" style="-fx-underline: false;" text="Disciplinas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="professorsLink" layoutX="14.0" layoutY="105.0" style="-fx-underline: false;" text="Professores" textFill="#282828">
+            <Hyperlink onAction="#professors" layoutX="14.0" layoutY="105.0" style="-fx-underline: false;" text="Professores" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="studentsLink" layoutX="14.0" layoutY="153.0" style="-fx-underline: false;" text="Alunos" textFill="#282828">
+            <Hyperlink onAction="#students" layoutX="14.0" layoutY="153.0" style="-fx-underline: false;" text="Alunos" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

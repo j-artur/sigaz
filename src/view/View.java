@@ -1,12 +1,16 @@
 package view;
 
 import controller.ClassroomController;
+import controller.RegisterClassroomController;
+import controller.SubjectController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.vo.ClassroomVO;
+import model.vo.ProfessorVO;
+import model.vo.SubjectVO;
 
 public class View extends Application {
 	private static Stage primaryStage;
@@ -78,17 +82,27 @@ public class View extends Application {
 
 	public static void classrooms() throws Exception {
 		ClassroomController.setClassroom(null);
+		ClassroomController.setProfessor(null);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/searchClassroom.fxml"));
+		setPrimaryWindow(new Scene(root), "SIGAZ - Turmas");
+	}
+
+	public static void classrooms(ProfessorVO professor) throws Exception {
+		ClassroomController.setClassroom(null);
+		ClassroomController.setProfessor(professor);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/searchClassroom.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Turmas");
 	}
 
 	public static void classroom(ClassroomVO classroom) throws Exception {
 		ClassroomController.setClassroom(classroom);
+		ClassroomController.setProfessor(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/classroom.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Turma");
 	}
 
 	public static void createClassroom() throws Exception {
+		RegisterClassroomController.setClassroom(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerClassroom.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Cadastrar Turma");
 	}
@@ -98,13 +112,27 @@ public class View extends Application {
 		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Turma - Alunos");
 	}
 
+	public static void editClassroom(ClassroomVO classroom) throws Exception {
+		RegisterClassroomController.setClassroom(classroom);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/editClassroom.fxml"));
+		setPrimaryWindow(new Scene(root), "SIGAZ - Editar Turma");
+	}
+
 	public static void subjects() throws Exception {
+		SubjectController.setSubject(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/searchSubject.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Disciplinas");
 	}
 
 	public static void createSubject() throws Exception {
+		SubjectController.setSubject(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerSubject.fxml"));
+		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
+	}
+
+	public static void editSubject(SubjectVO subject) throws Exception {
+		SubjectController.setSubject(subject);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/editSubject.fxml"));
 		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
 	}
 
@@ -121,6 +149,11 @@ public class View extends Application {
 	public static void students() throws Exception {
 		Parent root = FXMLLoader.load(View.class.getResource("xml/searchStudent.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Alunos");
+	}
+
+	public static void createStudent() throws Exception {
+		Parent root = FXMLLoader.load(View.class.getResource("xml/registerStudent.fxml"));
+		setPrimaryWindow(new Scene(root), "SIGAZ - Cadastrar Aluno");
 	}
 
 	public static void grade() throws Exception {
