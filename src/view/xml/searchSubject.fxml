@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubjectController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubjectController">
    <children>
       <Pane prefHeight="64.0" prefWidth="1280.0">
          <children>
@@ -157,7 +158,8 @@
                   <TableView fx:id="subjectTable" prefHeight="404.0" prefWidth="680.0" style="-fx-pref-height: 400; -fx-pref-width: 680;">
                     <columns>
                       <TableColumn fx:id="subjectCode" prefWidth="194.0" text="Código" />
-                      <TableColumn fx:id="subjectName" prefWidth="485.0" text="Nome" />
+                      <TableColumn fx:id="subjectName" prefWidth="419.0" text="Nome" />
+                        <TableColumn fx:id="buttons" prefWidth="75.0" />
                     </columns>
                   </TableView>
                   <Pane layoutY="399.0" prefHeight="145.0" prefWidth="680.0">
@@ -170,7 +172,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutY="40.0" prefHeight="48.0" prefWidth="240.0">
                            <children>
-                              <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800; -fx-font-size: 14;" text="Cadastrar Disciplina">
+                              <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="201.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE; -fx-border-radius: 4; -fx-font-weight: 800; -fx-font-size: 14;" text="Cadastrar Disciplina">
                                  <font>
                                     <Font name="Verdana" size="12.0" />
                                  </font>
