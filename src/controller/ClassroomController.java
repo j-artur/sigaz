@@ -135,6 +135,21 @@ public class ClassroomController {
 						error.setText(err.getMessage());
 					}
 				});
+				classroom.getEditButton().setOnAction(e -> {
+					try {
+						View.editClassroom(classroom.getClassroom());
+					} catch (Exception err) {
+						error.setText(err.getMessage());
+					}
+				});
+				classroom.getDeleteButton().setOnAction(e -> {
+					try {
+						classroomBo.delete(classroom.getClassroom());
+						View.classrooms();
+					} catch (Exception err) {
+						error.setText(err.getMessage());
+					}
+				});
 			});
 
 			classroomName.setCellValueFactory(new PropertyValueFactory<ClassroomModel, Node>("name"));

@@ -1,5 +1,6 @@
 package model.bo;
 
+import java.util.Arrays;
 import java.util.List;
 
 import model.dao.ClassroomDAO;
@@ -19,6 +20,13 @@ public class ClassroomBO implements IClassroomBO {
 	@Override
 	public void create(ClassroomVO classroom) throws Exception {
 		this.classroomDao.create(classroom);
+		Arrays.asList(classroom.getStudents()).forEach(student -> {
+			try {
+				this.add(classroom, student);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@Override

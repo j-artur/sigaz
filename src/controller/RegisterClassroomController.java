@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -48,6 +49,9 @@ public class RegisterClassroomController {
 	private TextField place;
 
 	@FXML
+	private CheckBox classroomStatus;
+
+	@FXML
 	private TextField search;
 
 	@FXML
@@ -59,7 +63,8 @@ public class RegisterClassroomController {
 	@FXML
 	private TableColumn<AssociateStudentModel, Node> buttons;
 
-	private ObservableList<AssociateStudentModel> selectedStudents;
+	private ObservableList<AssociateStudentModel> selectingStudents;
+	private static ObservableList<AssociateStudentModel> selectedStudents;
 
 	@FXML
 	private void initialize() {
@@ -81,7 +86,27 @@ public class RegisterClassroomController {
 			}
 		}
 
-		selectedStudents = FXCollections.observableArrayList();
+		selectingStudents = FXCollections.observableArrayList();
+
+		if (classroom != null && schedule != null && place != null && classroomStatus != null) {
+			schedule.setText(classroom.getSchedule());
+			place.setText(classroom.getPlace());
+			classroomStatus.setSelected(classroom.isActive());
+
+			for (int i = 0; i < subjectBox.getItems().size(); i++) {
+				if (subjectBox.getItems().get(i).getId() == classroom.getSubject().getId()) {
+					subjectBox.getSelectionModel().select(i);
+					break;
+				}
+			}
+
+			for (int i = 0; i < professorBox.getItems().size(); i++) {
+				if (professorBox.getItems().get(i).getId() == classroom.getProfessor().getId()) {
+					professorBox.getSelectionModel().select(i);
+					break;
+				}
+			}
+		}
 
 		if (studentsTable != null)
 			search(null);
@@ -93,17 +118,20 @@ public class RegisterClassroomController {
 		ObservableList<AssociateStudentModel> students = FXCollections.observableArrayList();
 		try {
 			List<StudentVO> list;
-			if (classroom == null) {
-				if (search.getText().isEmpty()) {
-					list = studentBo.findAll();
-				} else {
-					StudentVO student = new StudentVO();
-					student.setName(search.getText());
-					list = studentBo.findByName(student);
-				}
+
+			if (search.getText().isEmpty()) {
+				list = studentBo.findAll();
 			} else {
-				list = Arrays.asList(classroom.getStudents());
+				StudentVO student = new StudentVO();
+				student.setName(search.getText());
+				list = studentBo.findByName(student);
 			}
+
+			if (classroom != null) {
+				Arrays.asList(classroom.getStudents())
+						.forEach(student -> selectingStudents.add(new AssociateStudentModel(student)));
+			}
+
 			list.forEach(student -> students.add(new AssociateStudentModel(student)));
 
 			students.forEach(student -> {
@@ -111,18 +139,18 @@ public class RegisterClassroomController {
 				Button removeButton = student.getRemove();
 
 				addButton.setOnAction(e -> {
-					selectedStudents.add(student);
+					selectingStudents.add(student);
 					addButton.setOpacity(0);
 					removeButton.setOpacity(1);
 				});
 
 				removeButton.setOnAction(e -> {
-					selectedStudents.remove(student);
+					selectingStudents.remove(student);
 					addButton.setOpacity(1);
 					removeButton.setOpacity(0);
 				});
 
-				if (selectedStudents.contains(student)) {
+				if (selectingStudents.contains(student)) {
 					addButton.setOpacity(0);
 				} else {
 					removeButton.setOpacity(0);
@@ -141,6 +169,10 @@ public class RegisterClassroomController {
 	}
 
 	public void saveEditions(ActionEvent event) {
+		selectedStudents = FXCollections.observableArrayList();
+		selectedStudents.setAll(selectingStudents);
+		System.out.println("fechando");
+		System.out.println(selectedStudents);
 		View.closeSecondaryWindow();
 	}
 
@@ -154,14 +186,23 @@ public class RegisterClassroomController {
 			newClassroom.setSchedule(schedule.getText());
 			newClassroom.setPlace(place.getText());
 
-			StudentVO[] students = new StudentVO[selectedStudents.size()];
-			for (int i = 0; i < students.length; i++) {
-				students[i] = selectedStudents.get(i).getStudent();
+			StudentVO[] students;
+			if (selectedStudents != null) {
+				students = new StudentVO[selectedStudents.size()];
+				for (int i = 0; i < students.length; i++) {
+					students[i] = selectedStudents.get(i).getStudent();
+				}
+			} else {
+				students = new StudentVO[0];
 			}
 
 			newClassroom.setStudents(students);
 
 			classroomBo.create(newClassroom);
+
+			selectedStudents = null;
+
+			View.classrooms();
 		} catch (Exception e) {
 			error.setText(e.getMessage());
 		}
@@ -173,18 +214,27 @@ public class RegisterClassroomController {
 
 			newClassroom.setSubject(subjectBox.getValue());
 			newClassroom.setProfessor(professorBox.getValue());
-			newClassroom.setActive(true);
+			newClassroom.setActive(classroomStatus.isSelected());
 			newClassroom.setSchedule(schedule.getText());
 			newClassroom.setPlace(place.getText());
 
-			StudentVO[] students = new StudentVO[selectedStudents.size()];
-			for (int i = 0; i < students.length; i++) {
-				students[i] = selectedStudents.get(i).getStudent();
+			StudentVO[] students;
+			if (selectedStudents != null) {
+				students = new StudentVO[selectedStudents.size()];
+				for (int i = 0; i < students.length; i++) {
+					students[i] = selectedStudents.get(i).getStudent();
+				}
+			} else {
+				students = new StudentVO[0];
 			}
 
 			newClassroom.setStudents(students);
 
 			classroomBo.update(classroom, newClassroom);
+
+			selectedStudents = null;
+
+			View.classrooms();
 		} catch (Exception e) {
 			error.setText(e.getMessage());
 		}

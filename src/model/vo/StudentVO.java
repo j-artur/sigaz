@@ -39,7 +39,6 @@ public class StudentVO extends UserVO {
 	}
 
 	public String toString() {
-		return "ID: " + this.getId() + "\nNome: " + this.getName() + "\nEmail: " + this.getEmail() + "\nSenha: "
-				+ this.getPassword() + "\nMatrícula: " + this.getRegistration() + "\nEndereço: " + this.getAddress();
+		return this.getRegistration() + "\t" + this.getName();
 	}
 }

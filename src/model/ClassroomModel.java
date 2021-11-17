@@ -15,6 +15,14 @@ public class ClassroomModel {
 	private Button editButton;
 	private Button deleteButton;
 
+	public Button getEditButton() {
+		return editButton;
+	}
+
+	public Button getDeleteButton() {
+		return deleteButton;
+	}
+
 	public ClassroomModel(ClassroomVO classroom) {
 		this.classroom = classroom;
 		this.hyperlink = new Hyperlink(classroom.getSubject().getName());
