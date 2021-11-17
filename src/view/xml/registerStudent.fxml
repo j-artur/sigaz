@@ -9,16 +9,17 @@
    <children>
       <Label layoutX="155.0" layoutY="200.0" text="Nome" />
       <Label layoutX="155.0" layoutY="256.0" text="E-mail" />
-      <TextField fx:id="name" layoutX="155.0" layoutY="215.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <TextField fx:id="nameRegister" layoutX="155.0" layoutY="215.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="35.0" minHeight="83.0" prefWidth="233.0" text="SIGAZ" textAlignment="CENTER">
          <font>
             <Font name="Noto Sans Bold" size="72.0" />
          </font>
       </Label>
       <Label layoutX="268.0" layoutY="137.0" text="Cadastrar Aluno" />
-      <TextField fx:id="cpf" layoutX="155.0" layoutY="271.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <TextField fx:id="cpfRegister" layoutX="155.0" layoutY="271.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
       <Label layoutX="155.0" layoutY="310.0" text="Endereço" />
-      <TextField fx:id="address" layoutX="155.0" layoutY="325.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
-      <Button fx:id="register" layoutX="240.0" layoutY="403.0" mnemonicParsing="false" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Cadastrar" />
+      <TextField fx:id="addressRegister" layoutX="155.0" layoutY="325.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Button layoutX="240.0" layoutY="403.0" mnemonicParsing="false" onAction="#register" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Cadastrar" />
+      <Label fx:id="error" layoutX="20.0" layoutY="20.0" prefHeight="15.0" prefWidth="603.0" textFill="RED" />
    </children>
 </Pane>
