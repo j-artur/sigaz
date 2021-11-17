@@ -1,16 +1,12 @@
 package view;
 
-import controller.ClassroomController;
-import controller.RegisterClassroomController;
-import controller.SubjectController;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.vo.ClassroomVO;
-import model.vo.ProfessorVO;
-import model.vo.SubjectVO;
+import model.vo.*;
 
 public class View extends Application {
 	private static Stage primaryStage;
@@ -137,12 +133,20 @@ public class View extends Application {
 	}
 
 	public static void professors() throws Exception {
+		ProfessorController.setProfessor(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/searchProfessor.fxml"));
 		setPrimaryWindow(new Scene(root), "SIGAZ - Professores");
 	}
 
 	public static void createProfessor() throws Exception {
+		ProfessorController.setProfessor(null);
 		Parent root = FXMLLoader.load(View.class.getResource("xml/registerProfessor.fxml"));
+		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
+	}
+
+	public static void editProfessor(ProfessorVO professor) throws Exception {
+		ProfessorController.setProfessor(professor);
+		Parent root = FXMLLoader.load(View.class.getResource("xml/editProfessor.fxml"));
 		setSecondaryWindow(new Scene(root), "SIGAZ - Cadastrar Disciplina");
 	}
 

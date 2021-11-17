@@ -132,12 +132,12 @@ public class SubjectController {
 
 	public void store(ActionEvent event) {
 		try {
-			SubjectVO subject = new SubjectVO();
+			SubjectVO newSubject = new SubjectVO();
 
-			subject.setCode(code.getText());
-			subject.setName(name.getText());
+			newSubject.setCode(code.getText());
+			newSubject.setName(name.getText());
 
-			subjectBo.create(subject);
+			subjectBo.create(newSubject);
 
 			View.subjects();
 		} catch (Exception e) {

@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfessorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfessorController">
    <children>
-      <Label layoutX="155.0" layoutY="200.0" text="Nome" />
-      <Label layoutX="155.0" layoutY="256.0" text="CPF" />
-      <TextField fx:id="name" layoutX="155.0" layoutY="215.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="35.0" minHeight="83.0" prefWidth="233.0" text="SIGAZ" textAlignment="CENTER">
+      <Label layoutX="162.0" layoutY="128.0" text="Nome" />
+      <Label layoutX="162.0" layoutY="184.0" text="CPF" />
+      <TextField fx:id="name" layoutX="162.0" layoutY="143.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="14.0" minHeight="83.0" prefWidth="233.0" text="SIGAZ" textAlignment="CENTER">
          <font>
             <Font name="Noto Sans Bold" size="72.0" />
          </font>
       </Label>
-      <Label layoutX="256.0" layoutY="136.0" text="Cadastrar Professor" />
-      <TextField fx:id="cpf" layoutX="155.0" layoutY="271.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
-      <Label layoutX="155.0" layoutY="310.0" text="Endereço" />
-      <TextField fx:id="address" layoutX="155.0" layoutY="325.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
-      <Button onAction="#store" layoutX="240.0" layoutY="403.0" mnemonicParsing="false" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Cadastrar" />
+      <Label layoutX="269.0" layoutY="111.0" text="Cadastrar Professor" />
+      <TextField fx:id="cpf" layoutX="162.0" layoutY="199.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Label layoutX="162.0" layoutY="238.0" text="Endereço" />
+      <TextField fx:id="address" layoutX="162.0" layoutY="253.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Button layoutX="240.0" layoutY="413.0" mnemonicParsing="false" onAction="#store" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Cadastrar" />
+      <Label layoutX="161.0" layoutY="352.0" text="Senha" />
+      <PasswordField fx:id="password" layoutX="162.0" layoutY="367.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Label layoutX="161.0" layoutY="297.0" text="Email" />
+      <TextField fx:id="email" layoutX="163.0" layoutY="314.0" prefHeight="25.0" prefWidth="323.0" style="-fx-pref-width: 320; -fx-pref-height: 32;" />
+      <Label fx:id="error" layoutX="37.0" layoutY="14.0" prefHeight="15.0" prefWidth="573.0" textFill="RED" />
    </children>
 </Pane>
