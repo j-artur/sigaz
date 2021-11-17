@@ -1,5 +1,6 @@
 package model.bo;
 
+import java.util.Arrays;
 import java.util.List;
 
 import model.dao.ClassroomDAO;
@@ -19,6 +20,13 @@ public class ClassroomBO implements IClassroomBO {
 	@Override
 	public void create(ClassroomVO classroom) throws Exception {
 		this.classroomDao.create(classroom);
+		Arrays.asList(classroom.getStudents()).forEach(student -> {
+			try {
+				this.add(classroom, student);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@Override
@@ -42,6 +50,16 @@ public class ClassroomBO implements IClassroomBO {
 	}
 
 	@Override
+	public List<GradeVO> findAllGrades(ClassroomVO classroom) throws Exception {
+		return this.gradeDao.findByClassroom(classroom);
+	}
+
+	@Override
+	public List<GradeVO> findGradesByStudent(StudentVO student) throws Exception {
+		return this.gradeDao.findByStudent(student);
+	}
+
+	@Override
 	public void update(ClassroomVO classroom, ClassroomVO data) throws Exception {
 		this.classroomDao.update(classroom, data);
 	}
@@ -55,15 +73,22 @@ public class ClassroomBO implements IClassroomBO {
 	@Override
 	public void add(ClassroomVO classroom, StudentVO student) throws Exception {
 		this.classroomStudentDao.create(classroom, student);
+
+		GradeVO grade = new GradeVO();
+		grade.setStudent(student);
+		grade.setClassroom(classroom);
+		grade.setN1(0);
+		grade.setN2(0);
+		grade.setN3(0);
+		grade.setNFinal(0);
+		grade.setFrequency(1);
+
+		this.gradeDao.create(grade);
 	}
 
 	@Override
 	public void grade(GradeVO grade) throws Exception {
-		GradeVO persistedGrade = this.gradeDao.findByStudentInClassroom(grade.getStudent(), grade.getClassroom());
-		if (persistedGrade == null)
-			this.gradeDao.create(grade);
-		else
-			this.gradeDao.update(grade, grade);
+		this.gradeDao.update(grade, grade);
 	}
 
 	@Override

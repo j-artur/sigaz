@@ -18,13 +18,26 @@ public class ClassroomDAO implements IDAO<ClassroomVO> {
 	public void create(ClassroomVO classroom) throws SQLException {
 		String sql = "INSERT INTO classrooms (subject_id, professor_id, schedule, place, active) VALUES (?, ?, ?, ?, ?)";
 
-		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql);
+		PreparedStatement statement = BaseDAO.getInstance().getConnection().prepareStatement(sql,
+				Statement.RETURN_GENERATED_KEYS);
 		statement.setLong(1, classroom.getSubject().getId());
 		statement.setLong(2, classroom.getProfessor().getId());
 		statement.setString(3, classroom.getSchedule());
 		statement.setString(4, classroom.getPlace());
 		statement.setBoolean(5, classroom.isActive());
-		statement.execute();
+
+		statement.executeUpdate();
+
+		ResultSet generatedKeys = statement.getGeneratedKeys();
+
+		if (generatedKeys.next()) {
+			try {
+				long id = generatedKeys.getLong("id");
+				classroom.setId(id);
+			} catch (Exception e) {
+				throw new SQLException("Erro crítico, dados inválidos salvos no banco");
+			}
+		}
 	}
 
 	public List<ClassroomVO> findAll() throws SQLException {

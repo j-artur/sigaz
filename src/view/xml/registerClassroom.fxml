@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClassroomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterClassroomController">
    <children>
       <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+            <Hyperlink layoutX="79.0" layoutY="3.0" onAction="#home" style="-fx-underline: false;" text="SIGAZ" textFill="#2c2a2a">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -20,22 +18,22 @@
       </Pane>
       <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
          <children>
-            <Hyperlink onAction="#classrooms" layoutX="14.0" layoutY="14.0" text="Turmas" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="14.0" onAction="#classrooms" style="-fx-underline: false;" text="Turmas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink onAction="#subjects" layoutX="14.0" layoutY="59.0" text="Disciplinas" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="59.0" onAction="#subjects" style="-fx-underline: false;" text="Disciplinas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink onAction="#professors" layoutX="14.0" layoutY="105.0" text="Professores" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="105.0" onAction="#professors" style="-fx-underline: false;" text="Professores" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink onAction="#students" layoutX="14.0" layoutY="153.0" text="Alunos" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="153.0" onAction="#students" style="-fx-underline: false;" text="Alunos" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -46,7 +44,7 @@
       <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
          <children>
             <Label fx:id="userName" layoutX="14.0" layoutY="25.0" text="Joaozinho" />
-            <Hyperlink onAction="#logout" layoutX="250.0" layoutY="21.0" text="Sair" textFill="#282828" />
+            <Hyperlink layoutX="250.0" layoutY="21.0" onAction="#logout" style="-fx-underline: false;" text="Sair" textFill="#282828" />
          </children>
       </Pane>
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1066.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -90,8 +88,15 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="selectStudents" layoutX="40.0" layoutY="336.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="184.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Selecionar alunos" />
-            <Button fx:id="registerClassroom" layoutX="40.0" layoutY="562.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Cadastrar Turma" />
+            <Button layoutX="40.0" layoutY="336.0" mnemonicParsing="false" onAction="#selectStudents" prefHeight="40.0" prefWidth="184.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Selecionar alunos">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="40.0" layoutY="562.0" mnemonicParsing="false" onAction="#registerClassroom" prefHeight="32.0" prefWidth="160.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Cadastrar Turma">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="20.0" layoutY="610.0" prefWidth="500.0" style="-fx-pref-width: 640; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
          </children>
       </Pane>
    </children>

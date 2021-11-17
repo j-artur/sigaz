@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterClassroomController">
    <children>
       <Pane prefHeight="56.0" prefWidth="640.0" style="-fx-background-color: #FBFBFB;">
          <children>
             <TextField fx:id="search" layoutX="44.0" layoutY="12.0" prefHeight="32.0" prefWidth="400.0" promptText="Pesquisar por nome ou código de turma" />
-            <Button fx:id="searchButton" layoutX="467.0" layoutY="8.0" mnemonicParsing="false" prefWidth="0.0" style="-fx-pref-width: 150; -fx-pref-height: 35; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Pesquisar">
+            <Button layoutX="467.0" layoutY="8.0" mnemonicParsing="false" onAction="#search" prefWidth="0.0" style="-fx-pref-width: 150; -fx-pref-height: 35; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Pesquisar">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -19,15 +19,19 @@
       </Pane>
       <TableView fx:id="studentsTable" layoutY="56.0" prefHeight="362.0" prefWidth="640.0">
         <columns>
-          <TableColumn fx:id="registrationStudent" prefWidth="153.0" text="Matricula" />
-          <TableColumn fx:id="studentName" prefWidth="389.0" text="Nome" />
-            <TableColumn prefWidth="50.0" />
-            <TableColumn prefWidth="46.0" />
+          <TableColumn fx:id="studentRegistration" prefWidth="153.0" text="Matricula" />
+          <TableColumn fx:id="studentName" prefWidth="411.0" text="Nome" />
+            <TableColumn fx:id="buttons" prefWidth="71.0" />
         </columns>
       </TableView>
       <Pane layoutY="418.0" prefHeight="56.0" prefWidth="640.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Button fx:id="saveEditions" layoutX="24.0" layoutY="8.0" mnemonicParsing="false" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar Alteraçoes" />
+            <Button layoutX="24.0" layoutY="8.0" mnemonicParsing="false" onAction="#saveEditions" style="-fx-pref-width: 160; -fx-pref-height: 40; -fx-background-color: #FFFFFF; -fx-border-color: #DEDEDE;" text="Salvar Mudanças">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="226.0" layoutY="12.0" prefWidth="500.0" style="-fx-pref-width: 400; -fx-pref-height: 32;" textFill="RED" wrapText="true" />
+            <Label fx:id="error" layoutX="216.0" layoutY="21.0" prefHeight="15.0" prefWidth="410.0" textFill="RED" />
          </children>
       </Pane>
    </children>

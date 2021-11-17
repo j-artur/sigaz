@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConcludedSubjectsController">
    <children>
       <Pane prefHeight="64.0" prefWidth="300.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Hyperlink onAction="#home" layoutX="79.0" layoutY="3.0" text="SIGAZ" textFill="#2c2a2a">
+            <Hyperlink layoutX="79.0" layoutY="3.0" onAction="#home" style="-fx-underline: false;" text="SIGAZ" textFill="#2c2a2a">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -20,40 +18,32 @@
       </Pane>
       <Pane layoutY="64.0" prefHeight="656.0" prefWidth="300.0" style="-fx-background-color: #F4F4F4;">
          <children>
-            <Hyperlink fx:id="classroomsLink" layoutX="14.0" layoutY="14.0" text="Turmas" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="14.0" onAction="#classrooms" style="-fx-underline: false;" text="Turmas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="subjectsLink" layoutX="14.0" layoutY="59.0" text="Disciplinas" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="59.0" onAction="#subjects" style="-fx-underline: false;" text="Disciplinas" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="professorsLink" layoutX="14.0" layoutY="105.0" text="Professores" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="105.0" onAction="#professors" style="-fx-underline: false;" text="Professores" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="studentsLink" layoutX="14.0" layoutY="153.0" text="Alunos" textFill="#282828">
+            <Hyperlink layoutX="14.0" layoutY="153.0" onAction="#students" style="-fx-underline: false;" text="Alunos" textFill="#282828">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Hyperlink>
          </children>
       </Pane>
-      <Pane layoutX="300.0" prefHeight="64.0" prefWidth="680.0" style="-fx-background-color: #FBFBFB;" />
-      <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
+      <Pane layoutX="300.0" prefHeight="64.0" prefWidth="680.0" style="-fx-background-color: #FBFBFB;">
          <children>
-            <Label fx:id="userName" layoutX="14.0" layoutY="25.0" text="Joaozinho" />
-            <Hyperlink fx:id="exitLink" layoutX="250.0" layoutY="21.0" text="Sair" textFill="#282828" />
-         </children>
-      </Pane>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="1066.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../resources/icons/user.png" />
-         </image>
-      </ImageView>
+            <Label fx:id="error" layoutX="14.0" layoutY="25.0" prefHeight="15.0" prefWidth="651.0" textFill="RED" />
+         </children></Pane>
       <Pane layoutX="300.0" layoutY="64.0" prefHeight="656.0" prefWidth="680.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label fx:id="studentName" layoutX="14.0" layoutY="22.0" prefHeight="21.0" prefWidth="660.0" text="Elisete Nogueira - Disciplinas">
@@ -73,29 +63,71 @@
             </Label>
             <TableView fx:id="concludedSubjects" layoutX="4.0" layoutY="328.0" prefHeight="326.0" prefWidth="680.0">
                <columns>
-                  <TableColumn fx:id="subjectName1" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
-                  <TableColumn fx:id="P11" editable="false" prefWidth="56.0" text="Nota 1" />
-                  <TableColumn fx:id="P21" editable="false" prefWidth="58.0" text="Nota 2" />
-                  <TableColumn fx:id="P31" editable="false" prefWidth="55.0" text="Nota 3" />
-                  <TableColumn fx:id="P41" prefWidth="90.0" text="Prova Final" />
-                  <TableColumn fx:id="average1" prefWidth="54.0" text="Media" />
-                  <TableColumn fx:id="frequency1" prefWidth="75.0" text="Faltas" />
-                  <TableColumn fx:id="status1" prefWidth="147.0" text="Status" />
+                  <TableColumn fx:id="subjectName1" editable="false" prefWidth="227.0" style="font: 10px;" text="Disciplina" />
+                  <TableColumn fx:id="P11" editable="false" prefWidth="53.0" text="Nota 1" />
+                  <TableColumn fx:id="P21" editable="false" minWidth="0.0" prefWidth="52.0" text="Nota 2" />
+                  <TableColumn fx:id="P31" editable="false" prefWidth="56.0" text="Nota 3" />
+                  <TableColumn fx:id="average1" prefWidth="56.0" text="Media" />
+                  <TableColumn fx:id="frequency1" prefWidth="67.0" text="Frequência" />
+                  <TableColumn fx:id="status1" prefWidth="168.0" text="Status" />
                </columns>
             </TableView>
          </children>
       </Pane>
       <TableView fx:id="ongoingSubjects" layoutX="300.0" layoutY="150.0" prefHeight="212.0" prefWidth="680.0">
         <columns>
-          <TableColumn fx:id="subjectName" editable="false" prefWidth="144.0" style="font: 10px;" text="Disciplina" />
-          <TableColumn fx:id="P1" editable="false" prefWidth="56.0" text="Nota 1" />
-            <TableColumn fx:id="P2" editable="false" prefWidth="58.0" text="Nota 2" />
-            <TableColumn fx:id="P3" editable="false" prefWidth="55.0" text="Nota 3" />
-            <TableColumn fx:id="P4" prefWidth="90.0" text="Prova Final" />
+          <TableColumn fx:id="subjectName" editable="false" prefWidth="229.0" style="font: 10px;" text="Disciplina" />
+          <TableColumn fx:id="P1" editable="false" minWidth="0.0" prefWidth="55.0" text="Nota 1" />
+            <TableColumn fx:id="P2" editable="false" prefWidth="54.0" text="Nota 2" />
+            <TableColumn fx:id="P3" editable="false" prefWidth="56.0" text="Nota 3" />
             <TableColumn fx:id="average" prefWidth="54.0" text="Media" />
-            <TableColumn fx:id="frequency" prefWidth="75.0" text="Faltas" />
-            <TableColumn fx:id="status" prefWidth="147.0" text="Status" />
+            <TableColumn fx:id="frequency" prefWidth="64.0" text="Frequência" />
+            <TableColumn fx:id="status" prefWidth="167.0" text="Status" />
         </columns>
       </TableView>
+      <Pane layoutX="980.0" prefHeight="64.0" prefWidth="300.0">
+         <children>
+            <Pane layoutX="90.0" layoutY="16.0" prefHeight="32.0" prefWidth="160.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="160.0">
+                     <children>
+                        <Label fx:id="userName" style="-fx-max-width: 80;">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="160.0">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/icons/arrow_down.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="160.0">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/icons/user.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Pane layoutX="160.0" prefHeight="32.0" prefWidth="50.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="32.0" prefWidth="50.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#logout" text="Sair" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
 </Pane>
