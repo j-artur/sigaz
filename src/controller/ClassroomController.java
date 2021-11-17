@@ -100,7 +100,7 @@ public class ClassroomController {
 
 				if (gradeButton != null)
 					if (View.getViewMode() == ViewMode.PROFESSOR
-							&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId())
+							&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId() && classroom.isActive())
 						gradeButton.setText("Notas e Frequência");
 					else if (View.getViewMode() == ViewMode.STUDENT)
 						gradeButton.setText("Ver Notas");
@@ -217,7 +217,7 @@ public class ClassroomController {
 
 	public void grade(ActionEvent event) throws Exception {
 		if (View.getViewMode() == ViewMode.PROFESSOR
-				&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId())
+				&& AuthController.getLoggedUser().getId() == classroom.getProfessor().getId() && classroom.isActive())
 			View.grade(classroom);
 		else if (View.getViewMode() == ViewMode.STUDENT && AuthController.getLoggedUser() instanceof StudentVO student)
 			View.grade(student);

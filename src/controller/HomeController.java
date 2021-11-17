@@ -57,7 +57,10 @@ public class HomeController {
 			if (user instanceof StudentVO student) {
 				List<ClassroomVO> list = classroomBo.findByStudent(student);
 				List<ClassroomModel> classes = new ArrayList<ClassroomModel>();
-				list.forEach(classroom -> classes.add(new ClassroomModel(classroom)));
+				list.forEach(classroom -> {
+					if (classroom.isActive())
+						classes.add(new ClassroomModel(classroom));
+				});
 				classrooms.setAll(classes);
 				seeMineButton.setOpacity(1);
 				seeMineButton.setOnAction(ev -> {
@@ -71,7 +74,10 @@ public class HomeController {
 			if (user instanceof ProfessorVO professor) {
 				List<ClassroomVO> list = classroomBo.findByProfessor(professor);
 				List<ClassroomModel> classes = new ArrayList<ClassroomModel>();
-				list.forEach(classroom -> classes.add(new ClassroomModel(classroom)));
+				list.forEach(classroom -> {
+					if (classroom.isActive())
+						classes.add(new ClassroomModel(classroom));
+				});
 				classrooms.setAll(classes);
 				seeMineButton.setOpacity(0);
 			}
