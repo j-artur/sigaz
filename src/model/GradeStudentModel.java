@@ -13,7 +13,7 @@ public class GradeStudentModel {
 	private TextField n2;
 	private TextField n3;
 	private TextField nfinal;
-	private TextField frequency;
+	private NumberTextField frequency;
 
 	public GradeVO getGrade() {
 		return grade;
@@ -64,7 +64,7 @@ public class GradeStudentModel {
 		return nfinal;
 	}
 
-	public TextField getFrequency() {
+	public NumberTextField getFrequency() {
 		return frequency;
 	}
 

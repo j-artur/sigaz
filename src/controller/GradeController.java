@@ -101,7 +101,15 @@ public class GradeController {
 					} catch (Exception e) {
 					}
 				});
-
+				grade.getFrequency().numberProperty().addListener((ob, old, value) -> {
+					try {
+						double frequency = value.doubleValue();
+						grade.getGrade().setFrequency(frequency);
+						grade.getNFinal().setText(String.valueOf(grade.getGrade().getNFinal()));
+					} catch (Exception e) {
+					}
+				});
+				;
 			});
 
 			registration.setCellValueFactory(new PropertyValueFactory<GradeStudentModel, String>("registration"));
